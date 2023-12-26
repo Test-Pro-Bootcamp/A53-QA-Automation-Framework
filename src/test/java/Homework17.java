@@ -1,3 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG">
+
+   <test name="Example Test" preserve-order="false">
+      <classes>
+         <class name="LoginTests"/>
+         <class name="BaseTest"/>
+         <class name="Homework17"/>
+      </classes>
+   </test>
+</suite>
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +22,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework17 extends BaseTest{
+public class Homework17  extends BaseTest{
     @Test
     public void addSongToPlaylist(){
 
