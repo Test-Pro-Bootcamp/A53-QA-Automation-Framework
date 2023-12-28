@@ -1,67 +1,70 @@
+/*
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite name="TestNG">
-
-   <test name="Example Test" preserve-order="false">
-      <classes>
-         <class name="LoginTests"/>
-         <class name="BaseTest"/>
-         <class name="Homework17"/>
-      </classes>
-   </test>
+ <test name="Example Test" preserve-order="false">
+  <classes>
+//<class name="LoginTests"/>
+ <class name="BaseTest"/>
+<class name="Homework17"/>
+</classes>
+</test>
 </suite>
-//Added above section
+*/
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+//import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+//import org.openqa.selenium.edge.EdgeDriver;
+//import org.openqa.selenium.edge.EdgeOptions;
+//import org.openqa.selenium.support.ui.ExpectedConditions;
+//import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+//import java.time.Duration;
 
-public class Homework17  extends BaseTest{
+public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist(){
 
-        EdgeOptions options = new EdgeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        launchBrowser();
+        navigateToPage();
+        provideEmail("john.wolschleger@testpro.io");
+        providePassword("te$t$tudentb49");
+        clickSubmit();
+      //clickAddToBtn();
+        closeBrowser();
 
-        WebDriver driver = new EdgeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String baseUrl = "https://qa.koel.app/";
-        driver.get(baseUrl);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("john.wolschleger@testpro.io");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudentb49");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
-        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
-        searchField.clear();
-        searchField.sendKeys("Pluto");
-
-        WebElement viewAll = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
-        viewAll.click();
-
-        WebElement addTo = driver.findElement(By.cssSelector("button[class='btn-add-to']"));
-        addTo.click();
-
-        WebElement verifySongToPlaylist = driver.findElement(By.cssSelector("div.alertify-logs.top.right"));
-        Assert.assertTrue(verifySongToPlaylist.isDisplayed());
-
-        driver.quit();
-    }
 }
+public void avatarDisplayed() throws InterruptedException {
+    WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+    Assert.assertTrue(avatarIcon.isDisplayed());
+}
+public void searchSong(String name) throws InterruptedException {
+    WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+    searchField.sendKeys(name);
+    Thread.sleep(2000);
+}
+public void clickViewAllBtn() throws InterruptedException {
+    WebElement viewAll = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
+    viewAll.click();
+    Thread.sleep(2000);
+}
+public void clickAddToBtn() throws InterruptedException {
+    WebElement addTo = driver.findElement(By.cssSelector("button[class='btn-add-to']"));
+    addTo.click();
+    Thread.sleep(2000);
+}
+public void verifySongToPlaylist() {
+    WebElement notification = driver.findElement(By.cssSelector("div.alertify-logs.top.right"));
+    Assert.assertTrue(notification.isDisplayed());
+}
+}
+
+
+
+
+
+
+
