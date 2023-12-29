@@ -6,10 +6,10 @@ public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
 
-        String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Homework17.\"";
 
         navigateToPage();
-        provideEmail("john.wolschleger");
+        provideEmail("john.wolschleger@testpro.io");
         providePassword("te$t$tudentb49");
         clickSubmit();
         Thread.sleep(2000);
