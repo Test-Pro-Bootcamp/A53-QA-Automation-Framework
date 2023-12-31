@@ -11,34 +11,19 @@ import org.testng.annotations.Test;
             providePassword("te$t$tudentb49");
             clickSubmit();
             Thread.sleep(2000);
-            clickPlayNextSongBtn();
-            clickPlaySongBtn();
-
+            clickPlay();
+            Assert.assertTrue(expectedVisualizerBanner());
 }
-        public void clickPlayNextSongBtn() throws InterruptedException {
-        WebElement playNextSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/i[2]"));
+        public void clickPlay() throws InterruptedException {
+        WebElement playNextSong = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playSong = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+
             playNextSong.click();
-            Thread.sleep(2000);
-        }
-        public void clickPlaySongBtn() throws InterruptedException {
-            WebElement playSong = driver.findElement(By.xpath("//*[@id='mainFooter']/div[1]/span/span[2]"));
             playSong.click();
             Thread.sleep(2000);
         }
-               public void expectedVisualizerBanner() throws InterruptedException {
-            WebElement visualizerBanner = driver.findElement(By.xpath("//*[@id=\"vizContainer\"] || //*[@id=\"mainFooter\"]/div[1]/span/span[2]/i"));
-
-            Assert.assertTrue(visualizerBanner.isDisplayed());
+               public boolean expectedVisualizerBanner() {
+            WebElement visualizerBanner = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+            return visualizerBanner.isDisplayed();
           }
         }
-
-
-
-
-
-
-
-
-
-
-
