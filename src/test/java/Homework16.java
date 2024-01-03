@@ -24,7 +24,7 @@ public class Homework16 extends BaseTest{
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("utku.aktas@testpro.io");
+        emailField.sendKeys("utku.aktas94@testpro.io");
 
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
