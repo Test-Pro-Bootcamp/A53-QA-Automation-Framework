@@ -29,7 +29,7 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword() {
 
-        ChromeOptions options = new ChromeOptions();
+       /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -49,7 +49,11 @@ public class LoginTests extends BaseTest {
         passwordField.sendKeys("Koelpass");
 
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
+        submitButton.click();*/
+        navigateToPage();
+        provideEmail("azahn007@gmail.com");
+        providePassword("Koelpass");
+        clickSubmit();
 
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -59,7 +63,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginWithInvalidEmailValidPassword() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
+        /*ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -81,7 +85,11 @@ public class LoginTests extends BaseTest {
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(2000);*/
+        navigateToPage();
+        provideEmail("invalidemail.com");
+        providePassword("Koelpass");
+        clickSubmit();
 
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
@@ -94,7 +102,7 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void loginWithInvalidPasswordValidEmail() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
+       /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -116,7 +124,12 @@ public class LoginTests extends BaseTest {
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButton.click();
 
-        Thread.sleep(2000);
+        Thread.sleep(2000);*/
+        navigateToPage();
+        provideEmail("azahn007@gmail.com");
+        providePassword("KoelpassW");
+        clickSubmit();
+
 
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
