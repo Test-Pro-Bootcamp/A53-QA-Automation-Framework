@@ -5,9 +5,9 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class registraionNavigation extends BaseTest{
+public class Homework16 extends BaseTest{
     @Test
-    public void registrationNavigation
+    public void registrationNavigation() {
 
     // Added ChromeOptions argument below to fix websocket error
     org.openqa.selenium.chrome.ChromeOptions options = new ChromeOptions();
@@ -18,8 +18,12 @@ public class registraionNavigation extends BaseTest{
 
     String url = "https://qa.koel.app/";
         driver.get(url);
-        registration.click();
-        Assert.assertEquals(driver.getCurrentUrl(https://qa.koel.app/registration), url);
+
+        WebElement registraionLink = driver.findElement((By.cssSelector("[href='registration']"));
+        registrationLink.click();
+        String registrationURL = "https://qa.koel.app/registration";
+        Assert.assertEquals(driver.getCurrentUrl(), registrationURL);
+        
         driver.quit();
 }
 }
