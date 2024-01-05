@@ -59,8 +59,7 @@ public class Homework17 extends BaseTest{
 
         WebElement warningMessage = driver.findElement(By.cssSelector("div.success"));
         Assert.assertTrue(warningMessage.isDisplayed());
-//        Assert.assertEquals(warningMessage.getText(),"Added 1 song into '"+playlistName+"'.");
-        Assert.assertEquals("Added 1 song into '" +playlistName+".'",warningMessage.getText());
+        Assert.assertEquals("Added 1 song into \"" +playlistName+".\"",warningMessage.getText());
         System.out.println("Warning message: " + warningMessage.getText());
         // Actual :Added 1 song into 'December.'
         // Expected   :Added 1 song into "December."
