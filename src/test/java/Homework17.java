@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest{
 
     @Test
-    public void addSongToPlaylist(){
+    public void addSongToPlaylist() throws InterruptedException {
         loginToKoel("utku.aktas94@testpro.io","ekga9uf6");
 
         searchSong("Maarten Schellekens - The Little Match Girl (ft. Enlia)");
-
+        Thread.sleep(2000);
         addToPlaylist("December");
 
     }
@@ -43,19 +43,26 @@ public class Homework17 extends BaseTest{
 
         //First song is not selected
         //WebElement firstSongInTheList = driver.findElement(By.cssSelector("table.items tr:first-child"));
-        WebElement firstSongInTheList = driver.findElement(By.cssSelector("table.items tr:nth-of-type(1)"));
+        //Why there is 2 table in dom about the same list
+        WebElement firstSongInTheList = driver.findElement(By.cssSelector("section#songResultsWrapper table.items tr:first-child"));
         firstSongInTheList.click();
     }
 
-    public void addToPlaylist(String playlistName){
+    public void addToPlaylist(String playlistName) throws InterruptedException {
         WebElement addToButton = driver.findElement(By.cssSelector("button[class='btn-add-to']"));
         addToButton.click();
 
-//        WebElement playlist = driver.findElement(By.cssSelector("li.playlist:contains('December')"));
-        WebElement playlist = driver.findElement(By.xpath("//li[@class='playlist' and contains(text(), '" + playlistName + "')]"));
+        WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), '"+playlistName+"')]"));
         playlist.click();
 
-        WebElement warningMessage = driver.findElement(By.cssSelector("div[class='success']"));
-        Assert.assertEquals(warningMessage.getText(),"Added 1 song into '"+playlistName+"'.");
+        Thread.sleep(2000);
+
+        WebElement warningMessage = driver.findElement(By.cssSelector("div.success"));
+        Assert.assertTrue(warningMessage.isDisplayed());
+//        Assert.assertEquals(warningMessage.getText(),"Added 1 song into '"+playlistName+"'.");
+        Assert.assertEquals(warningMessage.getText(),"Added 1 song into '" +playlistName+".'");
+        System.out.println("Warning message: " + warningMessage.getText());
+        Thread.sleep(2000);
+
     }
 }
