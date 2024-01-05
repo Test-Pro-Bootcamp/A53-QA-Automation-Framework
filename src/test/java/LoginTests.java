@@ -8,6 +8,8 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+//changing the file to allow for a commit
+
 public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword() {
