@@ -41,9 +41,6 @@ public class Homework17 extends BaseTest{
         WebElement viewAll = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
         viewAll.click();
 
-        //First song is not selected
-        //WebElement firstSongInTheList = driver.findElement(By.cssSelector("table.items tr:first-child"));
-        //Why there is 2 table in dom about the same list
         WebElement firstSongInTheList = driver.findElement(By.cssSelector("section#songResultsWrapper table.items tr:first-child"));
         firstSongInTheList.click();
     }
@@ -61,9 +58,7 @@ public class Homework17 extends BaseTest{
         Assert.assertTrue(warningMessage.isDisplayed());
         Assert.assertEquals("Added 1 song into \"" +playlistName+".\"",warningMessage.getText());
         System.out.println("Warning message: " + warningMessage.getText());
-        // Actual :Added 1 song into 'December.'
-        // Expected   :Added 1 song into "December."
-        //Because of single/double quotes not equal need to be fixed
+
         Thread.sleep(2000);
 
     }
