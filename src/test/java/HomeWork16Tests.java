@@ -23,7 +23,7 @@ public class HomeWork16Tests {
 
         String url = "https://qa.koel.app/";
         driver.get(url);
-        WebElement registrationForgotPassword = driver.findElement(By.cssSelector("a[href='registration']"));
+        WebElement registrationNavigation = driver.findElement(By.cssSelector("a[href='registration']"));
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
