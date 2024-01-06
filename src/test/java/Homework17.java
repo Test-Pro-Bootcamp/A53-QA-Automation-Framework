@@ -14,12 +14,12 @@ public class Homework17 extends BaseTest {
         providePassword("Koelpass");
         clickSubmit();
         Thread.sleep(2000);
-        searchSong("BornKing");
+        searchSong("Airbit");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
         choosePlaylist();
-        Assert.assertEquals(getAddSongToPlaylistSuccessMsg(), expectedSongAddedMessage);
+        Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage);
 
     }
     public void searchSong(String name)  throws InterruptedException {
@@ -48,7 +48,7 @@ public class Homework17 extends BaseTest {
         playlist.click();
         Thread.sleep(2000);
     }
-    public String getAddSongToPlaylistSuccessMsg() {
+    public String getAddToPlaylistSuccessMsg() {
        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
         return notification.getText();
 }
