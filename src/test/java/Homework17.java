@@ -7,14 +7,14 @@ public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        String expectedSongAddedMessage = "Added 1 song into \"Postman HW.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
 
         navigateToPage();
         provideEmail("azahn007@gmail.com");
         providePassword("Koelpass");
         clickSubmit();
         Thread.sleep(2000);
-        searchSong("Airbit");
+        searchSong("Lament");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
@@ -43,11 +43,12 @@ public class Homework17 extends BaseTest {
         addToButton.click();
         Thread.sleep(2000);
     }
-    public void choosePlaylist() throws InterruptedException {
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Postman HW')]"));
+    public void choosePlaylist()  throws InterruptedException {
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Pro Playlist')]"));
         playlist.click();
         Thread.sleep(2000);
     }
+
     public String getAddToPlaylistSuccessMsg() {
        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
         return notification.getText();
