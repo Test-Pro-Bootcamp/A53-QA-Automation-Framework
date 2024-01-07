@@ -16,7 +16,7 @@ public class HomeWork16Tests {
     public void registrationNavigation() {
 
         ChromeOptions options = new ChromeOptions();
-       // options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
