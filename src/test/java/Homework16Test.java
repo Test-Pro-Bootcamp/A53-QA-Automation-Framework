@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class Homework16Test {
+public class HomeWork16Test {
 
     @Test
 
@@ -21,12 +21,13 @@ public class Homework16Test {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        String url = "https://qa.koel.app/";
+        String url = "https://qa.koel.app/registration";
         driver.get(url);
         WebElement registrationNavigation = driver.findElement(By.cssSelector("a[href*='registration']"));
         registrationNavigation.click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        WebElement registerAccount = driver.findElement(By.cssSelector("h2[style^='padding']"));
+        Assert.assertTrue(registerAccount.isDisplayed());
         driver.quit();
     }
 }
