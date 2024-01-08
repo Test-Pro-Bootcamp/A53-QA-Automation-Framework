@@ -11,4 +11,14 @@
             <class name="Homework17Test"/>
         </classes>
     </test>
+
+    <test name="Play Song" preserve-order="false">
+        <classes>
+            <class name="Homework18Test">
+                <methods>
+                    <include name="playSong"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>
