@@ -22,26 +22,15 @@ public class Homework16 extends BaseTest {
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        //Email Field
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("menderes.koc@testpro.io");
+        //RegistrationField
+        WebElement registration = driver.findElement(By.cssSelector("[href=registration]"));
+        registration.click();
 
-        //Password Field
-        WebElement passWordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passWordField.clear();
-        passWordField.sendKeys("VGGd8tOG");
+        String registrationUrl = "https://qa.koel.app/registration";
+        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
 
-        //Submit Button
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-
-        //Assertion
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
-        //Quit
         driver.quit();
+
     }
 }
 
