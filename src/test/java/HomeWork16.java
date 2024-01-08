@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class homework16 extends BaseTest {
+public class HomeWork16 extends BaseTest {
     @Test
-    public void navigateToRegistration() {
+    public void registrationNavigation() {
 
         //Preconditions
         ChromeOptions options = new ChromeOptions();
@@ -28,8 +28,8 @@ public class homework16 extends BaseTest {
         emailField.sendKeys("demo@class.com");
         //passwordField
         WebElement passwordField = driver.findElement(By.cssSelector ("input[type = 'password']"));
-        emailField.clear();
-        emailField.sendKeys("incpassword");
+        passwordField.clear();
+        passwordField.sendKeys("wrongPassword");
         //Submit button
         WebElement submitButton = driver.findElement(By.cssSelector ("button[type = 'submit']"));
         submitButton.click();
