@@ -9,26 +9,17 @@ import java.lang.Thread;
 import java.time.Duration;
 
 public class Homework18Test {
+WebDriver driver;
 
-    @Test
-    public void playSong() throws InterruptedException {
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        Actions act = new Actions(driver);
-
+    public void loginUser(){
         String url = "https://qa.koel.app/";
         driver.get(url);
         driver.findElement(By.xpath("//input[@type='email']")).sendKeys("william.chang@testpro.io");
         driver.findElement(By.xpath("//input[@type='password']")).sendKeys("te$tStudent");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(2000);
+    }
 
-        //Note that play-next button is buggy unless songs are added to queue
+    public void addSongstoQueue(){
         driver.findElement(By.xpath("//a[@href='#!/songs']")).click();
         driver.findElement(By.xpath("//*[@id='songsWrapper']//tr[@class='song-item'][1]")).click();
         driver.findElement(By.xpath("//button[@class='btn-add-to']")).click();
@@ -36,8 +27,21 @@ public class Homework18Test {
         driver.findElement(By.xpath("//*[@id='songsWrapper']//tr[@class='song-item'][2]")).click();
         driver.findElement(By.xpath("//button[@class='btn-add-to']")).click();
         driver.findElement(By.xpath("//*[@id='songsWrapper']//li[@class='bottom-queue']")).click();
+    }
+    @Test
+    public void playSong() throws InterruptedException {
+//      Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
 
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+        Actions act = new Actions(driver);
+
+        loginUser();
+        //play-next button is optimal when songs are added to queue
+        addSongstoQueue();
 
         driver.findElement(By.xpath("//a[@href='#!/queue']")).click();
         act.doubleClick(driver.findElement(By.xpath("//*[@id='queueWrapper']//tr[@class='song-item'][1]"))).perform();
