@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class HomeWork16 extends BaseTest {
     @Test
-    public void navigationRegistration() {
+    public void registrationNavigation() {
 
         //Preconditions
         ChromeOptions options = new ChromeOptions();
