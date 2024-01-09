@@ -8,6 +8,7 @@ public class Homework17 extends BaseTest{
     @Test
 
     public void addSongToPlaylist() throws InterruptedException {
+        String expectedSongAddedMessage = "Added 1 song into \"Gym Playlist.\"";
         //navigate to koel
 
         navigateToPage();
@@ -15,6 +16,7 @@ public class Homework17 extends BaseTest{
         provideEmail("daria.huzhvii@testpro.io");
         providePassword("VutYN7Kv");
         clickSubmit();
+        Thread.sleep(2000);
         //search dark days in search field
         songSearch();
         //click view all button
@@ -31,26 +33,26 @@ public class Homework17 extends BaseTest{
 
     }
 
-    public void songSearch() {
+    public void songSearch() throws InterruptedException{
         WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
         searchField.clear();
         searchField.sendKeys("Dark Days");
     }
 
-    public void viewAll() {
+    public void viewAll() throws InterruptedException{
         WebElement viewAllButton = driver.findElement(By.cssSelector("h1>button"));
         viewAllButton.click();
     }
 
-    public void firstSongInList() {
+    public void firstSongInList() throws InterruptedException{
         WebElement firstSong = driver.findElement(By.cssSelector("#songResultsWrapper > div > div > div.item-container > table > tr.song-item.selected"));
         firstSong.click();
     }
-    public void addToList() {
+    public void addToList() throws InterruptedException{
         WebElement addButton = driver.findElement(By.cssSelector("[class='btn-add-to']"));
         addButton.click();
     }
-    public void gymPlaylist () {
+    public void gymPlaylist () throws InterruptedException{
         WebElement addToGymPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li.playlist"));
     }
 
