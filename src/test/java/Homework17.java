@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class Homework17 extends BaseTest{
 
-    @Test
+    /*@Test
     public void addSongToPlaylist() throws InterruptedException{
         String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
 
@@ -21,6 +21,33 @@ public class Homework17 extends BaseTest{
         choosePlaylist();
         //Asssertion
         Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage);
+
+    }*/
+
+    @Test
+    public void addSongToPlaylist() {
+        try {
+            String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
+
+            navigateToUrl();
+            provideEmail("demo123@class.com");
+            providePassword("te$t$tudent");
+            clickSubmit();
+            Thread.sleep(2000);
+            searchSong("dark days");
+            clickViewAllBtn();
+            selectFirstSongResult();
+            clickAddToBtn();
+            choosePlaylist();
+            if (!getAddToPlaylistSuccessMsg().equalsIgnoreCase(expectedSongAddedMessage)) {
+                Assert.fail();
+            }
+            //Asssertion
+            Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
+        } catch (Exception e){
+            System.out.println("Test Failed." +e);
+            Assert.fail("Test Failed."+e);
+        }
 
     }
 
