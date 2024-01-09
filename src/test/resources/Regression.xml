@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
+<suite name="Regression">
+
 
     <test name="Example Test" preserve-order="false">
         <classes>
@@ -10,6 +11,7 @@
             <class name="HomeWork16"/>
             <class name="ProfileTests"/>
             <class name="Homework17"/>
+
         </classes>
     </test>
 </suite>
