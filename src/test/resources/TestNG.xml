@@ -16,9 +16,22 @@
         <classes>
             <class name="Homework18Test">
                 <methods>
-                    <include name="playSong"/>
+                    <exclude name="playSong"/>
                 </methods>
             </class>
         </classes>
     </test>
+
+    <test name="Delete Playlist" preserve-order="false">
+        <parameter name ="BaseURL" value="https://qa.koel.app/" />
+        <classes>
+            <class name="Homework19Test">
+                <methods>
+                    <include name="loginUser" />
+                    <include name="deletePlaylist"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
 </suite>
