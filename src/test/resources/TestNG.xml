@@ -7,6 +7,7 @@
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
-        </classes>
-    </test>
+            <class name="Homework16"/>
+        </classes><![CDATA[
+    ]]></test>
 </suite>
