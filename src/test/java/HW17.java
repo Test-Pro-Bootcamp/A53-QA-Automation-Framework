@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HW17 extends BaseTest {
+
     @Test
     public void addSongToPlaylist() throws InterruptedException {
         String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
