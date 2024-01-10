@@ -30,9 +30,11 @@ public class BaseTest {
         };
     }
 
+
+
     public WebDriver driver = null;
 
-    public String url = "https://qa.koel.app/";
+    public String url;
 
     @BeforeSuite
     static void setupClass() {
@@ -50,7 +52,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        String url = BaseUrl;
+        url = BaseUrl;
 
     }
 
