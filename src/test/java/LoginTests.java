@@ -24,7 +24,7 @@ public class LoginTests extends BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSec(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         String url = "https://Testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
