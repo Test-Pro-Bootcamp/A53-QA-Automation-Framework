@@ -7,7 +7,7 @@ public class HomeWork17 extends BaseTest{
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        String expectedSongAddedMessage = "Added 1 song into\"Test Pro Playlist.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
         //login
         navigateToUrl();
         provideEmail("demo@class.com");
@@ -23,7 +23,7 @@ public class HomeWork17 extends BaseTest{
 
         //Assertion
 
-        Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage );
+        Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
 
     }
     public String getAddToPlaylistSuccessMsg() {

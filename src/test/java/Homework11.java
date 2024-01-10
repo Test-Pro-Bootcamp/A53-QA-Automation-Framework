@@ -6,9 +6,10 @@ import org.testng.annotations.Test;
 
 public class Homework11 extends BaseTest{
 
+
     @Test
     public void addSongToPlaylist() throws InterruptedException {
-        String expectedSongAddedMessage = "Added 1 song into\"Test Pro Playlist.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
         //login
         navigateToUrl();
         provideEmail("demo@class.com");
@@ -24,16 +25,16 @@ public class Homework11 extends BaseTest{
 
         //Assertion
 
-        Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage );
+        Assert.assertEquals(getAddToPlaylistSuccessMsg(), expectedSongAddedMessage);
 
     }
-    public String getAddToPlaylistSuccessMsg()  {
+    public String getAddToPlaylistSuccessMsg() {
         WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
         return notification.getText();
     }
 
     public void choosePlaylist() throws InterruptedException{
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Test Pro Playlist')]"));
+        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(), 'Test Pro Playlist')]"));
         playlist.click();
         Thread.sleep(2000);
     }
@@ -50,7 +51,6 @@ public class Homework11 extends BaseTest{
         firstSong.click();
         Thread.sleep(2000);
     }
-
     public void clickViewAllBtn() throws InterruptedException {
         WebElement viewAll = driver.findElement(By.xpath("//button[@data-test='view-all-songs-btn']"));
         viewAll.click();
