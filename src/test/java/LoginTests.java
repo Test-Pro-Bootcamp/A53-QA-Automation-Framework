@@ -4,141 +4,64 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+   /* @Parameters({"BaseUrl"})
     @Test
-    public void loginEmptyEmailPassword() {
-
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+    public void navigateToKoelApp(String BaseUrl){
+        navigateToPage(BaseUrl);
+        Assert.assertEquals(driver.getCurrentUrl(), BaseUrl);
         driver.quit();
 
-    }
+    }*/
 
     @Test
-    public void loginValidEmailPassword() {
-
-       /* ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public void loginValidEmailPassword() throws InterruptedException {
 
 
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("azahn007@gmail.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("Koelpass");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();*/
-        navigateToPage();
+        // navigateToPage();
         provideEmail("azahn007@gmail.com");
         providePassword("Koelpass");
         clickSubmit();
+        Thread.sleep(2000);
 
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
-        driver.quit();
+
     }
 
 
-    @Test
-    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
-        /*ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+    @Test(dataProvider = "InvalidLoginData")
+    //@Parameters({"BaseUrl"})
+    public void loginWithInvalidEmailValidPassword(String email,String password) throws InterruptedException {
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("Invalid@gmail.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("Koelpass");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-
-        Thread.sleep(2000);*/
-        navigateToPage();
-        provideEmail("invalidemail.com");
-        providePassword("Koelpass");
+        provideEmail(email);
+        providePassword(password);
         clickSubmit();
-
-
+        Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        driver.quit();
-
-
-
     }
 
-    @Test
+    /*@Test
     public void loginWithInvalidPasswordValidEmail() throws InterruptedException {
-       /* ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("azahn007@gmail.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("KoelpassW");
-
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-
-        Thread.sleep(2000);*/
-        navigateToPage();
         provideEmail("azahn007@gmail.com");
         providePassword("KoelpassW");
         clickSubmit();
-
-
+        Thread.sleep(2000);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
-        driver.quit();
 
 
 
-    }
+    }*/
 }
 
 

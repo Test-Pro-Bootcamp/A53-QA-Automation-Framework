@@ -8,7 +8,7 @@ public class Homework18 extends BaseTest {
     @Test
     public void playSong()  {
 
-        navigateToPage();
+
         provideEmail("azahn007@gmail.com");
         providePassword("Koelpass");
         clickSubmit();

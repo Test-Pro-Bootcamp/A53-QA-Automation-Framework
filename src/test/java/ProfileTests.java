@@ -8,7 +8,7 @@ public class ProfileTests extends BaseTest{
     @Test
     public void changeProfileName() throws InterruptedException {
 
-        navigateToPage();
+
         provideEmail("azahn007@gmail.com");
         providePassword("Koelpass");
         clickSubmit();

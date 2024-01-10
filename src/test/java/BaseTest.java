@@ -4,15 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
-    public WebDriver driver = null;
+    @DataProvider(name="InvalidLoginData")
+
+    public Object [][] getDataFromDataProviders(){
+    return new Object[][]{
+            {"invalid@mail.com", "invalidPasswod"},
+            {"azahn007@gmail.com", ""},
+            {"","Koelpass"},
+            {"",""}
+    };
+
+    }
+    public WebDriver driver;
 
     public String url = "https://qa.koel.app/";
 
@@ -20,22 +29,26 @@ public class BaseTest {
      void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+    @Parameters({"BaseUrl"})
     @BeforeMethod
-    public void launchBrowser() {
+    public void launchBrowser(String BaseUrl) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+       // String url = BaseUrl;
+        navigateToPage(BaseUrl);
+
     }
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
 
-    public void navigateToPage() {
-        driver.get(url);
+    public void navigateToPage(String givenUrl) {
+        driver.get(givenUrl);
     }
 
     public void provideEmail(String email) {
