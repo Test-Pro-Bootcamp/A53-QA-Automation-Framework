@@ -34,9 +34,9 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-    @Test
-    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
-        //PreCondition
+    @Test(dataProvider="InvalidLoginData")
+    public void loginWithInvalidEmailValidPassword(String email, String password) throws InterruptedException {
+       /* //PreCondition
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -46,10 +46,20 @@ public class LoginTests extends BaseTest {
 
         //Steps
         String url = "https://qa.koel.app/";
-        driver.get(url);
+        driver.get(url);*/
+
+        navigateToUrl(url);
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+        Thread.sleep(2000);
+        //Expected Result
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+
+
 
         //Email Field
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        /*WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys("invalid@class.com");
         //Password Field
@@ -59,16 +69,12 @@ public class LoginTests extends BaseTest {
         //Submit button
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButton.click();
-
-        Thread.sleep(2000);
-        //Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-
-        //close Browser
-        driver.quit();
+*/
+      //close Browser
+      //  driver.quit();
     }
 
-    @Test
+   /* @Test
     public void loginWithInvalidPasswordAndValidEmail() throws InterruptedException {
         //PreCondition
         ChromeOptions options = new ChromeOptions();
@@ -100,7 +106,7 @@ public class LoginTests extends BaseTest {
 
         //close Browser
         driver.quit();
-    }
+    }*/
 
 
 }
