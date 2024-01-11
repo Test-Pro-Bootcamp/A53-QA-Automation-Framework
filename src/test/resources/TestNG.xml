@@ -46,4 +46,15 @@
         </classes>
     </test>
 
+    <test name="Rename Playlist" preserve-order="false">
+        <parameter name ="BaseURL" value="https://qa.koel.app/" />
+        <classes>
+            <class name="Homework21Test">
+                <methods>
+                    <include name="renamePlaylist"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
 </suite>
