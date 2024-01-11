@@ -8,7 +8,7 @@ public class Homework17 extends BaseTest{
     @Test
 
     public void addSongToPlaylist() throws InterruptedException {
-        String expectedSongAddedMessage = "Added 1 song into \"Gym Playlist.\"";
+
         //navigate to koel
 
         navigateToPage();
@@ -28,7 +28,7 @@ public class Homework17 extends BaseTest{
         gymPlaylist();
         Thread.sleep(4000);
         //verify a notification message
-        Assert.assertTrue(popUpMessage.isDisplayed());
+        Assert.assertTrue(popUpMessage());
 
 
     }
@@ -56,7 +56,10 @@ public class Homework17 extends BaseTest{
         WebElement addToGymPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > div > section.existing-playlists > ul > li.playlist"));
     }
 
+    public boolean popUpMessage () {
         WebElement popUpMessage = driver.findElement(By.cssSelector("[class='success show']"));
+        return popUpMessage.isDisplayed();
+    }
 
 
 
