@@ -9,11 +9,26 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    ChromeOptions options = new ChromeOptions();
     @Test
-    public void loginValidEmailPassword(){
+    public void NavigateToKoelApp() {
+
+//      Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        String url = "https://qa.koel.app/";
+        driver.get(url);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+        driver.quit();
+    }
+    @Test
+    public void LoginToValidEmailPassword(){
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -45,6 +60,7 @@ public class LoginTests extends BaseTest {
     public void loginInvalidEmailValidPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
@@ -77,6 +93,7 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() throws InterruptedException {
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
