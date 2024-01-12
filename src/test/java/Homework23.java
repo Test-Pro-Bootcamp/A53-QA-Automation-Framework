@@ -12,12 +12,9 @@ public class Homework23 extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        //loginPage.login();
-
-        navigateToPage();
-        provideEmail("john.wolschleger@testpro.io");
-        providePassword("te$t$tudentb49");
-        clickSubmit();
+        loginPage.provideEmail("john.wolschleger@testpro.io");
+        loginPage.providePassword("te$t$tudentb49");
+        loginPage.clickSubmit();
         homePage.clickPlaylistsGrid();
         homePage.clickDeletePlaylistBtn();
 

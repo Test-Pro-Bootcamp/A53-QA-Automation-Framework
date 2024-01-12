@@ -27,11 +27,5 @@ public class LoginPage extends BasePage {
     }
     public void clickSubmit() {
         submitBtn.click();
-    }
-
-    public void login() {
-        provideEmail("john.wolschleger@testpro.io");
-        providePassword("te$t$tudentb49");
-        clickSubmit();
-    }
+  }
 }
