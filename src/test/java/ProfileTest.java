@@ -24,7 +24,6 @@ public class ProfileTest extends BaseTest {
 
         //Provide current password
         provideCurrentPassword("te$t$tudent");
-
         //Provide new random name
         provideNewName(randomNewName);
 
