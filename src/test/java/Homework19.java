@@ -18,14 +18,14 @@ public class Homework19 extends BaseTest{
         clickDeletePlaylistBtn();
 
 
-        String expectedDeletePlaylistMessage = "deleted playlist \"Test Pro Playlist.\"";
+        String expectedDeletePlaylistMessage = "Deleted playlist \"Test Pro Playlist.\"";
         Assert.assertEquals(getDeleteMessage(), expectedDeletePlaylistMessage);
 
     }
 
     public void openPlaylist(){
         //WebElement emptyPlaylist = driver.findElement(By.cssSelector(".playlist:nth-child(3)"));
-        WebElement emptyPlaylist = driver.findElement(By.xpath("//section[@id='playlists']//li[9]"));
+        WebElement emptyPlaylist = driver.findElement(By.xpath("//section[@id='playlists']//li[7]"));
         emptyPlaylist.click();
     }
     public void clickDeletePlaylistBtn() throws InterruptedException{
