@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,20 +13,21 @@ LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailPassword(){
-        try {
-            Thread.sleep(2000);
+    public void loginValidEmailPassword() throws InterruptedException {
+        //try {
+            //Thread.sleep(2000);
             provideEmail("demo@class.com");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             providePassword("te$t$tudent");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             clickSubmit();
             //Assertion
-            WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+            //WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+            WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
             Assert.assertTrue(avatarIcon.isDisplayed());
-        }catch (Exception e){
-            System.out.println("Something went wrong !" +e);
-        }
+       // }catch (Exception e){
+       //    System.out.println("Something went wrong !" +e);
+       // }
 
     }
 
