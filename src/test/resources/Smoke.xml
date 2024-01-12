@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG">
+<suite name="Smoke">
 
-    <parameter name="BaseUrl" value="https://qa.koel.app/"></parameter>
-    <test name="Example Test" preserve-order="false">
+    <test name="Smoke Tests" preserve-order="false">
         <classes>
+            <class name="Homework18">
+            <methods>
+                <include name="playSong"/>
+            </methods>
+            </class>
+
             <!--<class name="LoginTests"/>-->
-            <class name="BaseTest"/>
+            <!--<class name="BaseTest"/>-->
             <!--<class name="Homework16"/>-->
             <!--<class name="ProfileTest"/>-->
             <!--<class name="Homework17"/>-->
-            <!--<class name="Homework18"/>-->
-            <class name="Homework19"/>
+
         </classes>
     </test>
 </suite>
