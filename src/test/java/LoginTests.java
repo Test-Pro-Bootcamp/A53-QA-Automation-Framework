@@ -44,26 +44,26 @@ public class LoginTests extends BaseTest {
         provideEmail(email);
         providePassword(password);
         clickSubmit();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
 
-    /*@Test
+    @Test
     public void loginWithInvalidPasswordValidEmail() throws InterruptedException {
 
 
         provideEmail("azahn007@gmail.com");
         providePassword("KoelpassW");
         clickSubmit();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
 
 
 
-    }*/
+    }
 }
 
 

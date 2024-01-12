@@ -16,7 +16,7 @@ public class BaseTest {
 
     public Object [][] getDataFromDataProviders(){
     return new Object[][]{
-            {"invalid@mail.com", "invalidPasswod"},
+            {"invalid@mail.com", "invalidPassword"},
             {"azahn007@gmail.com", ""},
             {"","Koelpass"},
             {"",""}
@@ -88,7 +88,8 @@ public class BaseTest {
     }
 
     public void provideCurrentPassword(String password) {
-        WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password'"));
+       // WebElement currentPassword = driver.findElement(By.cssSelector("[name='current_password'"));
+        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password'")));
         currentPassword.clear();
         currentPassword.sendKeys(password);
 
@@ -99,7 +100,8 @@ public class BaseTest {
     }
 
     public void clickAvatarIcon() {
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+       // WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         avatarIcon.click();
     }
 }
