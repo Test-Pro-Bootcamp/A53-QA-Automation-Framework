@@ -9,6 +9,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
+import java.time.Duration;
+
 public class BaseTest {
 
     public WebDriver driver;
@@ -20,6 +22,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void launchBrowser(){
+<<<<<<< HEAD
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -51,6 +54,46 @@ public class BaseTest {
         //Submit button
         WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButton.click();
+=======
+
+        //Chrome Option
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        //Manage Browser - wait for 10 seconds before failing/quitting.
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+
+        //Navigate tto url
+        navigateToUrl();
+    }
+
+    @AfterMethod
+    public void closedBrowser(){
+        driver.quit();
+    }
+
+    void provideEmail(String email){
+
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys(email);
+
+    }
+
+    void providePassword(String password){
+
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys(password);
+    }
+
+    void clickSubmit(){
+
+        WebElement clickButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        clickButton.click();
+>>>>>>> 324cfc13c21ee3b493b7005b1f765181e2eab0fc
     }
 
     //Helper Method

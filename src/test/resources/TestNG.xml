@@ -8,7 +8,11 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="Homework16"/>
+<<<<<<< HEAD
             <class name="Homework17"/>
+=======
+            <class name="ProfileTest"/>
+>>>>>>> 324cfc13c21ee3b493b7005b1f765181e2eab0fc
         </classes>
     </test>
 </suite>
