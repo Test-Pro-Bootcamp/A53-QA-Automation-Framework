@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import java.time.Duration;
 
 import java.time.Duration;
 
@@ -21,6 +22,39 @@ public class BaseTest {
 
     @BeforeMethod
     public void launchBrowser(){
+<<<<<<< HEAD
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+
+        //Manage Browser
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+    }
+    @AfterMethod
+    public void closeBrowser(){
+        driver.quit();
+    }
+
+    void  provideEmail(){
+        //Email Field
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys("menderes.koc@testpro.io");
+     }
+
+    void providePassword(){
+         //Password Field
+         WebElement passWordField = driver.findElement(By.cssSelector("input[type='password']"));
+         passWordField.clear();
+         passWordField.sendKeys("VGGd8tOG");
+     }
+
+    void clickSubmit() {
+        //Submit button
+        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
+        submitButton.click();
+=======
 
         //Chrome Option
         ChromeOptions options = new ChromeOptions();
@@ -59,6 +93,7 @@ public class BaseTest {
 
         WebElement clickButton = driver.findElement(By.cssSelector("button[type='submit']"));
         clickButton.click();
+>>>>>>> 324cfc13c21ee3b493b7005b1f765181e2eab0fc
     }
 
     //Helper Method
