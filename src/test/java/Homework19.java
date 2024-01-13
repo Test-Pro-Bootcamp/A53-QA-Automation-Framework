@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class Homework19 extends BaseTest{
     @Test
-    public void deletPlayelist() throws InterruptedException{
+    public void deletPlayelist() {
 
         String expectedDeletePlaylistMessage = "Deleted playlist \"Test Pro Playlist.\"";
         //Thread.sleep(2000);
@@ -30,7 +30,7 @@ public class Homework19 extends BaseTest{
         WebElement emptyPlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='playlists']//li[7]")));
         emptyPlaylist.click();
     }
-    public void clickDeletePlaylistBtn() throws InterruptedException{
+    public void clickDeletePlaylistBtn() {
         //WebElement deletePlaylist = driver.findElement(By.cssSelector(".btn-delete-playlist"));
         //WebElement deletePlaylist = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn-delete-playlist")));
         WebElement deletePlaylist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-delete-playlist")));
