@@ -16,6 +16,7 @@ import org.testng.annotations.Parameters;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Instant;
+import java.util.Map;
 
 public class BaseTest {
 
@@ -28,9 +29,14 @@ public class BaseTest {
           WebDriverManager.chromedriver().setup();
     }
       @Parameters({"browser"})
-   public static WebDriver pickBrowser(String browser) throws MalformedURLException {
+      public WebDriver pickBrowser(String browser, Map<String, String> variantCapabilities) throws MalformedURLException {
           DesiredCapabilities caps = new DesiredCapabilities();
+
           String gridURL = " http://192.168.0.41:4444";
+
+          if (variantCapabilities != null) {
+              caps.merge(new DesiredCapabilities(variantCapabilities));
+          }
 
       switch(browser) {
          case "firefox":
