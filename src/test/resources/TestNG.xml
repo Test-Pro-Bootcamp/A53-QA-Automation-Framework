@@ -14,6 +14,7 @@
             <class name="ExcelTesting"/>
             <class name="Homework19"/>
             <class name="Homework20"/>
+            <class name="AllSongsTest"/>
         </classes>
     </test>
 </suite>
