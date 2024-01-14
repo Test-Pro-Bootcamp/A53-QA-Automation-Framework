@@ -14,7 +14,7 @@ public class Homework16 extends BaseTest {
 
     //locators
     String registrationLinkLocator = "//form [@data-testid='login-form']//div/a";
-    String submitButtonLocator = "[type='submit']";
+
     @Test
     public void loginEmptyEmailPassword() {
 
@@ -32,8 +32,7 @@ public class Homework16 extends BaseTest {
         WebElement registrationLink = driver.findElement(By.xpath(registrationLinkLocator));
         registrationLink.click();
 
-        WebElement submitButton = driver.findElement(By.cssSelector(submitButtonLocator));
-        Assert.assertTrue(submitButton.isDisplayed());
+        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/registration");
 
         driver.quit();
     }
