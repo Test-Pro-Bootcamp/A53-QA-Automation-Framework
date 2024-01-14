@@ -1,10 +1,14 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -33,11 +37,15 @@ public class BaseTest {
     }
 
 
-
     public WebDriver driver;
     public WebDriverWait wait;
 
+
+    public Wait<WebDriver> fluentWait;
+    public Actions actions;
+
     public String url;
+
 
     @BeforeSuite
     static void setupClass() {
@@ -60,9 +68,17 @@ public class BaseTest {
         //Explicit Wait
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+        //Fluent Wait
+        fluentWait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+
+        actions = new Actions(driver);
         driver.manage().window().maximize();
 
         url = BaseUrl;
+
 
     }
 
@@ -82,8 +98,8 @@ public class BaseTest {
 
     void providePassword(String password) {
 
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        //WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        //WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
@@ -100,7 +116,16 @@ public class BaseTest {
         driver.get(givenUrl);
     }
 
+}
 
+/*    public void loginToKoelApp(){
+        navigateToUrl(url);
+        provideEmail("andrew.simmons@testpro.io");
+        providePassword("Andrew.Simmons24");
+        clickSubmit();
+    }*/
+
+/*
     @DataProvider(name = "excel-data")
     public Object[][] excelDP() throws IOException {
         Object[][] arrObj;
@@ -136,6 +161,5 @@ public class BaseTest {
             System.out.println("Something went wrong." + e);
         }
         return data;
-    }
+    }*/
 
-}
