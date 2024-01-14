@@ -7,21 +7,21 @@ public class Homework17 extends BaseTest{
 
   @Test
     public void addSongToPlaylist() throws InterruptedException{
-        String expectedSongAddedMessage = "Added 1 song into \"New Playlist HM\"";
+        String expectedSongAddedMessage = "Added 1 song into \"New Playlist HM.\"";
 
         navigateToUrl();
-        provideEmail();
-        providePassword();
+        provideEmail("menderes.koc@testpro.io");
+        providePassword("VGGd8tOG");
         clickSubmit();
         Thread.sleep(2000);
-        searchSong("Tunnel of Lights");
+        searchSong("For the Poor");
         clickViewAllBtn();
-      Thread.sleep(2000);
+        Thread.sleep(2000);
         selectFirstSongResult();
         clickAddToBtn();
-      Thread.sleep(2000);
+        Thread.sleep(2000);
         choosePlaylist();
-      Thread.sleep(2000);
+        Thread.sleep(2000);
         //Assertion
         Assert.assertEquals(getAddToPlaylistSuccessMsg(),expectedSongAddedMessage);
 
