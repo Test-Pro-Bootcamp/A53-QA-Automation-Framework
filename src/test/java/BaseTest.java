@@ -17,10 +17,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 
 public class BaseTest {
 
@@ -116,50 +112,16 @@ public class BaseTest {
         driver.get(givenUrl);
     }
 
-}
-
-/*    public void loginToKoelApp(){
+    public void loginToKoelApp(){
         navigateToUrl(url);
         provideEmail("andrew.simmons@testpro.io");
         providePassword("Andrew.Simmons24");
         clickSubmit();
-    }*/
-
-/*
-    @DataProvider(name = "excel-data")
-    public Object[][] excelDP() throws IOException {
-        Object[][] arrObj;
-        //Object[][] arrObj = getExcelData("./src/test/resources/test.xlsx", "test.xlsx");
-        arrObj = getExcelData("./src/test/resources/test.xlsx", "Sheet1");
-        return arrObj;
-       // System.out.println(Object.toString(arrObj));
     }
 
-    public String[][] getExcelData(String fileName, String sheetName) {
-        String[][] data = null;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(fileName);
-            XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
-            XSSFSheet sheet = wb.getSheet(sheetName);
-            XSSFRow row = sheet.getRow(0);
+}
 
-            int numOfRows = sheet.getPhysicalNumberOfRows();
-            int numOfColumns = row.getLastCellNum();
 
-            XSSFCell cell;
 
-            data = new String[numOfRows - 1][numOfColumns];
 
-            for (int i = 1; i < numOfRows; i++) {
-                for (int j = 0; j < numOfColumns; j++) {
-                    row = sheet.getRow(i);
-                    cell = row.getCell(j);
-                    data[i - 1][j] = cell.getStringCellValue();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Something went wrong." + e);
-        }
-        return data;
-    }*/
 
