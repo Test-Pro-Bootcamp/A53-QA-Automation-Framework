@@ -14,7 +14,7 @@ public class Homework17 extends BaseTest{
         providePassword("VGGd8tOG");
         clickSubmit();
         Thread.sleep(2000);
-        searchSong("For the Poor");
+        searchSong("If I Find A Way (explicit)");
         clickViewAllBtn();
         Thread.sleep(2000);
         selectFirstSongResult();
