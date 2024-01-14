@@ -7,18 +7,18 @@ import org.testng.annotations.Test;
 
 public class Homework21 extends BaseTest{
 
-    String newPlaylistName = "Sample Edited Playlist";
+    String newPlaylistName = "Renamed Playlist";
 
     @Test
     public void renamePlaylist() throws InterruptedException{
-        String updatePlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
+        String updatePlaylistMsg = "Updated playlist \"Renamed Playlist.\"";
 
         loginToKoelApp();
-        //Thread.sleep(2000);
+
         doubleClickPlaylist();
-        //Thread.sleep(2000);
-        //enterNewPlaylistName();
-        Thread.sleep(2000);
+
+        enterNewPlaylistName();
+        
         //Assertions
         Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatePlaylistMsg);
     }
