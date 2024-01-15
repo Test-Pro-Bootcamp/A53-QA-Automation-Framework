@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomeWork18 extends BaseTest{
@@ -9,15 +10,16 @@ public class HomeWork18 extends BaseTest{
 
 
         provideEmail("demo@class.com");
-        providePassword("te$tStudent");
+        providePassword("te$t$tudent");
         clickSubmit();
-        //clickPlay()
+        clickPlay();
         //Assertions
+        Assert.assertTrue(isSongPlaying());
     }
 
      public void clickPlay() {
-         WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testtid='play-next-btn']"));
-         WebElement playButton = driver.findElement(By.xpath("span[@data-testid='play-btn']"));
+         WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+         WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
 
          playNextButton.click();
          playButton.click();
