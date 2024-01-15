@@ -15,6 +15,7 @@
             <class name="ProfileTests"/>
             <class name="Homework17"/>
             <class name="AllSongsTest"/>
+            <class name="Homework21"/>
 
         </classes>
     </test>
