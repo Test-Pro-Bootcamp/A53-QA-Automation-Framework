@@ -17,9 +17,7 @@ public class BaseTest {
     public String url = "https://qa.koel.app/";
 
     @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
+    static void setupClass() {WebDriverManager.chromedriver().setup();}
 
     @BeforeMethod
     public void launchBrowser() {
@@ -44,12 +42,15 @@ public class BaseTest {
         WebElement emailField = driver.findElement(By.cssSelector("input[type = 'email']"));
         emailField.clear();
         emailField.sendKeys(email);
+
+
     }
 
     void providePassword(String password) {
         WebElement passwordField = driver.findElement(By.cssSelector ("input[type = 'password']"));
         passwordField.clear();
         passwordField.sendKeys(password);
+
     }
 
     void clickSubmit() {
