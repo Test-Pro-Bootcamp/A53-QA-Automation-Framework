@@ -72,7 +72,7 @@ public class BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
-    void clickOnThePlaylistAndDelete(String playlistName) throws InterruptedException{
+    void clickOnThePlaylistAndDelete(String playlistName){
         try{
 
 //        WebElement playlist = driver.findElement(By.xpath("//div[@id='mainWrapper']//a[contains(text(), '"+playlistName+"')]"));
