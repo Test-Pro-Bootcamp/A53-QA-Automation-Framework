@@ -3,121 +3,98 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.sql.DriverManager.getDriver;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
-    protected String url;
-    protected WebDriverWait wait = null;
-    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private WebDriver driver;
 
-    public static WebDriver getDriver() {
-        return threadDriver.get();
-    }
-    private void navigateToPage() {
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
     }
 
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void setUpBrowser(String BaseURL) throws MalformedURLException {
-        threadDriver.set(pickBrowser(System.getProperty("browser")));
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    @Parameters({"baseURL"})
+    public void setUpBrowser(@Optional String baseURL) throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
+        getThreadLocal().get(baseURL);
+        System.out.println(
+                "Browser setup by Thread " + Thread.currentThread().getId() + " and Driver reference is : " + getThreadLocal());
 
-        url = BaseURL;
-        navigateToPage();
-    }
-       @Parameters({"browser"})
-    public WebDriver pickBrowser(String browser) throws MalformedURLException {
-        DesiredCapabilities caps = new DesiredCapabilities();
-
-        String gridURL = " http://192.168.0.41:4444";
-
-        switch(browser) {
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                return driver = new FirefoxDriver();
-
-            case "MicrosoftEdge":
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new EdgeDriver(edgeOptions);
-
-            case "grid-edge":
-                caps.setCapability("browserName", "MicrosoftEdge");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-firefox":
-                caps.setCapability("browserName", "firefox");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            case "grid-chrome":
-                caps.setCapability("browserName", "chrome");
-                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
-
-            default:
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--remote-allow-origins=*");
-                return driver = new ChromeDriver(chromeOptions);
-       }
     }
 
     public WebDriver lambdaTest() throws MalformedURLException {
+        String username = "john.wolschlegertestpro";
+        String authkey = "tlXnGbezyhmB5skuvlNTb3eYu58yItec2vXFoZzcVqtltXvELq";
+        String hub = "@hub.lambdatest.com/wd/hub";
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platform", "Windows 10");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("version", "110.0");
+        caps.setCapability("resolution", "1024x768");
+        caps.setCapability("build", "TestNG With Java");
+        caps.setCapability("name", this.getClass().getName());
+        caps.setCapability("plugin", "git-testng");
+        return new RemoteWebDriver(new URL("https://" + username + ":" + authkey + hub), caps);
+    }
 
-        String hubURL = "https://hub.lambdatest.com/wd/hub";
-
-        //Below was copied from Lambdatest
-        //ChromeOptions browserOptions = new ChromeOptions();
-        //browserOptions.setPlatformName("Windows 10");
-        //browserOptions.setBrowserVersion("120.0");
-        //HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-        //ltOptions.put("username", "john.wolschlegertestpro");
-        //ltOptions.put("accessKey", "tlXnGbezyhmB5skuvlNTb3eYu58yItec2vXFoZzcVqtltXvELq");
-        //ltOptions.put("project", "Untitled");
-        //ltOptions.put("selenium_version", "4.0.0");
-        //ltOptions.put("w3c", true);
-        //browserOptions.setCapability("LT:Options", ltOptions);
-
-        //return new RemoteWebDriver(new URL(hubURL), browserOptions;
-
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("browserName", "chrome");
-        capabilities.setCapability("browserVersion", "119.0");
-        HashMap<String, Object> ltOptions = new HashMap();
-        ltOptions.put("user", "john.wolschlegertestpro");
-        ltOptions.put("accessKey", "tlXnGbezyhmB5skuvlNTb3eYu58yItec2vXFoZzcVqtltXvELq");
-        ltOptions.put("build", "Selenium 4");
-        ltOptions.put("name", this.getClass().getName());
-        ltOptions.put("platformName", "Windows 10");
-        ltOptions.put("seCdp", true);
-        ltOptions.put("selenium version", "4.0.0");
-        capabilities.setCapability("LT:Options", ltOptions);
+        String gridURL = "http://10.2.127.17:4444";
 
-        return new RemoteWebDriver(new URL(hubURL), capabilities);
+        switch (browser) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions optionsFirefox = new FirefoxOptions();
+                optionsFirefox.addArguments("-private");
+                return driver = new FirefoxDriver(optionsFirefox);
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                return driver = new EdgeDriver();
+            case "grid-firefox":
+                capabilities.setCapability("browserName", "firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-edge":
+                capabilities.setCapability("browserName", "edge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "grid-chrome":
+                capabilities.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
+            case "cloud":
+                return lambdaTest();
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions optionsChrome = new ChromeOptions();
+                optionsChrome.addArguments("--disable-notifications","--remote-allow-origins=*", "--incognito","--start-maximized");
+                optionsChrome.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                return driver = new ChromeDriver(optionsChrome);
+        }
     }
 
     @AfterMethod
     public void tearDown() {
-        threadDriver.get().close();
-        threadDriver.remove();
-  }
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(WebDriver driver) {
+        this.driver = driver;
+    }
 }

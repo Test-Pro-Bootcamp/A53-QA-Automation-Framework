@@ -1,25 +1,78 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
-
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public static void loginEmptyEmailPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
         String url = "https://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+        getThreadLocal().get(url);
+
+        loginPage.provideEmail("");
+        loginPage.providePassword("te$t$tudent");
+        clickSubmitBtn();
+
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
+    }
+
+    @Test
+    public static void loginWrongPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+
+        String url = "https://qa.koel.app/";
+        getThreadLocal().get(url);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t123");
+        clickSubmitBtn();
+
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
+    }
+
+    @Test
+    public static void loginEmptyPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+
+        String url = "https://qa.koel.app/";
+        getThreadLocal().get(url);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("");
+        clickSubmitBtn();
+
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
+    }
+
+    @Test
+    public static void loginWrongEmailTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+
+        String url = "https://qa.koel.app/";
+        getThreadLocal().get(url);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        clickSubmitBtn();
+
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
+    }
+
+    @Test
+    public void loginSucceedTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+
+        String url = "https://qa.koel.app/";
+        getThreadLocal().get(url);
+
+        loginPage.provideEmail("demo@class.com");
+        loginPage.providePassword("te$t$tudent");
+        clickSubmitBtn();
+
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
+    }
+    private static void clickSubmitBtn() {
     }
 }
