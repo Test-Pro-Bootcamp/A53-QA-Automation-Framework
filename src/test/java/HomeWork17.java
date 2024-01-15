@@ -15,7 +15,7 @@ public class HomeWork17 extends BaseTest{
         clickSubmit();
         Thread.sleep(2000);
 
-        searchSong("dark days");
+        searchSong("memoria");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
