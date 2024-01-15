@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,12 +14,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
+import javax.swing.*;
 import java.time.Duration;
 
 public class BaseTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    public Actions actions;
 //Test
     @BeforeSuite
     static void setupClass() {
@@ -35,6 +38,7 @@ public class BaseTest {
         driver = new ChromeDriver(options);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
         driver.manage().window().maximize();
 
         driver.get(BaseURL);
@@ -72,29 +76,13 @@ public class BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
 
-    void clickOnThePlaylistAndDelete(String playlistName){
-        try{
-
-//        WebElement playlist = driver.findElement(By.xpath("//div[@id='mainWrapper']//a[contains(text(), '"+playlistName+"')]"));
-        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='mainWrapper']//a[contains(text(), '"+playlistName+"')]")));
-        playlist.click();
-
-//        WebElement deleteButton = driver.findElement(By.cssSelector("button.btn-delete-playlist"));
-        WebElement deleteButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-delete-playlist")));
-        deleteButton.click();
-
-//        WebElement okButton = driver.findElement(By.cssSelector("button.ok"));
-        WebElement okButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.ok")));
-        okButton.click();
-
-//        WebElement warningMessage = driver.findElement(By.cssSelector("div.success"));
-        WebElement warningMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success")));
-        Assert.assertTrue(warningMessage.isDisplayed());
-        Assert.assertEquals("Deleted playlist \"" +playlistName+".\"",warningMessage.getText());
-        }catch(Exception e){
-            System.out.println("Something went wrong!! -> " + e);
-        }
+    void loginToKoel(String email, String password){
+        provideEmail(email);
+        providePassword(password);
+        clickSubmit();
+        isLoggedIn();
     }
+
 
 
 }
