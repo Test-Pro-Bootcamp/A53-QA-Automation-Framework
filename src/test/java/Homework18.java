@@ -3,38 +3,62 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+import org.openqa.selenium.interactions.Actions;
 
 
-public abstract class Homework18<webElement> extends BaseTest {
-
+public class Homework18 extends BaseTest {
+    private WebElement songIsPlaying;
 
     @Test
-    public void playSong() {
-        provideEmail("ramya.gudur@testpro.io");
-        providePassword("Ammananna@65");
-        clickSubmit();
-        //clickPlay()
-        //Assertions
-        Assert.assertTrue(isSongPlaying());
+    public void playSong() throws InterruptedException {
+        logIn ("ramya.gudur@testpro.io","Ammananna@65");
+
+       enterAllSongs();
+       selectSong();
+       enterButtonPlaySong();
+        Assert.assertTrue(isDisplayedPlayingSong());
+    }
+    public boolean isDisplayedPlayingSong() {
+    WebElement SongIsPlaying = driver.findElement(By.cssSelector("[data-testid = 'sound-bar-play']"));
+    return songIsPlaying.isDisplayed();}
+       public void enterAllSongs() throws InterruptedException {
+        WebElement allSongs = driver.findElement(By.cssSelector("a[href='#!/songs']"));
+        Thread.sleep(1000);
+        allSongs.click();
     }
 
-
-    public void clickPlay() {
-
-        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-
-        playNextButton.click();
-        playButton.click();
-
+    public void selectSong() throws InterruptedException {
+        WebElement Song = driver.findElement(By.xpath("//tr[@class='song-item']"));
+        Thread.sleep(1000);
+        Song.click();
+    }
+    public void enterButtonPlaySong() {
+        WebElement buttonPlaySong = driver.findElement(By.xpath("//span[@title='Play or resume']"));
+        Actions actions = new Actions(driver);
+        actions.click(buttonPlaySong).perform();
     }
 
-    public boolean isSongPlaying() {
-        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+    public void logIn(String email,String password) {
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        emailField.clear();
+        emailField.sendKeys("invalid@class.com");
 
-        return ((WebElement) soundBar).isDisplayed();
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys("te$t$tudent");
+
+        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        submit.click();
+
     }
 }
+
+
+
+
+
+
+
 
 
 

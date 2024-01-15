@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -60,7 +62,10 @@ public class LoginTests extends BaseTest {
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("ramya.gudur@testpro.io");
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        passwordField.clear();
+        passwordField.sendKeys("Ammananna@65");
 
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
@@ -73,4 +78,5 @@ public class LoginTests extends BaseTest {
         // Post-condition
         driver.quit();
     }
+
 }
