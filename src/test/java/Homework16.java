@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class Homework16 extends BaseTest {
     @Test
-    public void registraionNavigation() {
+    public void registrationNavigation() {
 
         org.openqa.selenium.chrome.ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
