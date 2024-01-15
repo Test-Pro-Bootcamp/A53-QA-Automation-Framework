@@ -22,6 +22,8 @@ test {
         //suites "src/test/resources/PlaySongTest.xml"
         suites "src/test/resources/TestNg.xml"
 
+
+
     }
 }
 
