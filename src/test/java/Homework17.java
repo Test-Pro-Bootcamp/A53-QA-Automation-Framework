@@ -9,8 +9,8 @@ public class Homework17 extends BaseTest{
 
     String emailAddr = "vlad.kashchuk@testpro.io";
     String password = "Q4sNKxVN";
-    @Test (enabled = false)
-    void loginToPlayer() {
+
+    void loginToPlayer(String emailAddr, String password) {
         driver.get("https://qa.koel.app/");
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
@@ -24,7 +24,7 @@ public class Homework17 extends BaseTest{
         loginButton.click();
     }
 
-    @Test(enabled = false)
+
     void searchSong(String songName) {
         WebElement searchField = driver.findElement(By.cssSelector("input[type=search]"));
         searchField.clear();
@@ -35,7 +35,7 @@ public class Homework17 extends BaseTest{
 
     }
 
-    @Test(enabled = false)
+
     void addSongToPlaylist(int listIndex,String playlist) throws InterruptedException {
         List<WebElement> searchResultList = driver.findElements(By.cssSelector("#songResultsWrapper .song-item"));
         WebElement soughtSong = searchResultList.get(listIndex);
@@ -52,9 +52,9 @@ public class Homework17 extends BaseTest{
         Assert.assertTrue(confirmationBanner.isDisplayed());
     }
 
-    @Test
+
     void addSongToPlaylist() throws InterruptedException {
-        loginToPlayer();
+        loginToPlayer(emailAddr, password);
         searchSong("dee");
         addSongToPlaylist(0, "Custom");
     }
