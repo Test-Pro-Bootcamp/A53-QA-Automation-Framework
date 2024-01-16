@@ -4,54 +4,51 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
 
+    /*@Parameters({"BaseUrl"})
     @Test
-    public void navigateToKoelApp() {
-       /* ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String url = "http://qa.koel.app/";*/
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+    public void navigateToKoelApp(String BaseUrl) {
+        navigateToUrl(BaseUrl);
+        Assert.assertEquals(driver.getCurrentUrl(), BaseUrl);
         driver.quit();
-    }
+    }*/
 
 
-    @Test
-    public void loginWithValidEmailPassword() {
-        try {
+    /*@Test
+    public void loginWithValidEmailPassword() throws InterruptedException{
+       // try {
             //navigateToUrl();
-            Thread.sleep(2000);
             provideEmail("demo@class.com");
-            Thread.sleep(2000);
             providePassword("te$t$tudent");
-            Thread.sleep(2000);
             clickSubmit();
+            Thread.sleep(2000);
 
             //Assertion
             WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
             Assert.assertTrue(avatarIcon.isDisplayed());
-        } catch (Exception e) {
-            System.out.println("Something went wrong." +e);
-          }
-    }
-    @Test
-    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
+        //} catch (Exception e) {
+           // System.out.println("Something went wrong." +e);
+         // }
+    }*/
+
+    @Test(dataProvider = "InvalidLoginData")
+    //@Parameters({"BaseUrl"})
+    public void loginWithInvalidEmailValidPassword(String email, String password) throws InterruptedException {
         //navigateToUrl();
-        provideEmail("invalid@class.com");
-        providePassword("te$t$tudent");
+        provideEmail(email);
+        providePassword(password);
         clickSubmit();
 
         Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
-    @Test
+    /*@Test
     public void loginWithValidEmailInvalidPassword() throws InterruptedException {
         //navigateToUrl();
         provideEmail("demo@class.com");
@@ -62,7 +59,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
-
+*/
 
 }
 

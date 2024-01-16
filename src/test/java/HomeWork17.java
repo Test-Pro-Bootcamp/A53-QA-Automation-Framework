@@ -9,7 +9,8 @@ public class HomeWork17 extends BaseTest{
     public void addSongToPlaylist() throws InterruptedException {
         String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
         //login
-        navigateToUrl();
+
+        //navigateToUrl();
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
