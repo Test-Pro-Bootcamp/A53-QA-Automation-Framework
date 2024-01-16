@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class Homework19 extends Homework18{
+public class Homework20 extends BaseTest{
     @Test
     @Parameters({"baseURL", "username", "password", "playlistLocator"})
     void deletePlaylist(String baseURL, String username, String password, String playlistLocator) {
