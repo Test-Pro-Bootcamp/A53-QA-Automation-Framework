@@ -18,7 +18,6 @@ import javax.swing.*;
 import java.time.Duration;
 
 public class BaseTest {
-
     public WebDriver driver;
     public WebDriverWait wait;
     public Actions actions;
@@ -27,8 +26,6 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
-
     @BeforeMethod
     @Parameters({"BaseURL"})
     public void launchBrowser(String BaseURL){
@@ -43,47 +40,34 @@ public class BaseTest {
 
         driver.get(BaseURL);
     }
-
-
     @AfterMethod
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(4000);
-        driver.quit();}
-
-    void provideEmail(String email){
-//        WebElement emailField =  driver.findElement((By.cssSelector("input[type='email']")));
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
-    void providePassword(String password){
-//        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        WebElement passwordField = wait.until((ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']"))));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    void clickSubmit(){
-//        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submitButton.click();
-    }
-
-    void isLoggedIn(){
-//        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
-        Assert.assertTrue(avatarIcon.isDisplayed());
-    }
-
-    void loginToKoel(String email, String password){
-        provideEmail(email);
-        providePassword(password);
-        clickSubmit();
-        isLoggedIn();
+        driver.quit();
     }
 
 
 
 }
-//Hello Test Commitments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
