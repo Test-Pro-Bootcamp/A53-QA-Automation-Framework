@@ -1,3 +1,5 @@
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +13,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
    /* @Parameters({"BaseUrl"})
     @Test
     public void navigateToKoelApp(String BaseUrl){
@@ -57,11 +60,35 @@ public class LoginTests extends BaseTest {
         providePassword("KoelpassW");
         clickSubmit();
         //Thread.sleep(2000);
-
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
+    }
+    @Test
+    public void loginWithCorrectCredentials(){
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        loginPage.login();
 
 
+       /* loginPage.provideEmail("azahn007@gmail.com");
+        loginPage.providePassword("Koelpass");
+        loginPage.clickSubmit();*/
+
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+
+    }
+    @Test
+    public void loginWithInCorrectCredentials(){
+
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("Pazahn007@gmail.com");
+        loginPage.providePassword("Koelpass");
+        loginPage.clickSubmit();
+
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
 
     }
 }
