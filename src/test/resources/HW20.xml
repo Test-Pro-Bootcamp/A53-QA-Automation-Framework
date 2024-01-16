@@ -6,6 +6,7 @@
     <parameter name="username" value="vlad.kashchuk@testpro.io"/>
     <parameter name="password" value="Q4sNKxVN"/>
     <parameter name="playlistLocator" value="//section[@id='playlists']//li[@class='playlist playlist']"/>
+    <parameter name="playlistName" value="Custom"/>
 
     <test name="HW-19" preserve-order="false">
         <classes>
