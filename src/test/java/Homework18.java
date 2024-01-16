@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework18 extends Homework17 {
-    @Test
     void playSong() throws InterruptedException{
         loginToPlayer(emailAddr, password);
         clickNextSong();

@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -10,8 +11,11 @@ public class Homework17 extends BaseTest{
     String emailAddr = "vlad.kashchuk@testpro.io";
     String password = "Q4sNKxVN";
 
+
+    void navigateTo(String url) {
+        driver.get(url);
+    }
     void loginToPlayer(String emailAddr, String password) {
-        driver.get("https://qa.koel.app/");
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(emailAddr);
