@@ -8,7 +8,7 @@
         <classes>
             <class name="LoginTests">
                 <methods>
-                    <include name="loginValidEmailPassword" />
+                    <include name="loginValidEmailPassword"/>
                 </methods>
             </class>
         </classes>
