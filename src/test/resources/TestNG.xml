@@ -3,7 +3,10 @@
 
 <suite name="TestNG">
 
+
+    <parameter name="BaseUrl" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
+
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
@@ -11,10 +14,7 @@
             <class name="HW17"/>
             <class name="Homework17"/>
             <class name="Homework18"/>
-
-
-
-
+            <class name="HW19"/>
         </classes>
     </test>
 </suite>
