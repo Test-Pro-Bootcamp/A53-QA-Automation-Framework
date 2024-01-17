@@ -12,18 +12,23 @@ import java.util.List;
 public class Homework20 extends BaseTest{
     @Test
     @Parameters({"baseURL", "username", "password", "playlistLocator", "playlistName"})
-    void deletePlaylist(String baseURL, String username, String password, String playlistLocator) throws InterruptedException {
+    void deletePlaylist(String baseURL, String username, String password, String playlistLocator, String playlistName) throws InterruptedException {
         navigateTo(baseURL);
         loginToPlayer(username, password);
-        List<WebElement> playlists =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlists ul li")));
-        for (WebElement playslist: playlists) {
-            if (playlists.getText() == ) {
-
+        List<WebElement> playlists =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlists ul li a")));
+        boolean playlistExist = false;
+        for (WebElement playlist: playlists) {
+            String T = playlist.getText();
+            if (playlist.getText().equals(playlistName)) {
+                playlistExist = true;
+                break;
             }
         }
 
+        if (! playlistExist) {
+            createPlayList(playlistName);
+        }
 
-        createPlayList("Custom");
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(playlistLocator)));
         playlist.click();
         WebElement deleteBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[title='Delete this playlist']")));
@@ -32,7 +37,7 @@ public class Homework20 extends BaseTest{
         Assert.assertTrue(confirmationNotification.isDisplayed());
     }
 
-    void createPlayList(String playlistName) {
+    void createPlayList(String playlistName) throws InterruptedException {
         WebElement createPlaylistBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]")));
         createPlaylistBtn.click();
         WebElement newPlaylistSubmenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"playlist-context-menu-create-simple\"]")));
@@ -40,7 +45,5 @@ public class Homework20 extends BaseTest{
         WebElement playlistNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@name=\"create-simple-playlist-form\"]/input\n")));
         playlistNameInput.sendKeys(playlistName);
         playlistNameInput.sendKeys(Keys.RETURN);
-
-
     }
 }
