@@ -9,29 +9,11 @@ import java.time.Duration;
 
 public class Homework23Test extends BaseTest {
 
-    WebDriver driver;
-    @BeforeTest
-    public void setup(){
-        //Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
-
-    @BeforeMethod
-    public void loginUser() {
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.loadLoginPage();
-        loginPage.provideEmail("william.chang@testpro.io");
-        loginPage.providePassword("te$tStudent");
-        loginPage.clickSubmit();
-    }
-
-
     @Test
     public void deletePlaylist() {
+       LoginPage loginPage = new LoginPage(driver);
+       loginPage.loginUsertoKoel();
+
        HomePage homePage = new HomePage(driver);
        homePage.selectPlaylistElement();
        homePage.clickDeletePlaylistBtn();
@@ -40,8 +22,4 @@ public class Homework23Test extends BaseTest {
        Assert.assertEquals(homePage.successNotificationText,"Deleted playlist \"NewPlaylist.\"");
     }
 
-    @AfterTest
-    public void endTest() {
-        driver.quit();
-    }
 }
