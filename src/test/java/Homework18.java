@@ -1,17 +1,15 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-import org.testng.Assert;
 import org.openqa.selenium.interactions.Actions;
-
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class Homework18 extends BaseTest {
     private WebElement songIsPlaying;
 
     @Test
     public void playSong() throws InterruptedException {
-        logIn ("ramya.gudur@testpro.io","Ammananna@65");
+        logIn ("demo@class.com","Te$t$tudent");
 
        enterAllSongs();
        selectSong();

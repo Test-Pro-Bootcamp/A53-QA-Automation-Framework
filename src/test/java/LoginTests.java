@@ -5,9 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 
 import java.time.Duration;
 
@@ -62,10 +59,10 @@ public class LoginTests extends BaseTest {
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("ramya.gudur@testpro.io");
+        emailField.sendKeys("demo@class.com");
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
-        passwordField.sendKeys("Ammananna@65");
+        passwordField.sendKeys("Te$t$tudent");
 
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
