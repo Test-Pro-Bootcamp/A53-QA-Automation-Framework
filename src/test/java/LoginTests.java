@@ -1,3 +1,5 @@
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +11,8 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
+
     @Test
     public void loginValidEmailPassword() {
 
@@ -36,17 +40,6 @@ public class LoginTests extends BaseTest {
 
     @Test(dataProvider="InvalidLoginData")
     public void loginWithInvalidEmailValidPassword(String email, String password) throws InterruptedException {
-       /* //PreCondition
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        //Manage Browser - wait for 10 seconds before failing/quitting.
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        //Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);*/
 
         navigateToUrl(url);
         provideEmail(email);
@@ -55,58 +48,27 @@ public class LoginTests extends BaseTest {
         Thread.sleep(2000);
         //Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
-
-
-        //Email Field
-        /*WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("invalid@class.com");
-        //Password Field
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-        //Submit button
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
-*/
-      //close Browser
-      //  driver.quit();
     }
 
-   /* @Test
-    public void loginWithInvalidPasswordAndValidEmail() throws InterruptedException {
-        //PreCondition
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        //Manage Browser - wait for 10 seconds before failing/quitting.
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    /**
+     * *Test Script using Page Object Model
+     * Locators used in these test were located using By abstract class.
+     */
+    @Test
+    public void loginWithCorrectCredentials(){
 
-        //Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+        //navigateToUrl(url);
 
-        //Email Field
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-        //Password Field
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("invalidPassword");
-        //Submit button
-        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        submitButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        Thread.sleep(2000);
-        //Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        loginPage.provideEmail("Andrew.Simmons@testpro.io");
+        loginPage.providePassword("Andrew.Simmons24");
+        loginPage.clickSubmit();
 
-        //close Browser
-        driver.quit();
-    }*/
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
 
 
 }

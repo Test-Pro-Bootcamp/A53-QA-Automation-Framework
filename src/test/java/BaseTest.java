@@ -33,14 +33,14 @@ public class BaseTest {
     }
 
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+    public WebDriver driver = null;
+    public WebDriverWait wait = null;
 
 
-    public Wait<WebDriver> fluentWait;
-    public Actions actions;
+    public Wait<WebDriver> fluentWait = null;
+    public Actions actions = null;
 
-    public String url;
+    public String url = "https://qa.koel.app";
 
 
     @BeforeSuite
@@ -73,7 +73,10 @@ public class BaseTest {
         actions = new Actions(driver);
         driver.manage().window().maximize();
 
-        url = BaseUrl;
+        //url = BaseUrl;
+
+        //Navigate to URL
+        navigateToUrl(BaseUrl);
 
 
     }
