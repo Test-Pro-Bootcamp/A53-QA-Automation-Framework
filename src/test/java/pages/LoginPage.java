@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,24 +19,29 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
-    public void loadLoginPage(){
+    public LoginPage loadLoginPage(){
         String url = "https://qa.koel.app/";
         driver.get(url);
+        return this;
     }
-    public void provideEmail(String email) {
+    public LoginPage provideEmail(String email) {
         emailField.sendKeys(email);
+        return this;
     }
 
-    public void providePassword (String password){
+    public LoginPage providePassword (String password){
         passwordField.sendKeys(password);
+        return this;
     }
 
-    public void clickSubmit(){
+    public LoginPage clickSubmit(){
         submitBtn.click();
+        return this;
     }
 
-    public void clickRegistration(){
+    public LoginPage clickRegistration(){
         registrationBtn.click();
+        return this;
     }
 
 }

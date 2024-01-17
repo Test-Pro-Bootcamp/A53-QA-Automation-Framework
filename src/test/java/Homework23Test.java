@@ -35,8 +35,9 @@ public class Homework23Test extends BaseTest {
        HomePage homePage = new HomePage(driver);
        homePage.selectPlaylistElement();
        homePage.clickDeletePlaylistBtn();
-       Assert.assertTrue(homePage.successNotificationActive());
-       Assert.assertEquals(homePage.getSuccessNotificationText(),"Deleted playlist \"NewPlaylist.\"");
+       homePage.getSuccessNotification();
+       Assert.assertTrue(homePage.isSuccessNotificationActive);
+       Assert.assertEquals(homePage.successNotificationText,"Deleted playlist \"NewPlaylist.\"");
     }
 
     @AfterTest

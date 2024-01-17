@@ -19,22 +19,28 @@ public class HomePage extends BasePage {
     @FindBy(xpath="//*[@class='success show']")
     private WebElement successNotification;
 
+    public boolean isSuccessNotificationActive;
+    public String successNotificationText;
+
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
+        isSuccessNotificationActive = false;
+        successNotificationText = " ";
     }
 
-    public void selectPlaylistElement(){
+    public HomePage selectPlaylistElement(){
         playlistElement.click();
+        return this;
     }
-    public void clickDeletePlaylistBtn(){
+    public HomePage clickDeletePlaylistBtn(){
         deletePlaylistBtn.click();
+        return this;
     }
 
-    public boolean successNotificationActive(){
-        return successNotification.isDisplayed();
+    public HomePage getSuccessNotification(){
+        isSuccessNotificationActive = successNotification.isDisplayed();
+        successNotificationText = successNotification.getText();
+        return this;
     }
 
-    public String getSuccessNotificationText(){
-        return successNotification.getText();
-    }
 }
