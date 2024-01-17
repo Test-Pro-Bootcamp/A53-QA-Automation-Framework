@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -23,18 +24,26 @@ public class HomeWork16 extends BaseTest {
         String url = "https://qa.koel.app/";
         driver.get(url);
         //EmailField
-        WebElement emailField = driver.findElement(By.cssSelector ("input[type = 'email']"));
+        WebElement emailField = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("input[type = 'email']")));
+        //WebElement emailField = driver.findElement(By.cssSelector ("input[type = 'email']"));
         emailField.clear();
         emailField.sendKeys("demo@class.com");
         //passwordField
-        WebElement passwordField = driver.findElement(By.cssSelector ("input[type = 'password']"));
+        WebElement passwordField = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("input[type = 'password']")));
+        //WebElement passwordField = driver.findElement(By.cssSelector ("input[type = 'password']"));
         passwordField.clear();
         passwordField.sendKeys("wrongPassword");
         //Submit button
-        WebElement submitButton = driver.findElement(By.cssSelector ("button[type = 'submit']"));
+        WebElement submitButton = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("button[type = 'submit']")));
+        //WebElement submitButton = driver.findElement(By.cssSelector ("button[type = 'submit']"));
         submitButton.click();
         //registrationField
-        WebElement registrationLink = driver.findElement(By.cssSelector ("[href='registration']"));
+        WebElement registrationLink = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[href='registration']")));
+        //WebElement registrationLink = driver.findElement(By.cssSelector ("[href='registration']"));
         registrationLink.click();
          String registrationUrl = "https://qa.koel.app/registration";
 
