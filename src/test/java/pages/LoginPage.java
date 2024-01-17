@@ -43,5 +43,12 @@ public class LoginPage extends BasePage {
         registrationBtn.click();
         return this;
     }
+    public LoginPage loginUsertoKoel(){
+        loadLoginPage();
+        provideEmail("william.chang@testpro.io");
+        providePassword("te$tStudent");
+        clickSubmit();
+        return this;
+    }
 
 }
