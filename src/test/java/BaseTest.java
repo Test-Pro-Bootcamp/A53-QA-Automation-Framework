@@ -1,10 +1,11 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -25,11 +26,13 @@ public class BaseTest {
     public WebDriver driver;
     public WebDriverWait wait;
 
+    public Wait<WebDriver> fluentWait;
+
     public String url = "https://qa.koel.app/";
+    public Actions actions;
 
     @BeforeSuite
     static void setupClass() {WebDriverManager.chromedriver().setup();}
-
 
     @BeforeMethod
     @Parameters({"BaseUrl"})
@@ -41,7 +44,14 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         //Implicit Wait
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //Explicit Wait
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        //Fluent Wait
+        fluentWait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+                //.ignoring(NoAlertPresentException.class);
         driver.manage().window().maximize();
         //String url = BaseUrl;
         //navigate to Ur

@@ -28,6 +28,7 @@ public class HomeWork19 extends BaseTest{
 
    }
    public String getDeletedPlaylistMsg(){
+        //WebElement notification = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
        //WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
        return notification.getText();
