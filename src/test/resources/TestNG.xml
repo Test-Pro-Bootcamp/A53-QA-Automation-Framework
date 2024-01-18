@@ -3,10 +3,16 @@
 
 <suite name="TestNG">
 
+    <parameter name="BaseUrl" value="https://qa.koel.app"></parameter>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
             <class name="BaseTest"/>
+<<<<<<< Updated upstream
+            <class name="BaseTest"/>
+            <class name="Homework18"/>
+=======
+            <class name="Homework17"/>
+>>>>>>> Stashed changes
         </classes>
     </test>
 </suite>
