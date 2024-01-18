@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression">
+
+    <test name="Example Tests" preserve-order="false">
+        <classes>
+            <class name="LoginTests"/>
+            <class name="BaseTest"/>
+            <!--<class name="HomeWork16"/>-->
+            <class name="ProfileTest"/>
+            <!--class name="HomeWork17"/>-->
+            <!--class name="HomeWork18"/>-->
+        </classes>
+    </test>
+</suite>
