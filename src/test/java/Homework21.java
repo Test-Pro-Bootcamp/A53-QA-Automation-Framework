@@ -5,9 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import java.util.List;
-
 
 public class Homework21 extends BaseTest{
     @Test
@@ -16,20 +14,24 @@ public class Homework21 extends BaseTest{
         navigateTo(baseURL);
         loginToPlayer(username, password);
         List<WebElement> playlists =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlists ul li a")));
+        WebElement targetPlaylist = null;
         for (WebElement playlist: playlists) {
             if (playlist.getText().equals(playlistName)) {
-                actions.contextClick(playlist).perform();
-                WebElement editPlaylistNameBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//nav[@class=\"menu playlist-item-menu\"]//li[text()='Edit']")));
-                Thread.sleep(2000);
-                editPlaylistNameBtn.click();
-                WebElement playlistNameInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"inline-playlist-name-input\"]")));
-                playlistNameInputField.clear();
-                Thread.sleep(2000);
-                playlistNameInputField.sendKeys(newPlaylistName);
-                playlistNameInputField.sendKeys(Keys.RETURN);
+                targetPlaylist = playlist;
+                break;
             }
         }
-/*        createPlayList(playlistName);
-        renamePlaylist(baseURL, username, password, playlistName, newPlaylistName);*/
+        if (targetPlaylist == null) {
+            System.out.println("The playlist you're trying to delete does not exist!");
+        }
+        else {
+            actions.contextClick(targetPlaylist).perform();
+            WebElement editPlaylistNameBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//nav[@class=\"menu playlist-item-menu\"]//li[text()='Edit']")));
+            editPlaylistNameBtn.click();
+            WebElement playlistNameInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"inline-playlist-name-input\"]")));
+            playlistNameInputField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.BACK_SPACE));
+            playlistNameInputField.sendKeys(newPlaylistName);
+            playlistNameInputField.sendKeys(Keys.RETURN);
+        }
     }
 }
