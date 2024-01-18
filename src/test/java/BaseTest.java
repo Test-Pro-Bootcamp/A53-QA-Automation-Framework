@@ -29,6 +29,7 @@ public class BaseTest {
     public Wait<WebDriver> fluentWait;
 
     public String url = "https://qa.koel.app/";
+
     public Actions actions;
 
     @BeforeSuite
@@ -52,6 +53,7 @@ public class BaseTest {
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
                 //.ignoring(NoAlertPresentException.class);
+        actions = new Actions(driver);
         driver.manage().window().maximize();
         //String url = BaseUrl;
         //navigate to Ur
@@ -91,6 +93,11 @@ public class BaseTest {
     //Helper Method
     public void navigateToUrl(String givenUrl){
         driver.get(givenUrl);
-
     }
+    public void loginToKoelApp(){
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+    }
+
 }

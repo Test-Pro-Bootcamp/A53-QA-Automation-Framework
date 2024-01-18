@@ -14,7 +14,7 @@
             <class name="HomeWork16"/>
             <class name="ProfileTest"/>
             <class name="HomeWork17"/>
-
+            <class name="HomeTest"/>
         </classes>
     </test>
 </suite>
