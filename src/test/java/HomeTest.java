@@ -51,7 +51,7 @@ public class HomeTest extends BaseTest{
         doubleClickPlaylist();
         Thread.sleep(2000);
         enterNewPlaylistName();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         //Assertions
         Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatePlaylistMsg);
     }
