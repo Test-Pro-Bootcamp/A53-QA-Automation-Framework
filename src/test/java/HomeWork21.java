@@ -19,7 +19,7 @@ public class HomeWork21 extends BaseTest{
     }
         public void doubleClickPlaylist() {
             WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By
-                    .cssSelector(".playlist:nth-child(11)")));
+                    .cssSelector(".playlist:nth-child(10)")));
             actions.doubleClick(playlistElement).perform();
         }
         public void enterNewPlaylistName(){
