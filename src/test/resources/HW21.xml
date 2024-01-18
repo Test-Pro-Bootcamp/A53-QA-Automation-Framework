@@ -7,12 +7,13 @@
     <parameter name="password" value="Q4sNKxVN"/>
     <parameter name="playlistLocator" value="//section[@id='playlists']//li[@class='playlist playlist']"/>
     <parameter name="playlistName" value="Custom"/>
+    <parameter name="newPlaylistName" value="JaPerdole"/>
 
     <test name="HW-19" preserve-order="false">
         <classes>
             <!--<class name="LoginTests"/>-->
             <class name="BaseTest"/>
-            <class name="Homework20"/>
+            <class name="Homework21"/>
         </classes>
     </test>
 </suite>

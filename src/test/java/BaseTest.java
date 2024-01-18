@@ -1,10 +1,13 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -17,6 +20,8 @@ import java.util.List;
 public class BaseTest {
     public WebDriver driver;
     public WebDriverWait wait;
+    public Actions actions;
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -27,6 +32,7 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
@@ -86,5 +92,40 @@ public class BaseTest {
         WebElement playButton = driver.findElement(By.cssSelector("[title='Play or resume']"));
         playButton.click();
 
+
+    }
+    void deletePlaylist(String baseURL, String username, String password, String playlistLocator, String playlistName) throws InterruptedException {
+        navigateTo(baseURL);
+        loginToPlayer(username, password);
+        List<WebElement> playlists =  wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#playlists ul li a")));
+        boolean playlistExist = false;
+        for (WebElement playlist: playlists) {
+            String T = playlist.getText();
+            if (playlist.getText().equals(playlistName)) {
+                playlistExist = true;
+                break;
+            }
+        }
+
+        if (! playlistExist) {
+            createPlayList(playlistName);
+        }
+
+        WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(playlistLocator)));
+        playlist.click();
+        WebElement deleteBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[title='Delete this playlist']")));
+        deleteBtn.click();
+        WebElement confirmationNotification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//div[@class='alertify-logs top right']/div[text()= 'Deleted playlist \"Custom.\"']")));
+        Assert.assertTrue(confirmationNotification.isDisplayed());
+    }
+
+    void createPlayList(String playlistName) throws InterruptedException {
+        WebElement createPlaylistBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"sidebar-create-playlist-btn\"]")));
+        createPlaylistBtn.click();
+        WebElement newPlaylistSubmenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[data-testid=\"playlist-context-menu-create-simple\"]")));
+        newPlaylistSubmenu.click();
+        WebElement playlistNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@name=\"create-simple-playlist-form\"]/input\n")));
+        playlistNameInput.sendKeys(playlistName);
+        playlistNameInput.sendKeys(Keys.RETURN);
     }
 }
