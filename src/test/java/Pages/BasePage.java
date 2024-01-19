@@ -17,6 +17,8 @@ public class BasePage {
 
     Actions actions;
 
+    By allSongsList = By.cssSelector("li a.songs");
+
     public BasePage(WebDriver givenDriver){
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -26,5 +28,16 @@ public class BasePage {
     public WebElement findElementUsingByLocator(By locator){
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public boolean isSongPlaying() throws InterruptedException{
+        WebElement soundBarVisualizer = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
+        return soundBarVisualizer.isDisplayed();
+    }
+
+    public void goToAllSongsList(){
+        findElementUsingByLocator(allSongsList).click();
+    }
+
 
 }

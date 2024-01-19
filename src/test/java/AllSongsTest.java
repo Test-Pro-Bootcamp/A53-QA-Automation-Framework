@@ -1,3 +1,7 @@
+import Pages.AllSongsPage;
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -27,6 +31,28 @@ public class AllSongsTest extends BaseTest {
         Assert.assertTrue(isSongPlaying());
 
     }
+
+    /**
+     * Exact same Test as PlaySongByContextClick.
+     * This is an example of POM Implementation.
+     * @throws InterruptedException
+     */
+    @Test
+    public void playSongByRightClick () throws InterruptedException{
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        BasePage basePage = new BasePage(driver);
+        //Login
+        loginPage.login();
+        //homePage.allSongsList();
+        homePage.goToAllSongsList();
+        allSongsPage.contextClickFirstSong();
+        allSongsPage.choosePlayOption();
+        //Assertions
+        Assert.assertTrue(basePage.isSongPlaying());
+    }
+
 
     @Test
     public void hoverOverPlayBtn()  throws InterruptedException{
