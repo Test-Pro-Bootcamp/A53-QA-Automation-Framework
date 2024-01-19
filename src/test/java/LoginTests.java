@@ -71,4 +71,19 @@ public class LoginTests extends BaseTest {
     }
 
 
+    /**
+     * Login using Page Factory Elements and Fluent Interface.
+     */
+    @Test
+    public void loginWithCorrectCredentialsUsingPageFactory() {
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        //Steps
+        loginPage.provideEmailToLogin("demo@class.com")
+                .providePasswordToLogin("te$t$tudent")
+                .clickSubmitBtnToLogin();
+        //Assertions
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
+
 }
