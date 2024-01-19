@@ -37,26 +37,31 @@ public class Homework17 extends BaseTest {
             //Submit
             WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
             loginButton.click();
+            Thread.sleep(2000);
 
             //Search
             WebElement searchField = driver.findElement(By.cssSelector("input[type=search]"));
             searchField.clear();
             searchField.sendKeys("For the Poor");
+            Thread.sleep(2000);
 
             //View All
             WebElement viewAll = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
             viewAll.click();
+            Thread.sleep(2000);
 
             //Select First Song
             WebElement firstSongInTheList = driver.findElement(By.cssSelector("section#songResultsWrapper table.items tr:first-child"));
             firstSongInTheList.click();
+            Thread.sleep(2000);
 
             //Add
             WebElement addToButton = driver.findElement(By.cssSelector("button[class='btn-add-to']"));
             addToButton.click();
+            Thread.sleep(2000);
 
             //Select
-            WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), 'Bops')]"));
+            WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), 'Favorites')]"));
             playlist.click();
 
             Thread.sleep(2000);
@@ -64,7 +69,7 @@ public class Homework17 extends BaseTest {
             //Assert
             WebElement warningMessage = driver.findElement(By.cssSelector("div.success.show"));
             Assert.assertTrue(warningMessage.isDisplayed());
-            Assert.assertEquals("Added 1 song into 'Bops'", warningMessage.getText());
+            Assert.assertEquals("Added 1 song into 'Favorites'", warningMessage.getText());
                     System.out.println("Warning message: " + warningMessage.getText());
 
             Thread.sleep(2000);
