@@ -43,9 +43,9 @@ public class AllSongsTest extends BaseTest{
 
         loginToKoelApp();
         doubleClickPlaylist();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         enterNewPlaylistName();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertEquals(getRenamePlaylistSuccessMsg(),updatePlaylistMsg);
 
 

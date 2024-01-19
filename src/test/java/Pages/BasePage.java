@@ -24,6 +24,12 @@ public class BasePage {
        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
    }
+   public void click (By locator) {
+       findElementUsingByLocator(locator).click();
+   }
+   public void doubleClick (By locator) {
+       actions.doubleClick(findElementUsingByLocator(locator)).perform();
+   }
 
 
 

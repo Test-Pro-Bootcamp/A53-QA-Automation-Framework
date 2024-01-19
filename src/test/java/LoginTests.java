@@ -63,6 +63,7 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
 
     }
+    //test script using Page Object Model, locators used By abstract class
     @Test
     public void loginWithCorrectCredentials(){
 
