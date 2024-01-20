@@ -4,11 +4,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-
 public class LoginTests extends BaseTest {
+    @DataProvider
+    public static Object[][] InvalidLoginData() {
+        return new Object[][]{};
+
+    }
+
+    @Parameters({"BaseUrl"})
+@Test
+public void navigateTokoelApp(String BaseUrl){
+    navigateToUrl(BaseUrl);
+    Assert.assertEquals(driver.getCurrentUrl(), BaseUrl);
+    driver.quit();
+}
+
+
     @Test
     public void loginEmptyEmailPassword() throws InterruptedException {
 
@@ -43,8 +59,15 @@ public class LoginTests extends BaseTest {
         driver.quit();
     }
 
-    @Test
-    public void loginValidEmailEmptyPassword() throws InterruptedException {
+    @Test(dataProvider = "InvalidLoginData")
+   //@Parameters({"BaseUrl"})
+    public void loginWithInvalidEmailValidPassword(String email, String password) throws InterruptedException {
+        provideEmail("email");
+        providePassword("password");
+        clickSubmit();
+        Thread Tread = null;
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(),url);
         // Pre-condition
         // Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = null;
