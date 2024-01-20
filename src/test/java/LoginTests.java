@@ -2,15 +2,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
     @Test
+    @Parameters("BigBoy")
+    public void ParameterizedTest(String BigBoy) throws InterruptedException;
+        System.out.println(BigBoy);
     public void loginEmptyEmailPassword() {
 
-//      Added ChromeOptions argument below to fix websocket error
+      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
