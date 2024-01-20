@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
@@ -11,6 +12,43 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
+
+    /**
+     * Page Factory Elements and Methods for Homework23.
+     */
+
+    @FindBy(css = "#playlists ul li:nth-child(3)")
+    WebElement playlistToDelete;
+
+    @FindBy(css = "button[class='del btn-delete-playlist']")
+    WebElement deletePlaylistButton;
+
+    @FindBy(css = "div.success.show")
+    WebElement successMessage;
+
+    public HomePage clickPlaylistToDelete(){
+        playlistToDelete.click();
+        return this;
+    }
+
+    public HomePage clickDeletePlaylist(){
+        deletePlaylistButton.click();
+        return this;
+    }
+
+    public String getDeletedPlaylistMsg(){
+        return successMessage.getText();
+    }
+
+    /**
+     * End of Page Factory Info for Homework 23
+     */
+
+    /*public String getDeletedPlaylistMsg(){
+        WebElement deleteNotification = driver.findElement(By.cssSelector(".success.show"));
+        return deleteNotification.getText();
+    }*/
+
 
     //Page Locators
     By userAvatarIcon = By.cssSelector("img.avatar");
