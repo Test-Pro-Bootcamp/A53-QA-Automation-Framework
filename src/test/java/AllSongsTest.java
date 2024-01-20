@@ -1,3 +1,7 @@
+import Pages.AllSongsPage;
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -20,6 +24,23 @@ public class AllSongsTest extends BaseTest{
         choosePlayOption();
         //Assertions
         Assert.assertTrue(isSongPlaying());
+    }
+    //same test as above with Page Object Model Implementation
+    @Test
+    public void playSongByRightClick () throws InterruptedException {
+        LoginPage loginPage =new LoginPage(driver);
+        HomePage homePage =new HomePage(driver);
+        AllSongsPage  allSongsPage = new AllSongsPage(driver);
+        BasePage basePage = new BasePage(driver);
+
+        loginPage.login();
+        //homePage.allSongsList();
+        homePage.goToAllSongsList();
+        allSongsPage.contextClickFirstSong();
+        allSongsPage.choosePlayOption();
+        //Assertions
+       // Assert.assertTrue(isSongPlaying());
+        Assert.assertTrue(basePage.isSongPlaying());
     }
     @Test
     public void hoverOverPlayBtn() throws InterruptedException{

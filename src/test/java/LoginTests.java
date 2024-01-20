@@ -92,6 +92,17 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
 
     }
+    //Login using Page Factory Elements and Fluent Interface
+    @Test
+    public void loginWithCorrectCredentialsUsingPageFactory(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmailToLogin("azahn007@gmail.com")
+       .providePasswordToLogin("Koelpass")
+        .clickSubmitBtnToLogin();
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+    }
 }
 
 
