@@ -13,7 +13,6 @@ import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
-
     public WebDriver driver = null;
     public String url = "https://qa.koel.app/";
     @BeforeSuite
@@ -34,6 +33,8 @@ public class BaseTest {
     public void closeBrowser() {
         driver.quit();
     }
+
+
     public void navigateToPage() {
         driver.get(url);
     }
@@ -85,18 +86,20 @@ public class BaseTest {
         avatarIcon.click();
     }
 }
-public class Homework17 extends BaseTest {
+Step 2
 
+public class Homework17 extends BaseTest {
+    @Test
     public void addSongToPlaylist() throws InterruptedException {
 
         String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
 
         navigateToPage();
-        provideEmail("dmitry.lobachev@testpro.io");
-        providePassword("Chebureki5!");
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
         clickSubmit();
         Thread.sleep(2000);
-        searchSong("Dark Days");
+        searchSong("Ketsa");
         clickViewAllBtn();
         selectFirstSongResult();
         clickAddToBtn();
