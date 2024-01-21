@@ -18,9 +18,9 @@ import javax.swing.*;
 import java.time.Duration;
 
 public class BaseTest {
-    public WebDriver driver;
-    public WebDriverWait wait;
-    public Actions actions;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected Actions actions;
 //Test
     @BeforeSuite
     static void setupClass() {

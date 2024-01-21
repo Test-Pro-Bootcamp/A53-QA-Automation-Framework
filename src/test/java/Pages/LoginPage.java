@@ -7,9 +7,9 @@ public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By submitButton = By.cssSelector("button[type='submit']");
+    private By emailField = By.cssSelector("input[type='email']");
+    private By passwordField = By.cssSelector("input[type='password']");
+    private By submitButton = By.cssSelector("button[type='submit']");
 
     public void provideEmail(String email){
         findElementUsingByLocator(emailField).sendKeys(email);
@@ -25,6 +25,10 @@ public class LoginPage extends BasePage{
         provideEmail("utku.aktas94@testpro.io");
         providePassword("ekga9uf6");
         clickSubmit();
+    }
+
+    public boolean isLoginBtnVisible(){
+        return findElementUsingByLocator(submitButton).isDisplayed();
     }
 
 }

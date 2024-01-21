@@ -11,7 +11,7 @@ public class HomePage extends BasePage{
 
     By avatarIcon = By.cssSelector("img.avatar");
 
-    public WebElement getUserAvatarIcon(){
-        return findElementUsingByLocator(avatarIcon);
+    public boolean  getUserAvatarIcon(){
+        return findElementUsingByLocator(avatarIcon).isDisplayed();
     }
 }
