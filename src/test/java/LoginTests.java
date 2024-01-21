@@ -11,7 +11,7 @@ public class LoginTests extends BaseTest {
     @Test
     @Parameters("BigBoy")
     public void ParameterizedTest(String BigBoy) throws InterruptedException;
-        System.out.println(BigBoy);
+
     public void loginEmptyEmailPassword() {
 
       Added ChromeOptions argument below to fix websocket error

@@ -7,7 +7,7 @@
         <parameter name="BigBoy" value="VladikIPhilichka"></parameter>
         <classes>
             <class name="LoginTests"/>
-            <class name="BaseTest"/>
+            <class name="Homework19"/>
         </classes>
     </test>
 </suite>
