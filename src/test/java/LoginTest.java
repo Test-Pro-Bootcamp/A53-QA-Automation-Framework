@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest{
         loginPage.provideEmailToLogin("utku.aktas94@testpro.io")
                 .providePasswordToLogin("ekga9uf6")
                 .clickLoginButton();
-      Assert.assertTrue(homePage.getUserAvatarIcon());
+      Assert.assertTrue(homePage.getUserAvatarIcon()); // I need help in this line
     }
 
 }
