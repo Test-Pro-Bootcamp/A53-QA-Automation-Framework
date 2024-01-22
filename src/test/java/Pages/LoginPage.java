@@ -2,33 +2,33 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-    private By emailField = By.cssSelector("input[type='email']");
-    private By passwordField = By.cssSelector("input[type='password']");
-    private By submitButton = By.cssSelector("button[type='submit']");
 
-    public void provideEmail(String email){
-        findElementUsingByLocator(emailField).sendKeys(email);
-    }
-    public void providePassword(String password){
-        findElementUsingByLocator(passwordField).sendKeys(password);
-    }
-    public void clickSubmit(){
-        findElementUsingByLocator(submitButton).click();
-    }
+    //Page Factory
+    @FindBy(css = "[type='email']")
+    WebElement emailTextField;
+    @FindBy(css="[type='password']")
+    WebElement passwordTextField;
+    @FindBy(css="[type='submit']")
+    WebElement loginButton;
 
-    public void login(){
-        provideEmail("utku.aktas94@testpro.io");
-        providePassword("ekga9uf6");
-        clickSubmit();
+    public LoginPage provideEmailToLogin(String email){
+        emailTextField.sendKeys(email);
+        return this;
     }
-
-    public boolean isLoginBtnVisible(){
-        return findElementUsingByLocator(submitButton).isDisplayed();
+    public LoginPage providePasswordToLogin(String password){
+        passwordTextField.sendKeys(password);
+        return this;
+    }
+    public LoginPage clickLoginButton(){
+        loginButton.click();
+        return this;
     }
 
 }
