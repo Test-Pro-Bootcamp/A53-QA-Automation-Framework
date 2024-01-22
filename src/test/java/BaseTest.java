@@ -41,33 +41,7 @@ public class BaseTest {
         driver.get(BaseURL);
     }
     @AfterMethod
-    public void closeBrowser() throws InterruptedException {
-        Thread.sleep(4000);
+    public void closeBrowser() {
         driver.quit();
     }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
