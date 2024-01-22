@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,16 +35,19 @@ public class BaseTest {
     public Actions actions= null;
 
     @BeforeSuite
-     void setupClass() {
-        WebDriverManager.chromedriver().setup();
+      void setupClass() {
+       WebDriverManager.chromedriver().setup();
+       // WebDriverManager.firefoxdriver().setup();
     }
     @Parameters({"BaseUrl"})
     @BeforeMethod
     public void launchBrowser(String BaseUrl) {
-        ChromeOptions options = new ChromeOptions();
+       /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
+        driver = new FirefoxDriver();*/
+        driver = pickBrowser(System.getProperty("browser"));
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait= new WebDriverWait(driver, Duration.ofSeconds(10));
         actions = new Actions(driver);
@@ -112,6 +118,25 @@ public class BaseTest {
         provideEmail("azahn007@gmail.com");
         providePassword("Koelpass");
         clickSubmit();
+    }
+
+    public WebDriver pickBrowser(String browser) {
+        switch (browser) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                return driver = new FirefoxDriver();
+
+            case "MircosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver();
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new ChromeDriver(chromeOptions);
+        }
     }
 
 }

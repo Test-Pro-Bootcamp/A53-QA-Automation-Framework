@@ -21,6 +21,9 @@ test {
        // suites "src/test/resources/Smoke.xml"
         //suites "src/test/resources/PlaySongTest.xml"
         suites "src/test/resources/TestNg.xml"
+        systemProperty "browser", System.getProperty("browser")
+
+
 
 
 
