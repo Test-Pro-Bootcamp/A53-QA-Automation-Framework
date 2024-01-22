@@ -15,6 +15,8 @@ public class HomePage extends BasePage{
     //Page Elements
     By userAvatarIcon = By.cssSelector("img.avatar");
 
+    By allSongsList = By.cssSelector("li a.songs");
+
     //Page Methods
     public WebElement getUserAvatarIcon(){
         return findElementUsingByLocator(userAvatarIcon);
@@ -37,6 +39,13 @@ public class HomePage extends BasePage{
         return findElementUsingByLocator(locator).getText();
     }
 
+    //allSongs
+    public WebElement allSongsList(){
+        return findElementUsingByLocator(allSongsList);
+    }
+    public void goToAllSongsList(){
+        findElementUsingByLocator(allSongsList).click();
+    }
 
 
 }

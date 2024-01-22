@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,6 +23,7 @@ public class BasePage {
         driver = giverDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         actions = new Actions(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public WebElement findElementUsingByLocator(By locator){
@@ -42,6 +44,15 @@ public class BasePage {
         //actions.doubleClick(findElementUsingByLocator(playlistElement)).perform();
         System.out.println("Button is double clicked");
     }
+
+    //allSongs
+    public boolean isSongPlaying(){
+        WebElement soundBarVisualizer = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("[data-testid='sound-bar-play']")));
+        return soundBarVisualizer.isDisplayed();
+    }
+
+
 
 //    public void enterNewPlaylistName(String newName, By locator){
 ////        WebElement playlistInputField =

@@ -1,3 +1,7 @@
+import Pages.AllSongsPage;
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -66,10 +70,27 @@ public class AllSongTest extends BaseTest{
         Thread.sleep(2000);
         //Assertions
         Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatePlaylistMsg);
-
-
-
     }
+
+    @Test
+    public void playSongsByRightClick() throws InterruptedException{
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        BasePage basePage = new BasePage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+
+        loginPage.login();
+
+        homePage.goToAllSongsList();
+        Thread.sleep(2000);
+        allSongsPage.contextClickFirstSong();
+        Thread.sleep(2000);
+        allSongsPage.choosePlayOption();
+        Thread.sleep(2000);
+
+        Assert.assertTrue(basePage.isSongPlaying());
+    }
+
 
     public void chooseAllSongsList(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li a.songs"))).click();

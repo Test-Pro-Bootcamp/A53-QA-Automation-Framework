@@ -19,13 +19,13 @@ public class BaseTest {
 //    LoginPage loginPage = new LoginPage(driver);
 //    HomePage homePage = new HomePage(driver);
 
-    public WebDriver driver = null;
+    public WebDriver driver;
 
-    public WebDriverWait wait = null;
+    public WebDriverWait wait;
 
     public String url = "https://qa.koel.app/";
 
-    public Actions actions = null;
+    public Actions actions;
 
     @BeforeSuite
     static void setupClass() {

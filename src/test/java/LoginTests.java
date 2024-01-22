@@ -1,3 +1,6 @@
+import Pages.BasePage;
+import Pages.HomePage;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -49,6 +52,24 @@ LoginTests extends BaseTest {
         Thread.sleep(2000);
         //Expected Result
         Assert.assertEquals(driver.getCurrentUrl(),url);
+    }
+
+    /*
+     * Login Using Page Factory Elements and Fluent Interface
+     */
+    @Test
+    public void loginWithCorrectCredentialsUsingPageFactory(){
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+        //Steps
+//        loginPage.provideEmailToLogin("demo@class.com");
+//        loginPage.providePasswordToLogin("te$t$tudent");
+//        loginPage.clickSubmitToLogin();
+        loginPage.provideEmailToLogin("demo@class.com")
+                .providePasswordToLogin("te$t$tudent")
+                .clickSubmitToLogin();
+        //Assert
+        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
 
 }
