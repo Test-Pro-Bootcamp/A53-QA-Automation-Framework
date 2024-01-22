@@ -45,7 +45,7 @@ public class BaseTest {
     }
     @Parameters({"BaseUrl"})
     @BeforeMethod
-    public void launchBrowser(String BaseUrl) {
+    public void launchBrowser(String BaseUrl) throws MalformedURLException {
        /* ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
