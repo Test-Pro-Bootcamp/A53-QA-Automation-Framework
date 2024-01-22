@@ -8,7 +8,6 @@
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="Homework16Test"/>
-            <class name="Homework17Test"/>
             <class name="Homework22Test"/>
             <class name="Homework23Test"/>
         </classes>
@@ -24,29 +23,6 @@
         </classes>
     </test>
 
-    <test name="Delete Playlist" preserve-order="false">
-        <parameter name ="BaseURL" value="https://qa.koel.app/" />
-        <classes>
-            <class name="Homework19Test">
-                <methods>
-                    <include name="loginUser" />
-                    <include name="deletePlaylist"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
-    <test name="Delete Playlist Waits" preserve-order="false">
-        <parameter name ="BaseURL" value="https://qa.koel.app/" />
-        <classes>
-            <class name="Homework20Test">
-                <methods>
-
-                    <include name="deletePlaylist"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
 
     <test name="Rename Playlist" preserve-order="false">
         <parameter name ="BaseURL" value="https://qa.koel.app/" />
