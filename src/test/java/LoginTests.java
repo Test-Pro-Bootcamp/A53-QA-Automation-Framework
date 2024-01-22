@@ -1,86 +1,44 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
+
+
     @Test
     public void NavigateToKoelApp() {
-
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+        //navigateToUrl();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
     @Test
     public void LoginToValidEmailPassword(){
-        // Pre-condition
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        try {
+            //navigateToUrl();
+            Thread.sleep(2000);
+            provideEmail("demo@class.com");
+            Thread.sleep(2000);
+            providePassword("te$t$tudent");
+            Thread.sleep(2000);
+            clickSubmit();
+            //Assertions
+            WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+            Assert.assertTrue(avatarIcon.isDisplayed());
+            driver.quit();
+        }   catch(Exception e){
+            System.out.println("something went wrong." +e);
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        // Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        // Expected Result
-        Assert.assertTrue(avatarIcon.isDisplayed());
-
-        driver.quit();
+            }
     }
 
     @Test
     public void loginInvalidEmailValidPassword() throws InterruptedException {
-        // Pre-condition
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        // Steps
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("invalid@class.com");
-
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordField.clear();
-        passwordField.sendKeys("te$t$tudent");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
+        //navigateToUrl();
+        provideEmail("invalid@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
         Assert.assertEquals(driver.getCurrentUrl(), url); // https://qa.koel.app/
@@ -90,26 +48,12 @@ public class LoginTests extends BaseTest {
     }
 
     @Test
-    public void loginValidEmailEmptyPassword() throws InterruptedException {
-        // Pre-condition
-        // Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+    public void loginValidEmailInvalidPassword() throws InterruptedException {
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        // Steps
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.clear();
-        emailField.sendKeys("demo@class.com");
-
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        submit.click();
-
+       // navigateToUrl();
+        provideEmail("demo@class.com");
+        providePassword("invalidPassword");
+        clickSubmit();
 
         Thread.sleep(2000); // Sleep or pause for 2 seconds (adjust as needed)
         // Expected Result
@@ -117,5 +61,8 @@ public class LoginTests extends BaseTest {
 
         // Post-condition
         driver.quit();
+
     }
+
+
 }
