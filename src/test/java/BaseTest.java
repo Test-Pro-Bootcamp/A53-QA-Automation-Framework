@@ -8,10 +8,14 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
 import java.util.UUID;
 
@@ -120,7 +124,9 @@ public class BaseTest {
         clickSubmit();
     }
 
-    public WebDriver pickBrowser(String browser) {
+    public WebDriver pickBrowser(String browser)  throws MalformedURLException {
+        String gridURL = "http://10.0.0.206:4444/";
+        DesiredCapabilities caps = new DesiredCapabilities();
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -131,6 +137,20 @@ public class BaseTest {
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new EdgeDriver();
+
+            case "grid-edge": // gradle clean test -Dbrowser=grid-edge
+            caps.setCapability("browserName","MicrosoftEdge");
+            return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+
+            case "grid-firefox": // gradle clean test -Dbrowser=grid-firefox
+                caps.setCapability("browserName","firefox");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+
+            case "grid-chrome": // gradle clean test -Dbrowser=grid-chrome
+                caps.setCapability("browserName","chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
