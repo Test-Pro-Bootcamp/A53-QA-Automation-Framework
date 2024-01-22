@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class LoginTests extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginEmailPassword() {
 
 //      Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
