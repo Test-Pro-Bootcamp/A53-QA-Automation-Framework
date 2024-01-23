@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="PlaySongTest">
+
+    <test name="Play Song Test" preserve-order="false">
+        <classes>
+            <class name="Homework18">
+                <methods>
+                    <include name="playSong"/>
+
+                </methods>
+            </class>
+            <!-- <class name="BaseTest"/>-->
+            <!-- <class name="HomeWork16"/>-->
+            <!-- <class name="ProfileTests"/>-->
+            <!-- <class name="Homework17"/>-->
+
+        </classes>
+    </test>
+</suite>
