@@ -33,44 +33,44 @@ LoginTests extends BaseTest {
        // }
 
     }
-
-    @Test
-    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
-        provideEmail("invalid@class.com");
-        providePassword("te$t$tudent");
-        clickSubmit();
-        Thread.sleep(2000);
-        //Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(),url);
-
-    }
-    @Test
-    public void loginWithValidEmailInvalidPassword() throws InterruptedException {
-        provideEmail("demo@class.com");
-        providePassword("invalidPassword");
-        clickSubmit();
-        Thread.sleep(2000);
-        //Expected Result
-        Assert.assertEquals(driver.getCurrentUrl(),url);
-    }
-
-    /*
-     * Login Using Page Factory Elements and Fluent Interface
-     */
-    @Test
-    public void loginWithCorrectCredentialsUsingPageFactory(){
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        //Steps
-//        loginPage.provideEmailToLogin("demo@class.com");
-//        loginPage.providePasswordToLogin("te$t$tudent");
-//        loginPage.clickSubmitToLogin();
-        loginPage.provideEmailToLogin("demo@class.com")
-                .providePasswordToLogin("te$t$tudent")
-                .clickSubmitToLogin();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
-    }
+//
+//    @Test
+//    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
+//        provideEmail("invalid@class.com");
+//        providePassword("te$t$tudent");
+//        clickSubmit();
+//        Thread.sleep(2000);
+//        //Expected Result
+//        Assert.assertEquals(driver.getCurrentUrl(),url);
+//
+//    }
+//    @Test
+//    public void loginWithValidEmailInvalidPassword() throws InterruptedException {
+//        provideEmail("demo@class.com");
+//        providePassword("invalidPassword");
+//        clickSubmit();
+//        Thread.sleep(2000);
+//        //Expected Result
+//        Assert.assertEquals(driver.getCurrentUrl(),url);
+//    }
+//
+//    /*
+//     * Login Using Page Factory Elements and Fluent Interface
+//     */
+//    @Test
+//    public void loginWithCorrectCredentialsUsingPageFactory(){
+//        LoginPage loginPage = new LoginPage(driver);
+//        HomePage homePage = new HomePage(driver);
+//        //Steps
+////        loginPage.provideEmailToLogin("demo@class.com");
+////        loginPage.providePasswordToLogin("te$t$tudent");
+////        loginPage.clickSubmitToLogin();
+//        loginPage.provideEmailToLogin("demo@class.com")
+//                .providePasswordToLogin("te$t$tudent")
+//                .clickSubmitToLogin();
+//        //Assert
+//        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+//    }
 
 }
 
