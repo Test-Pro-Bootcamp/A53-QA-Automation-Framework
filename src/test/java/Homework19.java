@@ -8,7 +8,7 @@ public class Homework19 extends BaseTest{
     @Test
     public void deletePlaylist() throws InterruptedException {
 
-        navigateToUrl(url);
+        navigateToPage();
         provideEmail("dmitry.lobachev@testpro.io");
         providePassword("Chebyreki5!");
         clickSubmit();

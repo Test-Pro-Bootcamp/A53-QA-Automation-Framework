@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     @Test
     public void navigateToKoelApp() {
-        navigateToUrl();
+        navigateToPage();
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
     }
