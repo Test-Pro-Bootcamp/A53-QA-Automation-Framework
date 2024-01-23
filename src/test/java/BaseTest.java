@@ -31,8 +31,10 @@ public class BaseTest {
     };
 
     }
-    public WebDriver driver =null;
-    public WebDriverWait wait = null;
+    public WebDriver driver;
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+
+    public WebDriverWait wait ;
 
 
     public String url = "https://qa.koel.app/";
@@ -51,22 +53,36 @@ public class BaseTest {
 
         driver = new ChromeDriver(options);
         driver = new FirefoxDriver();*/
-        driver = pickBrowser(System.getProperty("browser"));
+       // driver = pickBrowser(System.getProperty("browser"));
+       threadDriver.set( pickBrowser(System.getProperty("browser")));
+
+
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait= new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-        driver.manage().window().maximize();
+        wait= new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+       // driver.manage().window().maximize();
        // String url = BaseUrl;
         navigateToPage(BaseUrl);
 
     }
-    @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+
+    public static WebDriver getDriver(){
+        return threadDriver.get();
     }
 
+    public void tearDown() {
+        threadDriver.get().close();
+        threadDriver.remove();
+    }
+
+
+      //  @AfterMethod
+     // public void closeBrowser() {
+     //   driver.quit();
+     // }
+
     public void navigateToPage(String givenUrl) {
-        driver.get(givenUrl);
+        getDriver().get(givenUrl);
     }
 
     public void provideEmail(String email) {
