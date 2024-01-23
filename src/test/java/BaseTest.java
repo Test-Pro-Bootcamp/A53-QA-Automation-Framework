@@ -21,18 +21,23 @@ public class BaseTest {
     }
     @BeforeMethod
     public void launchBrowser() {
-        //Added ChromeOptions argument below to fix websocket error
+        //Chrome Options
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        //Manage Browser - wait for 10 seconds before failing/quitting.
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
+        //Navigate to Url
+        navigateToUrl();
+
     }
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
     }
-    public void navigateToPage() {
+    public void navigateToUrl() {
         driver.get(url);
     }
     public void provideEmail(String email) {

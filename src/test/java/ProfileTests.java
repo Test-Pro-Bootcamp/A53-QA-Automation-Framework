@@ -6,7 +6,7 @@ public class ProfileTests extends BaseTest {
     @Test
     public void changeProfileName() throws InterruptedException {
 
-        navigateToPage();
+        navigateToUrl();
 
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");

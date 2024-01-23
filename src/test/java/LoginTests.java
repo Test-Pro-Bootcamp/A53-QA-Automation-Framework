@@ -6,7 +6,7 @@ public class LoginTests extends BaseTest {
     @Test (enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPassword(){
 
-        navigateToPage();
+        navigateToUrl();
         provideEmail("invalid@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
@@ -17,7 +17,7 @@ public class LoginTests extends BaseTest {
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailPassword(){
 
-        navigateToPage();
+        navigateToUrl();
         provideEmail("demo@class.com");
         providePassword("te$t$tudent");
         clickSubmit();
@@ -27,7 +27,7 @@ public class LoginTests extends BaseTest {
     @Test (enabled = true, priority = 3, description = "Login with valid email and empty password")
     public void loginValidEmailEmptyPassword() {
 
-        navigateToPage();
+        navigateToUrl();
         provideEmail("demo@class.com");
         providePassword("");
         clickSubmit();
