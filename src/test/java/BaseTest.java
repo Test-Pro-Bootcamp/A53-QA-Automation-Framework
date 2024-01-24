@@ -10,17 +10,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
 
     static WebDriver driver;
 
-   /* @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
 
-    }*/
     @BeforeMethod
    public WebDriver setupBrowser() throws MalformedURLException {
         driver = pickBrowser(System.getProperty("browser"));
@@ -28,6 +26,31 @@ public class BaseTest {
         return driver;
     }
 
+    public WebDriver lambaTest() throws MalformedURLException{
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName","chrome");
+        capabilities.setCapability("browserVersion","120.0");
+        /*ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("macOS Sonoma");
+        browserOptions.setBrowserVersion("120.0");*/
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "william.changtestpro");
+        ltOptions.put("accessKey", "JOmLbPg431HRZd7MMkM37wfS9iWDmh27qbUrlM0Da1hsirbKIs");
+        ltOptions.put("geoLocation", "US");
+        ltOptions.put("visual", true);
+        ltOptions.put("video", true);
+        ltOptions.put("resolution", "2560x1440");
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("name", "Koel User Tests");
+        ltOptions.put("selenium_version", "4.5.0");
+        ltOptions.put("driver_version", "120.0");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(URI.create(hubURL).toURL(),capabilities);
+    }
     public WebDriver pickBrowser(String browser) throws MalformedURLException{
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.86.247:4444";
@@ -41,6 +64,8 @@ public class BaseTest {
             case "grid-chrome":
                 caps.setCapability("browserName","chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
+            case "cloud":
+                return lambaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
