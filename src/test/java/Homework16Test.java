@@ -13,9 +13,8 @@ public class Homework16Test extends BaseTest {
     public void registrationNavigation() {
 
         String url = "https://qa.koel.app/";
-        driver.get(url);
-        driver.findElement(By.xpath("//a[@href='registration']")).click();
-        Assert.assertEquals(driver.getCurrentUrl(), "https://qa.koel.app/registration");
-        driver.quit();
+        getThreadLocal().get(url);
+        getThreadLocal().findElement(By.xpath("//a[@href='registration']")).click();
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), "https://qa.koel.app/registration");
     }
 }

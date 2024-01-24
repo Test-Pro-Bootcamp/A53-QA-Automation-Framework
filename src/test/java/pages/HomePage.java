@@ -61,8 +61,9 @@ public class HomePage extends BasePage {
     }
 
     public HomePage getSuccessNotification(){
-        isSuccessNotificationActive = successNotification.isDisplayed();
-        successNotificationText = successNotification.getText();
+      WebElement successNotificationLocal = findElement(successNotification);
+        isSuccessNotificationActive = successNotificationLocal.isDisplayed();
+        successNotificationText = successNotificationLocal.getText();
         return this;
     }
 

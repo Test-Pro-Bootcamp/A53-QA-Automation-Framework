@@ -14,10 +14,10 @@ public class Homework22Test extends BaseTest {
     @Test
     public void registrationNavigation() {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
         loginPage.loadLoginPage();
         loginPage.clickRegistration();
-        RegistrationPage registrationPage = new RegistrationPage(driver);
+        RegistrationPage registrationPage = new RegistrationPage(getThreadLocal());
         Assert.assertEquals(registrationPage.getActualPageUrl(), registrationPage.getPageUrl());
     }
 

@@ -12,8 +12,7 @@ public class LoginTests extends BaseTest {
 
 
         String url = "https://testpro.io/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+        getThreadLocal().get(url);
+        Assert.assertEquals(getThreadLocal().getCurrentUrl(), url);
     }
 }

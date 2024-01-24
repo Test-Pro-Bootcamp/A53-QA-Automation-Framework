@@ -20,15 +20,15 @@ public class Homework21Test extends BaseTest {
 
     @Test
     public void renamePlaylist() throws InterruptedException {
-        LoginPage login = new LoginPage(driver);
+        LoginPage login = new LoginPage(getThreadLocal());
         login.loginUsertoKoel();
-        Actions act = new Actions(driver);
-        driver.findElement(By.xpath("//li[@class='playlist playlist'][1]")).click();
-        act.doubleClick(driver.findElement(By.xpath("//li[@class='playlist playlist'][1]"))).perform();
+        Actions act = new Actions(getThreadLocal());
+        getThreadLocal().findElement(By.xpath("//li[@class='playlist playlist'][1]")).click();
+        act.doubleClick(getThreadLocal().findElement(By.xpath("//li[@class='playlist playlist'][3]"))).perform();
 
-        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait w = new WebDriverWait(getThreadLocal(), Duration.ofSeconds(3));
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@data-testid='inline-playlist-name-input']")));
-        WebElement playlistInput = driver.findElement(By.xpath("//input[@data-testid='inline-playlist-name-input']"));
+        WebElement playlistInput = getThreadLocal().findElement(By.xpath("//input[@data-testid='inline-playlist-name-input']"));
         //Following line only works on mac
         playlistInput.sendKeys(Keys.chord(Keys.COMMAND,"a",Keys.DELETE));
         //Added for windows
@@ -37,7 +37,7 @@ public class Homework21Test extends BaseTest {
 
 
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='success show']")));
-        WebElement successPopup = driver.findElement(By.xpath("//*[@class='success show']"));
+        WebElement successPopup = getThreadLocal().findElement(By.xpath("//*[@class='success show']"));
         Assert.assertEquals(successPopup.getText(), "Updated playlist \"RenamedPlaylist.\"");
 
     }

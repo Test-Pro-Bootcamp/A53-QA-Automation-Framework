@@ -7,10 +7,10 @@ public class Homework23Test extends BaseTest {
 
     @Test
     public void deletePlaylist() {
-       LoginPage loginPage = new LoginPage(driver);
+       LoginPage loginPage = new LoginPage(getThreadLocal());
        loginPage.loginUsertoKoel();
 
-       HomePage homePage = new HomePage(driver);
+       HomePage homePage = new HomePage(getThreadLocal());
        homePage.selectPlaylistElement();
        homePage.clickDeletePlaylistBtn();
        homePage.getSuccessNotification();

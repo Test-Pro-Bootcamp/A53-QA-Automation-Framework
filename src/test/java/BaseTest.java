@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
@@ -16,14 +17,20 @@ import java.util.HashMap;
 
 public class BaseTest {
 
-    static WebDriver driver;
+    private static final ThreadLocal<WebDriver> THREAD_LOCAL = new ThreadLocal<>();
+    private WebDriver driver;
+
+    public static WebDriver getThreadLocal() {
+        return THREAD_LOCAL.get();
+    }
 
 
     @BeforeMethod
-   public WebDriver setupBrowser() throws MalformedURLException {
-        driver = pickBrowser(System.getProperty("browser"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        return driver;
+   public void setupBrowser() throws MalformedURLException {
+        THREAD_LOCAL.set(pickBrowser(System.getProperty("browser")));
+        THREAD_LOCAL.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        THREAD_LOCAL.get().manage().window().maximize();
+        THREAD_LOCAL.get().manage().deleteAllCookies();
     }
 
     public WebDriver lambaTest() throws MalformedURLException{
@@ -77,6 +84,7 @@ public class BaseTest {
 
     @AfterMethod
     static void tearDown(){
-        driver.quit();
+        THREAD_LOCAL.get().close();
+        THREAD_LOCAL.remove();
     }
 }
