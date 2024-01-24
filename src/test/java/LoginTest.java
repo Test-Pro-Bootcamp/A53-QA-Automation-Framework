@@ -1,6 +1,5 @@
-import Pages.HomePage;
-import Pages.LoginPage;
-import org.openqa.selenium.WebElement;
+import pages.HomePage;
+import pages.LoginPage;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
