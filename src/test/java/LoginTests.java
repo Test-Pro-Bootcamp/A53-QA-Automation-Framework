@@ -42,7 +42,7 @@ public class LoginTests extends BaseTest {
 
         navigateToPage();
         provideEmail("demo@class.com");
-        providePassword("");
+        providePassword("te$t$tudent");
         clickSubmit();
 
         Thread.sleep(2000);

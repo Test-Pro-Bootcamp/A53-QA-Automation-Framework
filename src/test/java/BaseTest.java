@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -11,8 +12,13 @@ import java.util.UUID;
 
 public class BaseTest {
 
-    public WebDriver driver = null;
-    public String url = null;
+    public WebDriverWait wait;
+
+    //implicit wait
+    //driver.manage().timeouts().implicitlyWait(Duration.OfSeconds(10));
+
+
+    public String url = "https://qa.koel.app/";
 
     @DataProvider(name="IncorrectLoginData")
     public static Object[][] getDataFromDataProviders() {
