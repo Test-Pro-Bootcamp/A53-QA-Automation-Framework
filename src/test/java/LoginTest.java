@@ -13,8 +13,6 @@ public class LoginTest extends BaseTest{
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-
         loginPage.provideEmailToLogin("utku.aktas94@testpro.io")
                 .providePasswordToLogin("ekga9uf6")
                 .clickLoginButton();
