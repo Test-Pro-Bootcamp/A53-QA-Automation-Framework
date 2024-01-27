@@ -4,14 +4,12 @@
 <suite name="Smoke">
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
-
         <classes>
             <class name="LoginTests">
                 <methods>
-                    <include name="loginValidEmailPassword"/>
+                    <include name="loginValidEmailPassword" />
                 </methods>
             </class>
         </classes>
-
     </test>
 </suite>

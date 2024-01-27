@@ -10,10 +10,11 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public  WebDriver driver = null;
-    public  String url = null;
-    public  WebDriverWait wait = null;
-    public  Actions actions = null;
+    public static WebDriver driver = null;
+    public static String url = null;
+    public static WebDriverWait wait = null;
+
+    public static Actions actions = null;
 
     @DataProvider(name="IncorrectLoginData")
     public Object[][] getDataFromDataProviders() {
@@ -24,6 +25,7 @@ public class BaseTest {
                 {"", ""}
         };
     }
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
