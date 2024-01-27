@@ -29,5 +29,8 @@ public class BasePage {
     public void doubleClick (WebElement webElement) {
         actions.doubleClick(findElement(webElement)).perform();
     }
+    public void contextClick (WebElement webElement) {
+        actions.contextClick(findElement(webElement)).perform();
+    }
 }
 

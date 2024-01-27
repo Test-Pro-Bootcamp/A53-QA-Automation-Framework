@@ -13,8 +13,6 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
-    //Fluent interface
     public LoginPage provideEmail(String email) {
       emailField.sendKeys(email);
       return this;
@@ -27,7 +25,6 @@ public class LoginPage extends BasePage {
         click(submitBtn);
         return this;
     }
-
 }
 
 
