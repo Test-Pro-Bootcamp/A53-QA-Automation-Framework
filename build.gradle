@@ -18,5 +18,8 @@ repositories {
 test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
+        systemProperty "browser",System.getProperty("browser");
+        //To Run the gradle for browser pick
+        //gradle clean test -Dbrowser=firefox
     }
 }
