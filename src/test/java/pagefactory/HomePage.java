@@ -13,9 +13,6 @@ public class HomePage extends BasePage {
     @FindBy(css = "[name='name']")
     WebElement playlistNameField;
 
-    @FindBy(css = "div.success.show")
-    WebElement popUpNotification;
-
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -30,7 +27,6 @@ public class HomePage extends BasePage {
         findElement(playlistNameField).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.BACK_SPACE));
         findElement(playlistNameField).sendKeys(playlistName);
         findElement(playlistNameField).sendKeys(Keys.ENTER);
-        findElement(popUpNotification);//wait for the popup notification for successful updating of the playlist name
         return this;
     }
 
