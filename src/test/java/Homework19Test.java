@@ -9,37 +9,22 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.LoginPage;
+
 import java.time.Duration;
 
-public class Homework19Test {
-    WebDriver driver;
-    @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void loginUser(String BaseURL) {
-
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        driver.get(BaseURL);
-        driver.findElement(By.xpath("//input[@type='email']")).sendKeys("william.chang@testpro.io");
-        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("te$tStudent");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-    }
-
+public class Homework19Test extends BaseTest{
 
     @Test
     public void deletePlaylist() throws InterruptedException {
+        LoginPage login = new LoginPage(getThreadLocal());
+        login.loginUsertoKoel();
+        getThreadLocal().findElement(By.xpath("//li[@class='playlist playlist'][1]")).click();
+        getThreadLocal().findElement(By.xpath("//button[@class='del btn-delete-playlist']")).click();
 
-        driver.findElement(By.xpath("//li[@class='playlist playlist'][1]")).click();
-        driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']")).click();
-
-        WebDriverWait w = new WebDriverWait(driver,Duration.ofSeconds(3));
+        WebDriverWait w = new WebDriverWait(getThreadLocal(),Duration.ofSeconds(3));
         w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='success show']")));
-        WebElement successPopup = driver.findElement(By.xpath("//*[@class='success show']"));
+        WebElement successPopup = getThreadLocal().findElement(By.xpath("//*[@class='success show']"));
         Assert.assertEquals(successPopup.getText(),"Deleted playlist \"NewPlaylist.\"");
 
     }
