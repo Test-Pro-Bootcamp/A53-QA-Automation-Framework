@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Steps
-        String url = "https://qa.koel.app/";
+        String url = "https://testpro.io";
         driver.get(url);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
