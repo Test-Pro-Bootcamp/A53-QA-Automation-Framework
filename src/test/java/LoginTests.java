@@ -18,8 +18,8 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailPassword(){
 
         navigateToPage();
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("constantin@moraresco.com");
+        providePassword("Nastika20$");
         clickSubmit();
         isAvatarDisplayed();
     }
