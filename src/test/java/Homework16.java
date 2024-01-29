@@ -56,6 +56,25 @@ public class Homework16 extends BaseTest {
         //Close the browser.
         driver.quit();
     }
+
+    @Test
+    public static void main(String[] args) {
+        // Set the path to your ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+
+        WebDriver driver = new ChromeDriver();
+        try {
+            driver.get("https://app.koel.com");
+            WebElement element = driver.findElement(By.id("someId"));
+            element.click();
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            driver.quit();
+        }
+
+    }
 }
 
 //Slow down the test:
