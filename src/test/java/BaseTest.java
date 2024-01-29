@@ -20,42 +20,45 @@ import org.testng.annotations.Parameters;
 import javax.swing.*;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
     protected WebDriver driver;
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
     protected WebDriverWait wait;
     protected Actions actions;
-//Test
+
+    //Test
     @BeforeSuite
     static void setupClass() {
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.firefoxdriver().setup();
-
     }
+
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        // Manage browser - wait for 10 seconds before failing/quitting
-        driver = new ChromeDriver(options);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
-        driver.manage().window().maximize();
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
 
-        driver.get(BaseURL);
-    }
-    @AfterMethod
-    public void closeBrowser() {
-        driver.quit();
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        actions = new Actions(getDriver());
+
+        getDriver().get(BaseURL);
     }
 
-    public WebDriver pickBrowser(String browser) throws MalformedURLException{
+    public static WebDriver getDriver() {
+        return threadDriver.get();
+    }
+
+    public void tearDown() {
+        threadDriver.get().close();// close browser
+        threadDriver.remove();
+    }
+
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.1.162:4444/";
-        switch(browser){
+        switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
@@ -73,12 +76,44 @@ public class BaseTest {
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
 
+            case "cloud":
+                return lamdaTest();
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptionsDefault = new ChromeOptions();
                 chromeOptionsDefault.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(chromeOptionsDefault);
         }
+    }
+
+    public WebDriver lamdaTest() throws MalformedURLException{
+        String hubURL = "https://hub.lambdatest.com/wd/hub";
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+//        ChromeOptions browserOptions = new ChromeOptions();
+//        browserOptions.setPlatformName("Windows 11");
+//        browserOptions.setBrowserVersion("121.0");
+
+        capabilities.setCapability("browserName","chrome");
+        capabilities.setCapability("browserVersion","120.0");
+
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "mattaktas94");
+        ltOptions.put("accessKey", "L6Y6EmtaLwRlTt4xkKCqLAslbQXEIVnQJLJZUrlV0WMOGMtsX5");
+        ltOptions.put("geoLocation", "US");
+        ltOptions.put("visual", true);
+        ltOptions.put("video", true);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("name", "Demo Test");
+        ltOptions.put("selenium_version", "4.5.0");
+        ltOptions.put("driver_version", "121.0");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-java");
+//        browserOptions.setCapability("LT:Options", ltOptions);
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubURL), capabilities);
     }
 }
 //Selenium Grid
