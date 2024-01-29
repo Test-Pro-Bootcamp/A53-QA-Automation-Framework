@@ -19,7 +19,9 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 
 public class BaseTest {
 
@@ -28,6 +30,9 @@ public class BaseTest {
 //    HomePage homePage = new HomePage(driver);
 
     public WebDriver driver;
+//    public WebDriver driver2;
+
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
     public WebDriverWait wait;
 
@@ -49,22 +54,37 @@ public class BaseTest {
 
         //Manage Browser - wait for 10 seconds before failing/quitting
 //        driver = new ChromeDriver(options);
-        driver = pickBrowser(System.getProperty("browser"));
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.manage().window().maximize();
+    //    driver = pickBrowser(System.getProperty("browser"));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
 
-        actions = new Actions(driver);
+    //    driver2 = pickBrowser(System.getProperty("browser"));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    //    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+//       driver.manage().window().maximize();
+
+    //    actions = new Actions(driver);
+        actions = new Actions(getDriver());
 
         //Navigate to Url
         url = BaseUrl;
         navigatorUrl();
     }
 
-    @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
+    public static WebDriver getDriver(){
+        return threadDriver.get();
     }
+
+    @AfterMethod
+    public void tearDown(){
+        threadDriver.get().close();
+        threadDriver.remove();
+    }
+
+//    @AfterMethod
+//    public void closeBrowser(){
+//        driver.quit();
+//    }
 
 
     void provideEmail(String email){
@@ -91,7 +111,8 @@ public class BaseTest {
 
     //Helper Method
     public void navigatorUrl(){
-        driver.get(url);
+//        driver.get(url);
+        getDriver().get(url);
     }
 
     /*
@@ -99,7 +120,7 @@ public class BaseTest {
     *Locators used in these test were located using By abstract class.
     */
 
-
+/*
     @Test
     public void loginWithCorrectCredentials(){
         LoginPage loginPage = new LoginPage(driver);
@@ -130,7 +151,7 @@ public class BaseTest {
 //            System.out.println("Element not displayed as expected");
 //        }
     }
-
+*/
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -161,12 +182,44 @@ public class BaseTest {
                 caps.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridUrl).toURL(), caps);
 
+            case "cloud":    //gradle clean test -Dbrowser=grid-cloud
+                return lambDaTest();
+
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new ChromeDriver(chromeOptions);
         }
+    }
+
+    public WebDriver lambDaTest() throws MalformedURLException{
+        String hubUrl = "https://hun.lambdatest.com/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+
+//        ChromeOptions browserOptions = new ChromeOptions();
+//        browserOptions.setPlatformName("Windows 11");
+//        browserOptions.setBrowserVersion("121.0");
+
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "121.0");
+
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+        ltOptions.put("username", "magiclogiclu");
+        ltOptions.put("accessKey", "JLZPlaaZpjpkOofHN9yfGXrCXUO0GkRWCaX854MPEyjHawNwNv");
+        ltOptions.put("geoLocation", "CA");
+        ltOptions.put("visual", true);
+        ltOptions.put("video", true);
+        ltOptions.put("project", "Untitled");
+        ltOptions.put("selenium_version", "4.5.0");
+        ltOptions.put("driver_version", "121.0");
+        ltOptions.put("w3c", true);
+        ltOptions.put("plugin", "java-testNG");
+//        browserOptions.setCapability("LT:Options", ltOptions);
+        capabilities.setCapability("LT:Options", ltOptions);
+
+        return new RemoteWebDriver(new URL(hubUrl), capabilities);
     }
 
 }
