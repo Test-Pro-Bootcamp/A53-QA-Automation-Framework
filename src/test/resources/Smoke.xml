@@ -12,8 +12,8 @@
                     <include name="loginValidEmailPassword"/>
                 </methods>
             </class>
-            <!--<class name="BaseTest"/>-->
-            <!-- <class name="ProfileTest"/> -->
+            <class name="BaseTest"/>
+             <class name="LoginTests"/>
          </classes>
      </test>
  </suite>
