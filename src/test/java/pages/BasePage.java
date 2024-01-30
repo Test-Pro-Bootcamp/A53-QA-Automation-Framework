@@ -23,7 +23,7 @@ public class BasePage {
         actions = new Actions(driver);
     }
 
-    public WebElement findElement (By locator) {
+    public WebElement findElementByLocator (By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
