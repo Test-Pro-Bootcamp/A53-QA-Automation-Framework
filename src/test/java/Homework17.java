@@ -54,13 +54,13 @@ public class Homework17 extends BaseTest {
         viewAllButton.click();
     }
 
-    
+
     public void clickSong() {
         WebElement firstSong = driver.findElement(By.cssSelector(".search-results .items tr:nth-child(1)"));
         firstSong.click();
     }
 
-    //Add Song to playlist
+    
     public void addToPlaylist() {
         WebElement addToButton = driver.findElement(By.cssSelector("button.btn-add-to"));
         WebElement addToPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper .existing-playlists  li:nth-child(5)"));
