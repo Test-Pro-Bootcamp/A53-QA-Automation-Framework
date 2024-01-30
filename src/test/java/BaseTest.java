@@ -12,11 +12,8 @@ import java.util.UUID;
 
 public class BaseTest {
 
+    public WebDriver driver;
     public WebDriverWait wait;
-
-    //implicit wait
-    //driver.manage().timeouts().implicitlyWait(Duration.OfSeconds(10));
-
 
     public String url = "https://qa.koel.app/";
 
@@ -40,19 +37,21 @@ public class BaseTest {
 //    }
 
     @BeforeSuite
-    static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+    static void setupClass() {WebDriverManager.chromedriver().setup();
     }
 
+
     @BeforeMethod
-    @Parameters({"BaseURL"})
+    @Parameters({"BaseUrl"})
     public void launchBrowser(String BaseURL) {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-
+        //Manage Browser - wait for 10 seconds before failing/quitting.
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         url = BaseURL;
         navigateToPage();
     }
