@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class LoginPage extends BasePage {
     public LoginPage (WebDriver givenDriver) {
@@ -24,10 +25,7 @@ public class LoginPage extends BasePage {
         findElementByLocator(submitButton).click();
     }
 
-    public void login (String emailAddress, String password) {
-        provideEmail(emailAddress);
-        providePassword(password);
-        clickSubmit();
-        
+    public void assertSuccessfulLogin () {
+        Assert.assertTrue(findElementByLocator(By.cssSelector("img[class='avatar']")).isDisplayed());
     }
 }
