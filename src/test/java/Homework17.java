@@ -8,8 +8,7 @@ public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
 
-        //Login
-        //Email Field
+        
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys("dmitry.lobachevs@testpro.io");
@@ -24,7 +23,7 @@ public class Homework17 extends BaseTest {
         Thread.sleep(2000);
 
 
-        //Click on the search bar and search for a song
+
         WebElement searchBar = driver.findElement(By.cssSelector("input[type='search']"));
         searchBar.clear();
         searchBar.sendKeys("Dark Days");
@@ -60,7 +59,7 @@ public class Homework17 extends BaseTest {
         firstSong.click();
     }
 
-    
+
     public void addToPlaylist() {
         WebElement addToButton = driver.findElement(By.cssSelector("button.btn-add-to"));
         WebElement addToPlaylist = driver.findElement(By.cssSelector("#songResultsWrapper .existing-playlists  li:nth-child(5)"));
