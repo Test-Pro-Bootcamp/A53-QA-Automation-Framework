@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke">
+    <parameter name="BaseURL" value="https://qa.koel.app"></parameter>
+    <test name="Smoke Test" preserve-order="false">
+        <classes>
+            <class name="LoginTest">
+                <methods>
+                    <include name="loginValidEmailPassword"/>
+                    <!--<include name="loginTests"/> -->
+                    <!--<include name="loginWithExcelData"/>-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
