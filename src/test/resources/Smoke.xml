@@ -7,7 +7,8 @@
         <classes>
             <class name="LoginTest">
                 <methods>
-                    <include name="loginValidEmailPassword"/>
+                    <include name="loginWithCorrectCredentials"/>
+                    <include name="loginInvalidEmailValidPassword"/>
                     <!--<include name="loginTests"/> -->
                     <!--<include name="loginWithExcelData"/>-->
                 </methods>
