@@ -54,7 +54,7 @@ public class Homework17 extends BaseTest {
         viewAllButton.click();
     }
 
-    //Click on the first Song on the Page
+    
     public void clickSong() {
         WebElement firstSong = driver.findElement(By.cssSelector(".search-results .items tr:nth-child(1)"));
         firstSong.click();
