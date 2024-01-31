@@ -9,8 +9,6 @@
                 <methods>
                     <include name="loginWithCorrectCredentials"/>
                     <include name="loginInvalidEmailValidPassword"/>
-                    <!--<include name="loginTests"/> -->
-                    <!--<include name="loginWithExcelData"/>-->
                 </methods>
             </class>
         </classes>

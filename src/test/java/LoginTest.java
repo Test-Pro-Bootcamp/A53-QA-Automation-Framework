@@ -32,6 +32,4 @@ public class LoginTest extends BaseTest{
         Assert.assertTrue(loginPage.getLoginButton()); // doesn't work
         System.out.println(loginPage.getLoginButton());
     }
-
-
 }
