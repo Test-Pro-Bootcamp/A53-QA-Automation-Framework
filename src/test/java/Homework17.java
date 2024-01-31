@@ -3,15 +3,19 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+
 public class Homework17 extends BaseTest {
 
     @Test
     public void addSongToPlaylist() throws InterruptedException {
 
-        
+
+         //Login
+        //Email Field
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("dmitry.lobachevs@testpro.io");
+        emailField.sendKeys("dmitry.lobachev@testpro.io");
         //Password Field
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
