@@ -45,7 +45,7 @@ public class Homework17 extends BaseTest {
 
         //Verify
         WebElement successAlert = driver.findElement(By.cssSelector(".alertify-logs .success"));
-        String correctAlert = "Added 1 song into \"AutoTest.\"";
+        String correctAlert = "Added 1 song into \"TestPro.\"";
         Assert.assertEquals(successAlert.getText(), correctAlert);
 
     }
