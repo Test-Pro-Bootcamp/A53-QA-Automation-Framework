@@ -30,7 +30,6 @@ public class BaseTest {
     protected WebDriverWait wait;
     protected Actions actions;
 
-    //Test
     @BeforeSuite
     static void setupClass() {
     }
@@ -45,11 +44,9 @@ public class BaseTest {
 
         getDriver().get(BaseURL);
     }
-
     public static WebDriver getDriver() {
         return threadDriver.get();
     }
-
     public void tearDown() {
         threadDriver.get().close();// close browser
         threadDriver.remove();
