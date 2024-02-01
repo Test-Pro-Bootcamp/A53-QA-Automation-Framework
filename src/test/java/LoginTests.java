@@ -1,10 +1,15 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
 public class LoginTests extends BaseTest {
+
+    public WebDriver driver;
+
 
     @Test (dataProvider = "IncorrectLoginData", dataProviderClass = BaseTest.class, enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPassword(String email, String password) throws InterruptedException {
@@ -42,7 +47,7 @@ public class LoginTests extends BaseTest {
 
         navigateToPage();
         provideEmail("demo@class.com");
-        providePassword("");
+        providePassword("te$t$tudent");
         clickSubmit();
 
         Thread.sleep(2000);
