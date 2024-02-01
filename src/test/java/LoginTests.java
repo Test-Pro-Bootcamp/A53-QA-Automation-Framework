@@ -8,7 +8,7 @@ public class LoginTests extends BaseTest {
 
         navigateToPage();
         provideEmail("invalid@class.com");
-        providePassword("te$t$tudent");
+        providePassword("Nastika20$");
         clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
@@ -28,11 +28,11 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailEmptyPassword() {
 
         navigateToPage();
-        provideEmail("demo@class.com");
+        provideEmail("constantin@moraresco.com");
         providePassword("");
         clickSubmit();
 
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
 
-}
+ }
