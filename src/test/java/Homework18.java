@@ -9,8 +9,7 @@ public class Homework18 extends BaseTest {
 
     @Test
     public void playSong() throws InterruptedException{
-
-        driver.get(url);
+        
         //Login
         //Email Field
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
@@ -45,4 +44,3 @@ public class Homework18 extends BaseTest {
 
 
 }
-
