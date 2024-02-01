@@ -3,17 +3,13 @@
 
 <suite name="Smoke">
 
-    <parameter name="BaseUrl" value="https://qa.koel.app"/>
-
-    <test name="Smoke Tests" preserve-order="false">
+    <test name="Smoke Test" preserve-order="false">
         <classes>
             <class name="LoginTests">
                 <methods>
                     <include name="loginValidEmailPassword"/>
                 </methods>
             </class>
-            <!--<class name="BaseTest"/>-->
-            <!-- <class name="ProfileTest"/> -->
-         </classes>
-     </test>
- </suite>
+        </classes>
+    </test>
+</suite>
