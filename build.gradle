@@ -23,6 +23,8 @@ dependencies {
 
     //implementation 'io.cucumber:gherkin:7.14.0'
 
+    //assured
+
 }
 
 test {

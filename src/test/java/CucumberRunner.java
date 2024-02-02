@@ -3,7 +3,7 @@ import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.TestNGCucumberRunner;
 import org.testng.annotations.*;
 @CucumberOptions(
-        features = {"src/test/java/stepDefinition/LoginStepDefinitions.java"}
+        features = {"src/test/java/stepDefinition/LoginStepDefinitions.java"}, publish = true
 )
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 
