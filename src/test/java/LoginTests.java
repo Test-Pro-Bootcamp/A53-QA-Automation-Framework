@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
@@ -57,6 +58,16 @@ public void navigateTokoelApp(String BaseUrl){
 
         // Post-condition
         driver.quit();
+    }
+
+    @Test
+    public void loginValidEmailPassword() throws InterruptedException{
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
+        Assert.assertTrue(avatarIcon.isDisplayed());
+        
     }
 
     @Test(dataProvider = "InvalidLoginData")
