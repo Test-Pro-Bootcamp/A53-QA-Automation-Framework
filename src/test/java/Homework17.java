@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException{
-        String expectedSongAddedMessage = "Added 1 Song into \"Test Pro Playlist.\"";
+        String expectedSongAddedMessage = "Added 1 song into \"Test Pro Playlist.\"";
       navigateToPage();
       provideEmail("constantin@moraresco.com");
       providePassword("Nastika20$");
