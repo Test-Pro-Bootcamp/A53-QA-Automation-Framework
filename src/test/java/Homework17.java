@@ -61,7 +61,7 @@ public class Homework17 extends BaseTest {
             Thread.sleep(2000);
 
             //Select
-            WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), 'Favorites')]"));
+            WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), 'bippitty bops')]"));
             playlist.click();
 
             Thread.sleep(2000);
@@ -69,7 +69,7 @@ public class Homework17 extends BaseTest {
             //Assert
             WebElement warningMessage = driver.findElement(By.cssSelector("div.success.show"));
             Assert.assertTrue(warningMessage.isDisplayed());
-            Assert.assertEquals("Added 1 song into 'Favorites'", warningMessage.getText());
+            Assert.assertEquals("Added 1 song into 'bippity bops'", warningMessage.getText());
                     System.out.println("Warning message: " + warningMessage.getText());
 
             Thread.sleep(2000);
