@@ -4,7 +4,7 @@ import Pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeTestRecap extends BaseTest{
+public class HomeTest extends BaseTest{
 
     @Test(enabled = true,groups = {"Regression"},priority = 0, description = "Hover over play button test")
     public void hoverOverPlayBtnTest() {

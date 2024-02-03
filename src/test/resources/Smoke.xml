@@ -18,13 +18,13 @@
                 </methods>
             </class>
 
-            <class name="ProfileTestRecap">
+            <class name="ProfileTest">
                 <methods>
                     <include name="changeProfileName"/>
                 </methods>
             </class>
 
-            <class name="AllSongTestRecap">
+            <class name="SongsTest">
                 <methods>
                     <include name="playSongsByRightClick"/>
                 </methods>

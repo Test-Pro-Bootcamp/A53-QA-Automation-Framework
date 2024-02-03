@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 
-public class ProfileTestRecap extends BaseTest{
+public class ProfileTest extends BaseTest{
 
     @Test(priority = 0)
     public void changeProfileName()throws InterruptedException{

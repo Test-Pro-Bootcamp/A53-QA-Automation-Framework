@@ -2,11 +2,10 @@ import Pages.AllSongsPage;
 import Pages.BasePage;
 import Pages.HomePage;
 import Pages.LoginPage;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AllSongTestRecap extends BaseTest {
+public class SongsTest extends BaseTest {
     @Test(priority = 0)
     public void playSongsByRightClick() {
         LoginPage loginPage = new LoginPage(driver);
