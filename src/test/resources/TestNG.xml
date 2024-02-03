@@ -7,18 +7,19 @@
     <parameter name="BaseUrl" value="https://qa.koel.app/"/>
     <test name="LoginTests" preserve-order="false">
         <classes>
-            <!--<class name="LoginTests"/>-->
+            <class name="LoginTests"/>
             <class name="CucumberRunner"/>
             <!--<class name="BaseTest"/>-->
-            <!--<class name="Homework16"/>-->
-            <!--<class name="ProfileTest"/>-->
+            <class name="Homework16"/>
+            <class name="RegistrationTests"/>
+            <class name="ProfileTest"/>
             <!--<class name="Homework17"/>-->
             <!--<class name="Homework18"/>-->
-            <!--<class name="Homework19"/>
-            <class name="Homework21"/>
+            <!--<class name="Homework19"/>-->
+            <!--<class name="Homework21"/>-->
             <class name="AllSongTest"/>
-            <class name="Homework22"/>
-            <class name="Homework23"/>-->
+            <!--<class name="Homework22"/>-->
+            <!--<class name="Homework23"/>-->
         </classes>
     </test>
 </suite>

@@ -33,7 +33,7 @@ LoginTests extends BaseTest {
 //       // }
 //
 //    }
-    @Test
+    @Test(priority = 0) //Smoke test
     public void loginWithCorrectCredentials(){
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -44,7 +44,7 @@ LoginTests extends BaseTest {
         //Assert
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
-    @Test
+    @Test(priority = 1)
     public void loginWithCorrectCredentials2(){
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
@@ -53,44 +53,39 @@ LoginTests extends BaseTest {
         //Assert
         Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
     }
-    @Test
-    public void loginWithCorrectCredentials3(){
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
 
-        loginPage.login();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
-    }
-    @Test
-    public void loginWithCorrectCredentials4(){
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
 
-        loginPage.login();
+    @Test(priority = 2)
+    public void loginWithInvalidEmailValidPassword() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmailToLogin("demo@class111.com")
+                .providePasswordToLogin("te$t$tudent")
+                .clickSubmitToLogin();
         //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+
     }
-//
-//    @Test
-//    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
-//        provideEmail("invalid@class.com");
-//        providePassword("te$t$tudent");
-//        clickSubmit();
-//        Thread.sleep(2000);
-//        //Expected Result
-//        Assert.assertEquals(driver.getCurrentUrl(),url);
-//
-//    }
-//    @Test
-//    public void loginWithValidEmailInvalidPassword() throws InterruptedException {
-//        provideEmail("demo@class.com");
-//        providePassword("invalidPassword");
-//        clickSubmit();
-//        Thread.sleep(2000);
-//        //Expected Result
-//        Assert.assertEquals(driver.getCurrentUrl(),url);
-//    }
+    @Test(priority = 3)
+    public void loginWithValidEmailInvalidPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmailToLogin("demo@class.com")
+                .providePasswordToLogin("te$t$tudent111")
+                .clickSubmitToLogin();
+        //Assert
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+    }
+    @Test(priority = 4)
+    public void loginWithInvalidEmailInvalidPassword(){
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmailToLogin("demo@class111.com")
+                .providePasswordToLogin("te$t$tudent111")
+                .clickSubmitToLogin();
+        //Assert
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
+    }
 //
 //    /*
 //     * Login Using Page Factory Elements and Fluent Interface
