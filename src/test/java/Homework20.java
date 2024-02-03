@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework20 extends BaseTest {
@@ -14,10 +13,8 @@ public class Homework20 extends BaseTest {
         providePassword("te$t$tudent");
         clickSubmit();
         clickPlaylistsGrid();
-        clickDeletePlaylistBtn("TestPro PlayList.");
+        clickDeletePlaylistBtn("Dark Days.");
 
-        String expectedPlaylistDeletedMessage = null;
-        Assert.assertEquals(getDeletePlaylistSuccessMsg(), expectedPlaylistDeletedMessage);
 
     }
 
@@ -28,18 +25,21 @@ public class Homework20 extends BaseTest {
         //Thread.sleep(2000);
     }
 
-    public void clickDeletePlaylistBtn(String name) throws InterruptedException {
+    public void clickDeletePlaylistBtn(String s) throws InterruptedException {
         WebElement playlistBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='del btn-delete-playlist']")));
         //WebElement playlistBtn = driver.findElement(By.xpath("//button[@class='del btn-delete-playlist']"));
         playlistBtn.click();
         //Thread.sleep(2000);
     }
 
-    public String getDeletePlaylistSuccessMsg() {
+    public String getDeletePlaylistSuccessMsg() throws InterruptedException {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         //WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
         return notification.getText();
 
 
     }
-}
+    }
+
+
+

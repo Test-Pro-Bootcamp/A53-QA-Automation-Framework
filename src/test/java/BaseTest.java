@@ -74,6 +74,12 @@ public class BaseTest {
         submit.click();
     }
     public void navigateToUrl(String givenUrl) { driver.get(givenUrl); }
+
+    public void loginToKoelApp(){
+        provideEmail("ramya.gudur@testpro.io");
+        providePassword("Ammananna@65");
+        clickSubmit();
+    }
 }
 
 

@@ -12,8 +12,8 @@ public class Homework19 extends BaseTest {
     public void deletePlayList() throws InterruptedException {
         String expectedPlayListDeletedMessage = "Deleted playlist \"TestPro PlayList.\"";
         navigateToUrl(url);
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("ramya.gudur@testpro.io");
+        providePassword("Ammananna@65");
         clickSubmit();
         openPlayList();
         clickDeletePlaylistBtn();

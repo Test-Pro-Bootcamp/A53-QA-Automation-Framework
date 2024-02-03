@@ -62,8 +62,8 @@ public void navigateTokoelApp(String BaseUrl){
 
     @Test
     public void loginValidEmailPassword() throws InterruptedException{
-        provideEmail("demo@class.com");
-        providePassword("te$t$tudent");
+        provideEmail("ramya.gudur@testpro.io");
+        providePassword("Ammananna@65");
         clickSubmit();
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -93,10 +93,10 @@ public void navigateTokoelApp(String BaseUrl){
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
-        emailField.sendKeys("demo@class.com");
+        emailField.sendKeys("ramya.gudur@testpro.io");
         WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.clear();
-        passwordField.sendKeys("Te$t$tudent");
+        passwordField.sendKeys("Ammananna@65");
 
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         submit.click();
