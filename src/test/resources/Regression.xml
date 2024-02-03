@@ -8,8 +8,11 @@
         <classes>
             <class name="LoginTests"/>
             <!--<class name="BaseTest"/>-->
-            <class name="ProfileTest"/>
-            <class name="AllSongTest"/>
+            <class name="RegistrationTests"/>
+            <class name="ProfileTestRecap"/>
+            <class name="HomeTestRecap"/>
+            <class name="PlaylistTestRecap"/>
+            <class name="AllSongTestRecap"/>
         </classes>
     </test>
 </suite>

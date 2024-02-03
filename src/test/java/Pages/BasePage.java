@@ -33,7 +33,9 @@ public class BasePage {
     public void click(By locator){
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).click();
     }
-
+    public void waitClick(WebElement locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
     //Element Locator
     //By playlistElement = By.cssSelector(".playlist:nth-child(3)");
     //By playlistInputField = By.cssSelector("[name='name']");

@@ -14,15 +14,21 @@
 
             <class name="RegistrationTests">
                 <methods>
-                    <include name="registrationNavigation" />
+                    <include name="registrationNavigation"/>
                 </methods>
             </class>
 
-            <!--<class name="LoginTests"/>-->
-            <!--<class name="BaseTest"/>-->
-            <!--<class name="Homework16"/>-->
-            <!--<class name="ProfileTest"/>-->
-            <!--<class name="Homework17"/>-->
+            <class name="ProfileTestRecap">
+                <methods>
+                    <include name="changeProfileName"/>
+                </methods>
+            </class>
+
+            <class name="AllSongTestRecap">
+                <methods>
+                    <include name="playSongsByRightClick"/>
+                </methods>
+            </class>
 
         </classes>
     </test>
