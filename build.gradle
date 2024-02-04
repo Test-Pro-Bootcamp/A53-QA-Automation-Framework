@@ -13,15 +13,25 @@ repositories {
     testImplementation 'org.testng:testng:7.6.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.16.1'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+
+     //Cucumber Related
+     implementation 'io.cucumber:cucumber-testng:7.9.0'
+     implementation 'io.cucumber:cucumber-core:7.9.0'
+     implementation 'io.cucumber:cucumber-java:7.9.0'
+     //implementation 'io.cucumber:cucumber:gherkin:25.0.2'
+
+     // https://mvnrepository.com/artifact/io.cucumber/cucumber-gherkin
+     implementation 'io.cucumber:cucumber-gherkin:7.14.0'
 }
 
 test {
     useTestNG() {
         suites "src/test/resources/TestNG.xml"
-        suites "src/test/resources/Regression.xml"
-        suites "src/test/resources/Smoke.xml"
+//        suites "src/test/resources/Regression.xml"
+//        suites "src/test/resources/Smoke.xml"
         systemProperty "browser",System.getProperty("browser");
         //To Run the gradle for browser pick
         //gradle clean test -Dbrowser=firefox
+
     }
 }
