@@ -16,24 +16,6 @@ public class PlaylistTest extends BaseTest {
         Assert.assertTrue(homePage.isPlaylistCreatedMessageDisplayed());
     }
 
-
-    /*
-    * Rename Existing Playlist, there is a problem that failed with the same name
-    * */
-//    @Test(priority = 1)
-//    public void renameExistPlaylist() {
-//        LoginPage loginPage = new LoginPage(driver);
-//        HomePage homePage = new HomePage(driver);
-//        BasePage basePage = new BasePage(driver);
-//        String updatePlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
-//        String newPlaylistName = "Sample Edited Playlist";
-//
-//        loginPage.login();
-//        basePage.doubleClickPlaylistElement(By.cssSelector(".playlist:nth-child(4)"));
-//        homePage.enterNewPlaylistName(newPlaylistName, By.cssSelector("[name='name']"));
-//        //Assertions
-//        Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(By.cssSelector("div.success.show")), updatePlaylistMsg);
-//    }
     @Test(priority = 1)
     public void renameNewPlaylist(){
         LoginPage loginPage = new LoginPage(driver);

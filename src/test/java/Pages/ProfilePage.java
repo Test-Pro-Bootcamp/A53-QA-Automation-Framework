@@ -50,11 +50,10 @@ public class ProfilePage extends BasePage{
 //        return findElementUsingByLocator(locator).getText();
 //    }
 
-//    public boolean getSuccessPopUp() {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(bysuccessMsg));
-//        return successMsg.isDisplayed();
-//
-//    }
+    public boolean getSuccessPopUp() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(bysuccessMsg));
+        return successMsg.isDisplayed();
+    }
 
 
 }

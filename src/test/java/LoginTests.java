@@ -10,29 +10,6 @@ import org.testng.annotations.Test;
 public class
 LoginTests extends BaseTest {
 
-//    @Test
-//    public void navigateToKoelApp() {
-//        Assert.assertEquals(driver.getCurrentUrl(), url);
-//    }
-
-//    @Test
-//    public void loginValidEmailPassword() throws InterruptedException {
-//        //try {
-//            //Thread.sleep(2000);
-//            provideEmail("demo@class.com");
-//            //Thread.sleep(2000);
-//            providePassword("te$t$tudent");
-//            //Thread.sleep(2000);
-//            clickSubmit();
-//            //Assertion
-//            //WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-//            WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img[class='avatar']")));
-//            Assert.assertTrue(avatarIcon.isDisplayed());
-//       // }catch (Exception e){
-//       //    System.out.println("Something went wrong !" +e);
-//       // }
-//
-//    }
     @Test(priority = 0) //Smoke test
     public void loginWithCorrectCredentials(){
         LoginPage loginPage = new LoginPage(getDriver());
@@ -86,6 +63,11 @@ LoginTests extends BaseTest {
         //Assert
         Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
+
+//    @Test
+//    public void navigateToKoelApp() {
+//        Assert.assertEquals(driver.getCurrentUrl(), url);
+//    }
 //
 //    /*
 //     * Login Using Page Factory Elements and Fluent Interface
