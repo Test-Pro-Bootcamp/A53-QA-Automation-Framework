@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Homework16.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Homework16.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">By</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebElement</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">chrome</span><span class="s2">.</span><span class="s1">ChromeDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">chrome</span><span class="s2">.</span><span class="s1">ChromeOptions</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">annotations</span><span class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">Duration</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Homework16 </span><span class="s0">extends </span><span class="s1">BaseTest </span><span class="s2">{</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public class </span><span class="s1">registrationNavigation</span><span class="s2">() {</span>
+
+        <span class="s3">//Precondition: SET UP CHROME</span>
+        <span class="s1">ChromeOptions options </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ChromeOptions</span><span class="s2">();</span>
+        <span class="s3">//Prevents web-socket issues: if you dont have &quot;origins=*&quot; your browser won't open up.</span>
+        <span class="s1">options</span><span class="s2">.</span><span class="s1">addArguments</span><span class="s2">(</span><span class="s4">&quot;--remote-allow-origins=*&quot;</span><span class="s2">);</span>
+        <span class="s3">//open browser: Chrome</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ChromeDriver</span><span class="s2">(</span><span class="s1">options</span><span class="s2">);</span>
+        <span class="s3">//wait 10 seconds before closing tab: Forget about it.</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">manage</span><span class="s2">().</span><span class="s1">timeouts</span><span class="s2">().</span><span class="s1">implicitlyWait</span><span class="s2">(</span><span class="s1">Duration</span><span class="s2">.</span><span class="s1">ofSeconds</span><span class="s2">(</span><span class="s5">10</span><span class="s2">));</span>
+
+        <span class="s1">options</span><span class="s2">.</span>
+
+
+        <span class="s3">//Steps: 1. Navigate: register button.</span>
+        <span class="s1">String url </span><span class="s2">= </span><span class="s4">&quot;https://qa.koel.app/&quot;</span><span class="s2">;</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">url</span><span class="s2">);</span>
+
+        <span class="s3">//redirect to registration website:</span>
+        <span class="s1">WebElement registrationLink </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">cssSelector</span><span class="s2">(</span><span class="s4">&quot;a[href='registration']&quot;</span><span class="s2">));</span>
+        <span class="s3">//Click to submit the find element.</span>
+        <span class="s1">registrationLink</span><span class="s2">.</span><span class="s1">click</span><span class="s2">();</span>
+
+        <span class="s3">//Type your username into the login:</span>
+        <span class="s3">/*EmailField.sendkeys(&quot;demo@class.com&quot;); 
+ 
+        //Remove excess code: 
+        EmailField.clear(); 
+ 
+        //Password Field: 
+        WebElement PasswordField = driver.findElement(By.cssSelector(&quot;input[type='password']&quot;)); 
+        PasswordField.clear(); 
+        PasswordField.sendkeys(&quot;te$t$tudent&quot;); 
+ 
+        //Submit Button: 
+        WebElement SubmitButton = driver.findElement(By.cssSelector(&quot;button[type='submit']&quot;)); 
+        SubmitButton.click(); 
+ 
+        //Assertions: Is user logo displayed? 
+        WebElement avatarIcon = driver.findElement(By.cssSelector(&quot;img[class='avatar']&quot;)); 
+ 
+        //Are some elements displayed? 
+        Assert.assertTrue(userAvatar.isDisplayed());*/</span>
+
+        <span class="s3">//Close the browser.</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s3">// Set the path to your ChromeDriver executable</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">setProperty</span><span class="s2">(</span><span class="s4">&quot;webdriver.chrome.driver&quot;</span><span class="s2">, </span><span class="s4">&quot;path/to/chromedriver&quot;</span><span class="s2">);</span>
+
+
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ChromeDriver</span><span class="s2">();</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s4">&quot;https://app.koel.com&quot;</span><span class="s2">);</span>
+            <span class="s1">WebElement element </span><span class="s2">= </span><span class="s1">driver</span><span class="s2">.</span><span class="s1">findElement</span><span class="s2">(</span><span class="s1">By</span><span class="s2">.</span><span class="s1">id</span><span class="s2">(</span><span class="s4">&quot;someId&quot;</span><span class="s2">));</span>
+            <span class="s1">element</span><span class="s2">.</span><span class="s1">click</span><span class="s2">();</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;An error occurred: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+        <span class="s2">} </span><span class="s0">finally </span><span class="s2">{</span>
+            <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s3">//Slow down the test:</span>
+<span class="s1">Thread</span><span class="s2">.</span><span class="s1">sleep</span><span class="s2">(</span><span class="s5">2000</span><span class="s2">);</span>
+</pre>
+</body>
+</html>

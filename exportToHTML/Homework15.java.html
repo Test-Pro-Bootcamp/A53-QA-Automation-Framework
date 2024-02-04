@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Homework15.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Homework15.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">WebDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">openqa</span><span class="s2">.</span><span class="s1">selenium</span><span class="s2">.</span><span class="s1">chrome</span><span class="s2">.</span><span class="s1">ChromeDriver</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">Assert</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">testng</span><span class="s2">.</span><span class="s1">annotations</span><span class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">Duration</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Homework15 </span><span class="s0">extends </span><span class="s1">BaseTest </span><span class="s2">{</span>
+    <span class="s1">@Test</span>
+    <span class="s0">public void </span><span class="s1">openBrowser</span><span class="s2">() {</span>
+        <span class="s1">WebDriver driver </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ChromeDriver</span><span class="s2">();</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">manage</span><span class="s2">().</span><span class="s1">timeouts</span><span class="s2">().</span><span class="s1">implicitlyWait</span><span class="s2">(</span><span class="s1">Duration</span><span class="s2">.</span><span class="s1">ofSeconds</span><span class="s2">(</span><span class="s3">10</span><span class="s2">));</span>
+        <span class="s1">String url </span><span class="s2">= </span><span class="s4">&quot;https://testpro.io/&quot;</span><span class="s2">;</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">url</span><span class="s2">);</span>
+        <span class="s5">//assertEquals makes sure that the url youre trying to get matches with the URL you put in.</span>
+        <span class="s1">Assert</span><span class="s2">.</span><span class="s1">assertEquals</span><span class="s2">(</span><span class="s1">driver</span><span class="s2">.</span><span class="s1">getCurrentUrl</span><span class="s2">(), </span><span class="s1">url</span><span class="s2">);</span>
+        <span class="s1">driver</span><span class="s2">.</span><span class="s1">quit</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

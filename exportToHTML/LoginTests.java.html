@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>LoginTests.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+LoginTests.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">import </span><span class="s0">org</span><span class="s2">.</span><span class="s0">testng</span><span class="s2">.</span><span class="s0">annotations</span><span class="s2">.</span><span class="s0">Test</span><span class="s2">;</span>
+
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">time</span><span class="s2">.</span><span class="s0">Duration</span><span class="s2">;</span>
+
+<span class="s1">public class </span><span class="s0">LoginTests </span><span class="s1">extends </span><span class="s0">BaseTest </span><span class="s2">{</span>
+    <span class="s0">@Test</span>
+    <span class="s1">public void </span><span class="s0">loginEmptyEmailPassword</span><span class="s2">() {</span>
+
+<span class="s3">//      Added ChromeOptions argument below to fix websocket error</span>
+        <span class="s0">ChromeOptions options </span><span class="s2">= </span><span class="s1">new </span><span class="s0">ChromeOptions</span><span class="s2">();</span>
+        <span class="s0">options</span><span class="s2">.</span><span class="s0">addArguments</span><span class="s2">(</span><span class="s4">&quot;--remote-allow-origins=*&quot;</span><span class="s2">);</span>
+
+        <span class="s0">WebDriver driver </span><span class="s2">= </span><span class="s1">new </span><span class="s0">ChromeDriver</span><span class="s2">(</span><span class="s0">options</span><span class="s2">);</span>
+        <span class="s0">driver</span><span class="s2">.</span><span class="s0">manage</span><span class="s2">().</span><span class="s0">timeouts</span><span class="s2">().</span><span class="s0">implicitlyWait</span><span class="s2">(</span><span class="s0">Duration</span><span class="s2">.</span><span class="s0">ofSeconds</span><span class="s2">(</span><span class="s5">10</span><span class="s2">));</span>
+
+        <span class="s0">String url </span><span class="s2">= </span><span class="s4">&quot;https://qa.koel.app/&quot;</span><span class="s2">;</span>
+        <span class="s0">driver</span><span class="s2">.</span><span class="s0">get</span><span class="s2">(</span><span class="s0">url</span><span class="s2">);</span>
+        <span class="s0">Assert</span><span class="s2">.</span><span class="s0">assertEquals</span><span class="s2">(</span><span class="s0">driver</span><span class="s2">.</span><span class="s0">getCurrentUrl</span><span class="s2">(), </span><span class="s0">url</span><span class="s2">);</span>
+        <span class="s0">driver</span><span class="s2">.</span><span class="s0">quit</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
