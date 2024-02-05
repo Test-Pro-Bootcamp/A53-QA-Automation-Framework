@@ -1,3 +1,5 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -36,5 +38,23 @@ public class LoginTests extends BaseTest {
         Thread.sleep(2000);
         Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
     }
+    @Test
+    public void playSong() throws InterruptedException {
+        navigateToPage();
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+
+        Thread.sleep(2000);
+
+        WebElement nextButtun = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playButtun = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        nextButtun.click();
+        playButtun.click();
+
+        WebElement sBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        Assert.assertTrue(sBar.isDisplayed());
+    }
+
 
 }
