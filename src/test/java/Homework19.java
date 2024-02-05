@@ -16,7 +16,7 @@ public class Homework19 extends BaseTest{
 
 
         //Select the Playlist Titled "Delete Me"
-        WebElement playlist = driver.findElement(By.cssSelector("#playlists ul li:nth-child(2)"));
+        WebElement playlist = driver.findElement(By.cssSelector("#playlists ul li:nth-child(3)"));
         playlist.click();
 
         //Select the Delete Playlist Button
