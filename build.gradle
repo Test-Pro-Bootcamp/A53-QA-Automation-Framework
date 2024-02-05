@@ -26,9 +26,9 @@ repositories {
 
 test {
     useTestNG() {
-        suites "src/test/resources/TestNG.xml"
-//        suites "src/test/resources/Regression.xml"
-//        suites "src/test/resources/Smoke.xml"
+//        suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/Smoke.xml"
+        suites "src/test/resources/Regression.xml"
         systemProperty "browser",System.getProperty("browser");
         //To Run the gradle for browser pick
         //gradle clean test -Dbrowser=firefox
