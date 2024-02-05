@@ -7,7 +7,8 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = {"src/test/resources/features/Login.feature"},
-        glue = {"stepDefinitions"}
+        glue = {"stepDefinitions"},
+        publish = true
 )
 
 public class CucumberRunner extends AbstractTestNGCucumberTests {
