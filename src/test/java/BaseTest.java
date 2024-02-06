@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,8 +14,10 @@ import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
-    public WebDriver driver = null;
+    public WebDriver driver ;
+    public WebDriver wait;
     public String url = "https://qa.koel.app/";
+
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -26,8 +29,11 @@ public class BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //Implicit Wait
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver.Duration.of.Seconds(10));
         driver.manage().window().maximize();
+
     }
     @AfterMethod
     public void closeBrowser() {
@@ -40,21 +46,26 @@ public class BaseTest {
     }
 
     public void provideEmail(String email) {
-        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
+        WebElement emailField =wait.until(ExpectedCondition.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+       // WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        //WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
+        WebElement passwordField = wait.until(ExpectedCondition.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
         passwordField.clear();
         passwordField.sendKeys(password);
     }
 
-    public void clickSubmit() {
-        WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+     void clickSubmit() {
+        //WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
+        WebElement submitButton =wait.until(ExpectedCondition.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submit.click();
     }
+    //Helper Method
+    public void  navigateToUrl(String givenUrl){driver.get(givenUrl);}
     public void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
