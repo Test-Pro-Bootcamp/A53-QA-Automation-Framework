@@ -16,21 +16,20 @@ public class Homework16 extends BaseTest {
         options.addArguments("--remote-allow-origins=*");
 
         WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+        long time = 10;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(time));
         //Steps
-        String url = "https://testpro.io/";
+        String url = "https://qa.koel.app/";
+        driver.get(url);
 
-        String registrationUrl = "https://qa.koel.app/registration";
-        WebElement registrationLink = driver.findElement(By.cssSelector(("a[href='registration']"));
+        WebElement registrationLink = driver.findElement(By.cssSelector("[href='registration']"));
         registrationLink.click();
 
-
-        driver.quit();
+        String registrationUrl = "https://qa.koel.app/registration";
         Assert.assertEquals(driver.getCurrentUrl(),registrationUrl);
 
+        driver.quit();
     }
 }
 
-//Slow down the test:
-Thread.sleep(2000);
