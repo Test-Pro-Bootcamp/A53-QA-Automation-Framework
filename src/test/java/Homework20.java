@@ -1,38 +1,42 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework20 extends BaseTest{
 
+    //Prerequisite - at least one user-created playlist
+    String newPlaylistName = "Sample Edited Playlist";
+
     @Test
-    public void deletePlaylist() throws InterruptedException {
+    public void renamePlaylist(){
 
-        navigateToPage();
+        String updatedPlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
+
         provideEmail("dmitry.lobachev@testpro.io");
-        providePassword("Chebyreki5!");
+        providePassword("Chebureki5!");
         clickSubmit();
-        //Thread.sleep(2000);
-
-
-        //Select the Playlist Titled "Delete Me"
-        //WebElement playlist = driver.findElement(By.cssSelector("#playlists ul li:nth-child(3)"));
-        WebElement playlist = wait.until((ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#playlists ul li:nth-child(3)"))));
-        playlist.click();
-
-        //Select the Delete Playlist Button
-       // WebElement deleteButton = driver.findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
-        WebElement deleteButton = wait.until((ExpectedConditions.visibilityOfElementLocated((By.cssSelector("button[class='del btn-delete-playlist']")))));
-        deleteButton.click();
-
-        Assert.assertEquals(getDeletedPlaylistMsg(), "Deleted playlist \"Delete Me!.\"");
-
-
+        doubleClickPlaylist();
+        enterNewPlaylistName();
+        Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
     }
-
-    public String getDeletedPlaylistMsg(){
-        WebElement deleteNotification = driver.findElement(By.cssSelector(".success.show"));
-        return deleteNotification.getText();
+    public void doubleClickPlaylist() {
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        actions.doubleClick(playlistElement).perform();
     }
+    public void enterNewPlaylistName() {
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+//       clear() does not work, element has an attribute of "required"
+//       workaround is ctrl A (to select all) then backspace to clear then replace with new playlist name
+        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
 
+        playlistInputField.sendKeys(newPlaylistName);
+        playlistInputField.sendKeys(Keys.ENTER);
+    }
+    public String getRenamePlaylistSuccessMsg() {
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
+    }
 }
