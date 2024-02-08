@@ -6,20 +6,14 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class LoginTests extends BaseTest {
+public class Homework17 extends BaseTest {
     @Test
-    public void loginEmptyEmailPassword() {
+    public void addSongToPlaylist() throws InterruptedException{
+        String expectedSongAddedMessage = "Added 1 song into" \"Test Pro Playlist.\"";
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
-    }
+        //Navgate to Login Page
+        //Login
+        //Search song by name
+        //Click on view all button
+        //Slelect the FirstSong Result
 }
