@@ -10,7 +10,7 @@ public class Homework15 {
     public void openBrowser() {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String url = "https://testpro.io/";
+        String url = "https://koel.app/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
         driver.quit();
