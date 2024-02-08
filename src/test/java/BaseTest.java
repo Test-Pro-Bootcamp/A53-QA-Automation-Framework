@@ -17,10 +17,12 @@ import java.util.UUID;
 
 public class BaseTest {
     public WebDriver driver ;
-    public Actions actions;
+
 
 
     public WebDriverWait wait;
+    public Actions actions;
+
     public String url = "https://qa.koel.app/";
 
     @BeforeSuite
@@ -37,6 +39,8 @@ public class BaseTest {
         //Implicit Wait
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        actions = new Actions(driver);
+
         driver.manage().window().maximize();
 
     }

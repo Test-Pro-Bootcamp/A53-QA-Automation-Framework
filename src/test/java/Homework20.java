@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.interactions.Actions;
+
 
 public class Homework20 extends BaseTest{
 
@@ -23,7 +23,7 @@ public class Homework20 extends BaseTest{
         enterNewPlaylistName();
         Assert.assertEquals(getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
 
-        actions = new Actions(driver);
+
 
     }
     public void doubleClickPlaylist() {
@@ -38,6 +38,7 @@ public class Homework20 extends BaseTest{
 
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);
+
     }
     public String getRenamePlaylistSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
