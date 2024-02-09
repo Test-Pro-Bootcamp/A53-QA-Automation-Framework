@@ -42,6 +42,7 @@ public class BaseTest {
         actions = new Actions(driver);
 
         driver.manage().window().maximize();
+        navigateToPage();
 
     }
     @AfterMethod
