@@ -17,7 +17,7 @@ public class Homework20 extends BaseTest{
         String updatedPlaylistMsg = "Updated playlist \"Sample Edited Playlist.\"";
 
         provideEmail("dmitry.lobachev@testpro.io");
-        providePassword("Chebureki5!");
+        providePassword("Chebyreki5!");
         clickSubmit();
         doubleClickPlaylist();
         enterNewPlaylistName();
