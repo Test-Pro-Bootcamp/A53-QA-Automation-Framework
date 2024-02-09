@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class Homework21 extends BaseTest{
 
     //Prerequisite - at least one user-created playlist
-    String newPlaylistName = "Rename Playlist";
+    String newPlaylistName = "Renamed Playlist";
 
     @Test
     public void renamePlaylist(){
