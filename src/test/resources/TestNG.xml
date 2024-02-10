@@ -3,9 +3,12 @@
 
 <suite name="TestNG">
 
-    <test name="Example Test" preserve-order="false">
+    <test name="Koel Test" preserve-order="true">
         <classes>
             <class name="CucumberRunner"/>
+            <class name="PlaylistTests"/>
+            <class name="LoginTests" />
+            <class name="SongPlayerTests" />
         </classes>
     </test>
 

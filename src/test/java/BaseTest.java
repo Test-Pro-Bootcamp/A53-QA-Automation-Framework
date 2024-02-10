@@ -33,7 +33,7 @@ public class BaseTest {
         THREAD_LOCAL.get().manage().deleteAllCookies();
     }
 
-    public WebDriver lambaTest() throws MalformedURLException{
+    public WebDriver lambdaTest() throws MalformedURLException{
         String hubURL = "https://hub.lambdatest.com/wd/hub";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName","chrome");
@@ -72,7 +72,7 @@ public class BaseTest {
                 caps.setCapability("browserName","chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(),caps);
             case "cloud":
-                return lambaTest();
+                return lambdaTest();
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();

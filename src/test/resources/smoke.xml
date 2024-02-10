@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="smoke" parallel="tests" thread-count="3">
+<suite name="smoke" parallel="tests" thread-count="2">
 
-    <test name="Example Test" preserve-order="false">
+    <test name="Login Test" preserve-order="false">
         <classes>
+            <class name="CucumberRunner"/>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
-            <class name="Homework16Test"/>
-            <class name="Homework22Test"/>
-            <class name="Homework23Test"/>
+        </classes>
+    </test>
+
+    <test name="Playlist Test" preserve-order="false">
+        <classes>
+            <class name="PlaylistTests"/>
+            <class name="BaseTest"/>
+        </classes>
+    </test>
+
+    <test name="SongPlayer Test" preserve-order="false">
+        <classes>
+            <class name="SongPlayerTests"/>
+            <class name="BaseTest"/>
         </classes>
     </test>
 
     <test name="Play Song" preserve-order="false">
         <classes>
-            <class name="Homework18Test">
+            <class name="SongPlayerTests">
                 <methods>
                     <include name="playSong"/>
                 </methods>
@@ -23,16 +35,5 @@
         </classes>
     </test>
 
-
-    <test name="Rename Playlist" preserve-order="false">
-        <parameter name ="BaseURL" value="https://qa.koel.app/" />
-        <classes>
-            <class name="Homework21Test">
-                <methods>
-                    <include name="renamePlaylist"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
 
 </suite>

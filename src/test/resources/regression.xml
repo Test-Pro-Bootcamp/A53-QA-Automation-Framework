@@ -3,19 +3,16 @@
 
 <suite name="regression" parallel="tests" thread-count="3">
 
-    <test name="Example Test" preserve-order="false">
+    <test name="Login Test" preserve-order="false">
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
-            <class name="Homework16Test"/>
-            <class name="Homework22Test"/>
-            <class name="Homework23Test"/>
         </classes>
     </test>
 
     <test name="Play Song" preserve-order="false">
         <classes>
-            <class name="Homework18Test">
+            <class name="SongPlayerTests">
                 <methods>
                     <include name="playSong"/>
                 </methods>
@@ -27,7 +24,7 @@
     <test name="Rename Playlist" preserve-order="false">
         <parameter name ="BaseURL" value="https://qa.koel.app/" />
         <classes>
-            <class name="Homework21Test">
+            <class name="PlaylistTests">
                 <methods>
                     <include name="renamePlaylist"/>
                 </methods>
