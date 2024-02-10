@@ -13,5 +13,10 @@ public class HomePage extends BasePage{
     By allSongs = By.cssSelector(".songs.active");
     By albums = By.cssSelector(".albums.active");
     By artists = By.cssSelector(".artists.active");
+    By favorites = By.cssSelector(".playlist.favorites");
+    By recentlyPlayed = By.cssSelector(".playlist.recently-played");
+    By userProfile = By.cssSelector("[title='iew/edit user profile']");
+    By aboutKoel = By.cssSelector("#searchForm input");
+
 
 }
