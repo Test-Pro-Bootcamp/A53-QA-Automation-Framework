@@ -1,3 +1,4 @@
+import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 import java.util.UUID;
@@ -19,15 +21,25 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
+
+
+    @Parameters({"BaseUrl"})
     @BeforeMethod
-    public void launchBrowser() {
+    public void launchBrowser(String BaseUrl) {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        //String url = BaseUrl;
+        navigateToUrl(BaseUrl);
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
+
+    public void navigateToUrl(String givenUrl) {
+        driver.get(givenUrl);
+    }
+
     @AfterMethod
     public void closeBrowser() {
         driver.quit();

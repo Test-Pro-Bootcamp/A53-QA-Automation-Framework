@@ -1,8 +1,11 @@
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
-    
+    @Parameters({"BaseUrl"})
+    @Test
+    public void navigateToKoelApp(String )
     @Test (enabled = true, priority = 0, description = "Login with invalid email and valid password")
     public void loginInvalidEmailValidPassword(){
 
