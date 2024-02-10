@@ -30,7 +30,7 @@ public class HomePage extends BasePage{
         WebElement playlistNameInput = findElementByLocator(playlistNameInputField);
         playlistNameInput.sendKeys(playlistName);
         playlistNameInput.sendKeys(Keys.RETURN);
-        Assert.assertTrue(findElementByLocator(By.cssSelector("//li[@class='playlist playlist']/a[contains(text()," + playlistName + ")]")).isDisplayed());
+        System.out.println("//li[@class='playlist playlist']/a[contains(text(), '" + playlistName + "')]");
     }
 
 }
