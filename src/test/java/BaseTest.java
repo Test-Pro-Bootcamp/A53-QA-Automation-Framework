@@ -20,15 +20,6 @@ public class BaseTest {
 
     public  Actions actions = null;
 
-    @DataProvider(name="IncorrectLoginData")
-    public Object[][] getDataFromDataProviders() {
-
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPass"},
-                {"demo@class.com", ""},
-                {"", ""}
-        };
-    }
 
     @BeforeSuite
     static void setupClass() {
@@ -58,40 +49,5 @@ public class BaseTest {
     }
     public  void navigateToPage() {
         driver.get(url);
-    }
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-    public void clickSubmit() {
-        WebElement submit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submit.click();
-    }
-    public void clickSaveButton() {
-        WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button.btn-submit")));
-        saveButton.click();
-    }
-    public void provideProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        profileName.clear();
-        profileName.sendKeys(randomName);
-    }
-    public void provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='current_password']")));
-        currentPassword.clear();
-        currentPassword.sendKeys(password);
-    }
-    public String generateRandomName() {
-        return UUID.randomUUID().toString().replace("-", "");
-    }
-    public void clickAvatarIcon() {
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
-        avatarIcon.click();
     }
 }

@@ -31,6 +31,7 @@ public class HomePage extends BasePage{
         playlistNameInput.sendKeys(playlistName);
         playlistNameInput.sendKeys(Keys.RETURN);
         System.out.println("//li[@class='playlist playlist']/a[contains(text(), '" + playlistName + "')]");
+        Assert.assertTrue(findElementByLocator(By.xpath("//li[@class='playlist playlist']/a[contains(text(), '" + playlistName + "')]")).isDisplayed());
     }
 
 }
