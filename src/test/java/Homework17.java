@@ -5,14 +5,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
 public class Homework17 extends BaseTest {
 
+    @Parameters({"BaseUrl"})
     @Test
-    public void loginValidEmailPassword() throws InterruptedException {
+    public void loginValidEmailPassword(String BaseUrl) throws InterruptedException {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -24,8 +26,7 @@ public class Homework17 extends BaseTest {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(10));
 
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+        driver.get(BaseUrl);
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
