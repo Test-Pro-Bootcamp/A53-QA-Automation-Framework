@@ -14,13 +14,4 @@ public class HomePageTests extends BaseTest {
         String playlistName = "BrandNew";
         homePage.createNewPlaylist(playlistName);
     }
-
-    //@Test (enabled = true, priority = 2, description = "Creating a new playlist")
-    public void playFirstSongFromAllSongs() {
-        HomePage homePage = new HomePage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginWithValidCredentials();
-        loginPage.assertSuccessfulLogin();
-
-    }
 }

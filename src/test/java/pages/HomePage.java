@@ -14,7 +14,7 @@ public class HomePage extends BasePage{
     }
     private By home = By.cssSelector(".home");
     private By currentQueue = By.cssSelector(".queue.active");
-    private By allSongs = By.cssSelector(".songs.active");
+    private By allSongs = By.xpath("//a[@class='songs']");
     private By albums = By.cssSelector(".albums.active");
     private By artists = By.cssSelector(".artists.active");
     private By favorites = By.cssSelector(".playlist.favorites");
