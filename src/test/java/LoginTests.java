@@ -53,7 +53,7 @@ public class LoginTests extends BaseTest {
 //        WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
 //        Assert.assertTrue(avatarIcon.isDisplayed());
 //    }
-    //@Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
+    @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailValidPass() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.provideEmail("vlad.kashchuk@testpro.io");
