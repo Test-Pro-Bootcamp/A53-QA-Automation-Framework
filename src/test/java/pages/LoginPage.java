@@ -25,6 +25,12 @@ public class LoginPage extends BasePage {
         findElementByLocator(submitButton).click();
     }
 
+    public void loginWithValidCredentials () {
+        provideEmail("vlad.kashchuk@testpro.io");
+        providePassword("Q4sNKxVN");
+        clickSubmit();
+    }
+
     public void assertSuccessfulLogin () {
         Assert.assertTrue(findElementByLocator(By.cssSelector("img[class='avatar']")).isDisplayed());
     }

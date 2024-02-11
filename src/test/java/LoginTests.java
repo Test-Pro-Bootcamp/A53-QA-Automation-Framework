@@ -56,10 +56,8 @@ public class LoginTests extends BaseTest {
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")
     public void loginValidEmailValidPass() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.provideEmail("vlad.kashchuk@testpro.io");
-        loginPage.providePassword("Q4sNKxVN");
-        loginPage.clickSubmit();
+        loginPage.loginWithValidCredentials();
         loginPage.assertSuccessfulLogin();
-
     }
+
 }

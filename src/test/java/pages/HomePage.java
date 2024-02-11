@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 public class HomePage extends BasePage{
     public HomePage (WebDriver givenDriver) {
@@ -31,6 +32,10 @@ public class HomePage extends BasePage{
         playlistNameInput.sendKeys(playlistName);
         playlistNameInput.sendKeys(Keys.RETURN);
         Assert.assertTrue(findElementByLocator(By.xpath("//li[@class='playlist playlist']/a[contains(text(), '" + playlistName + "')]")).isDisplayed());
+    }
+
+    public void goToAllSongs () {
+        findElementByLocator(allSongs).click();
     }
 
 }
