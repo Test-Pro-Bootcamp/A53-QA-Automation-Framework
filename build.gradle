@@ -22,3 +22,9 @@ test {
         suites "src/test/resources/TestNg.xml"
     }
 }
+task testSmoke(type: Test) {
+    useTestNG() {
+        suites "src/test/resources/Smoke.xml"
+
+    }
+}

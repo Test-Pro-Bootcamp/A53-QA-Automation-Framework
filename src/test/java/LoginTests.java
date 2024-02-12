@@ -5,16 +5,21 @@ import org.testng.annotations.Test;
 public class LoginTests extends BaseTest {
     @Parameters({"BaseUrl"})
     @Test
-    public void navigateToKoelApp(String )
-    @Test (enabled = true, priority = 0, description = "Login with invalid email and valid password")
-    public void loginInvalidEmailValidPassword(){
+    public void navigateToKoelApp(String BaseUrl){
+        navigateToUrl(BaseUrl);
+        Assert.assertEquals(driver.getCurrentUrl(),BaseUrl);
+        driver.quit();
+    }
+    @Test (dataProvider = "InvalidLoginData")
+    //@Parameters({"BaseUrl"})
+    public void loginInvalidEmailValidPassword(String email, String password) throws InterruptedException {
 
         navigateToPage();
-        provideEmail("invalid@class.com");
-        providePassword("Nastika20$");
+        provideEmail(email);
+        providePassword(password);
         clickSubmit();
-
-        Assert.assertEquals(driver.getCurrentUrl(), url); //https://qa.koel.app/
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(),url);
     }
 
     @Test (enabled = true, priority = 1, description = "Login with valid email and valid password")

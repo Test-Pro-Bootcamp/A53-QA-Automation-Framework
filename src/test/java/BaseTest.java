@@ -6,15 +6,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
+   @DataProvider(name="InvalidLoginData")
+    public Object [][] getDataFromDataProviders() {
+            return new Object[][]{
+                    {"invalid@gmail.com", "invalidPassword"},
+                    {"demo@class.com", ""},
+                    {"", "te$t$tudent"},
+                    {"", ""}
+            };
+
+    }
     public WebDriver driver = null;
     public String url = "https://qa.koel.app/";
     @BeforeSuite
@@ -29,11 +36,13 @@ public class BaseTest {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
         //String url = BaseUrl;
         navigateToUrl(BaseUrl);
 
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
     }
 
     public void navigateToUrl(String givenUrl) {

@@ -2,15 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="TestNg">
-
+    <parameter name="BaseUrl" value="https://qa.koel.app"/>
     <test name="Example Test" preserve-order="false">
-        <parameter name="BaseUrl" value="https://qa.koel.app"></parameter>
+
         <classes>
             <class name="LoginTests"/>
             <class name="BaseTest"/>
             <class name="ProfileTests"/>
             <class name="Homework17"/>
             <class name="Homework18"/>
+            <class name="Homework19"/>
         </classes>
     </test>
 </suite>
