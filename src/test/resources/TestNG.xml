@@ -7,7 +7,8 @@
 
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
+            <class name="Pages.Homework15"/>
+            <class name="Pages.Homework16"/>
             <!--<class name="BaseTest"/>
             <class name="HomeWork18"/>
             <class name="Homework19"/>

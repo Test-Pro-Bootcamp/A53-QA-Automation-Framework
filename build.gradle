@@ -10,20 +10,28 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.testng:testng:7.6.1'
-    implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+   // testImplementation 'org.testng:testng:7.6.1'
+    //implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+   // testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation("org.seleniumhq.selenium:selenium-java:4.17.0")
+    implementation("io.github.bonigarcia:webdrivermanager:5.6.3")
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation("org.testng:testng:7.9.0")
 }
 
-test {
-    useTestNG() {
+tasks.test{
+    useTestNG()
+}
+//t {
+ //   useT
+            //{
         //suites "src/test/resources/Regression.xml"
         //suites "src/test/resources/Smoke.xml"
-        suites "src/test/resources/${suite}.xml"
-        systemProperty "browser", System.getProperty("browser")
-        systemProperty "suite", System.getProperty("suite")
-    }
-}
+      //  suites "src/test/resources/${suite}.xml"
+      //  systemProperty "browser", System.getProperty("browser")
+      //  systemProperty "suite", System.getProperty("suite")
+   // }
+//}
 
 /*task testSmoke(type: Test){
     useTestNG() {
