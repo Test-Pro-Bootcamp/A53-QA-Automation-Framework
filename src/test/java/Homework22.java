@@ -1,6 +1,5 @@
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.SearchPage;
+import pages.LoginPage;
+import pages.SearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,7 +8,6 @@ public class Homework22 extends BaseTest{
     @Test
     public void addSongToPlaylist() {
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
         SearchPage searchPage = new SearchPage(driver);
 
         loginPage.provideEmail("dmitry.lobachev@testpro.io");
@@ -19,7 +17,7 @@ public class Homework22 extends BaseTest{
         searchPage.findSearchBar("Dark Days");
         searchPage.clickViewAllButton();
         searchPage.clickFirstSong();
-        searchPage.clickaddToButton();
+        searchPage.clickableToButton();
         searchPage.clickAddToPlaylist();
 
         Assert.assertTrue(searchPage.findSuccessAlertMsg().isDisplayed());

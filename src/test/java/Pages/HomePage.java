@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +10,9 @@ public class HomePage extends BasePage {
     }
 
     //Page Locators
-    By userAvatarIcon = By.cssSelector("img.avatar");
+    private  By userAvatarIcon = By.cssSelector("img.avatar");
 
-    By playButton = By.cssSelector("driver.findElement(By.cssSelector(\"span .play i\"));");
+    private   By playButton = By.cssSelector("driver.findElement(By.cssSelector(\"span .play i\"));");
 
 
     //Page Methods

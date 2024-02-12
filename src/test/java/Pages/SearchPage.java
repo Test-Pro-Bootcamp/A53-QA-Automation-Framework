@@ -1,21 +1,23 @@
-package Pages;
+package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class SearchPage extends BasePage{
 
+
+    //page Locators
+
+    private final   By searchBar = By.cssSelector("input[type='search']");
+    private  final  By viewAllButton = By.cssSelector("button[data-test='view-all-songs-btn']");
+    private  final By firstSong = By.cssSelector(".search-results .items tr:nth-child(1)");
+    private final  By addToButton = By.cssSelector("button.btn-add-to");
+    private  final By addToPlaylist = By.cssSelector("#songResultsWrapper .existing-playlists  li:nth-child(3)");
+    private final  By successAlert = By.cssSelector(".alertify-logs .success");
+
     public SearchPage(WebDriver givenDriver){
         super(givenDriver);
     }
-
-    //page Locators
-    By searchBar = By.cssSelector("input[type='search']");
-    By viewAllButton = By.cssSelector("button[data-test='view-all-songs-btn']");
-    By firstSong = By.cssSelector(".search-results .items tr:nth-child(1)");
-    By addToButton = By.cssSelector("button.btn-add-to");
-    By addToPlaylist = By.cssSelector("#songResultsWrapper .existing-playlists  li:nth-child(3)");
-    By successAlert = By.cssSelector(".alertify-logs .success");
 
     //page Methods
     public void findSearchBar(String songTitle) {
@@ -30,7 +32,7 @@ public class SearchPage extends BasePage{
         findElementUsingByLocator(firstSong).click();
     }
 
-    public void clickaddToButton(){
+    public void clickableToButton(){
         findElementUsingByLocator(addToButton).click();
     }
 
