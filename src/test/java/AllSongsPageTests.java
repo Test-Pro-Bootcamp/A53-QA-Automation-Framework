@@ -11,8 +11,19 @@ public class AllSongsPageTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         AllSongsPage allSongsPage = new AllSongsPage(driver);
         loginPage.loginWithValidCredentials();
-        loginPage.assertSuccessfulLogin();
         homePage.goToAllSongs();
+        allSongsPage.playFirstSong();
+        Thread.sleep(2000);
+    }
+
+    @Test(enabled = true, priority = 2, description = "Playing the last song from all songs")
+    public void playLastSongFromAllSongs() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        AllSongsPage allSongsPage = new AllSongsPage(driver);
+        loginPage.loginWithValidCredentials();
+        homePage.goToAllSongs();
+        allSongsPage.playLastSong();
         Thread.sleep(2000);
     }
 }

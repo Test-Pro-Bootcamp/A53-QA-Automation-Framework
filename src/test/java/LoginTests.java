@@ -57,7 +57,6 @@ public class LoginTests extends BaseTest {
     public void loginValidEmailValidPass() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginWithValidCredentials();
-        loginPage.assertSuccessfulLogin();
     }
 
 }

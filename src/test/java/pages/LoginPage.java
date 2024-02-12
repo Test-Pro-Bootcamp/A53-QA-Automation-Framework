@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
@@ -11,27 +12,32 @@ public class LoginPage extends BasePage {
     }
 
     //selectors
-    private By emailField = By.cssSelector("input[type='email']");
-    private By passwordField = By.cssSelector("input[type='password']");
-    private By submitButton = By.cssSelector("button[type='submit']");
+    @FindBy(css = "input[type='email']")
+    private WebElement emailField;
+
+    @FindBy(css = "input[type='password']")
+    private WebElement passwordField;
+
+    @FindBy(css = "button[type='submit']")
+    private WebElement submitButton;
+
+    @FindBy(css = "img[class='avatar']")
+    private WebElement avatarIcon;
 
     public void provideEmail (String email) {
-        findElementByLocator(emailField).sendKeys(email);
+        emailField.sendKeys(email);
     }
     public void providePassword (String password) {
-        findElementByLocator(passwordField).sendKeys(password);
+        passwordField.sendKeys(password);
     }
     public void clickSubmit () {
-        findElementByLocator(submitButton).click();
+        submitButton.click();
     }
 
     public void loginWithValidCredentials () {
         provideEmail("vlad.kashchuk@testpro.io");
         providePassword("Q4sNKxVN");
         clickSubmit();
-    }
-
-    public void assertSuccessfulLogin () {
-        Assert.assertTrue(findElementByLocator(By.cssSelector("img[class='avatar']")).isDisplayed());
+        Assert.assertTrue(findElementByLocator(avatarIcon).isDisplayed());
     }
 }
