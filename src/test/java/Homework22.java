@@ -18,7 +18,7 @@ public class Homework22 extends BaseTest{
         searchPage.clickViewAllButton();
         searchPage.clickFirstSong();
         searchPage.clickableToButton();
-        searchPage.clickAddToPlaylist();
+        searchPage.choosePlaylist("Renamed Playlist");
 
         Assert.assertTrue(searchPage.findSuccessAlertMsg().isDisplayed());
 

@@ -19,6 +19,12 @@ public class SearchPage extends BasePage{
         super(givenDriver);
     }
 
+    public void choosePlaylist(String playlistName) {
+        WebElement playlist = driver.findElement(By.xpath("//*[@id='songResultsWrapper']//*[contains(text(), '" + playlistName + "')]"));
+        playlist.click();
+
+    }
+
     //page Methods
     public void findSearchBar(String songTitle) {
         findElementUsingByLocator(searchBar).sendKeys(songTitle);
