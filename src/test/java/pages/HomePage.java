@@ -1,13 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
 
 public class HomePage extends BasePage{
     public HomePage (WebDriver givenDriver) {
@@ -41,16 +38,16 @@ public class HomePage extends BasePage{
     private WebElement createdPlaylist;
 
     public void createNewPlaylist (String playlistName) {
-        findElementByLocator(createNewPlaylistBtn).click();
-        findElementByLocator(newPlaylistContextMenu).click();
-        WebElement playlistNameInput = findElementByLocator(playlistNameInputField);
+        findElement(createNewPlaylistBtn).click();
+        findElement(newPlaylistContextMenu).click();
+        WebElement playlistNameInput = findElement(playlistNameInputField);
         playlistNameInput.sendKeys(playlistName);
         playlistNameInput.sendKeys(Keys.RETURN);
         Assert.assertTrue(createdPlaylist.isDisplayed());
     }
 
     public void goToAllSongs () {
-        findElementByLocator(allSongs).click();
+        findElement(allSongs).click();
     }
 
 }

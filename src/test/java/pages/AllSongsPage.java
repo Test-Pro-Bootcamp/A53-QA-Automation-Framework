@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,12 +16,12 @@ public class AllSongsPage extends BasePage{
 
     public void playFirstSong() {
         actions.doubleClick(allSongs.get(0)).perform();
-        Assert.assertTrue(findElementByLocator(visualizer).isDisplayed());
+        Assert.assertTrue(findElement(visualizer).isDisplayed());
     }
 
     public void playLastSong() {
         actions.doubleClick(allSongs.get(allSongs.size()-1)).perform();
-        Assert.assertTrue(findElementByLocator(visualizer).isDisplayed());
+        Assert.assertTrue(findElement(visualizer).isDisplayed());
     }
 
 
