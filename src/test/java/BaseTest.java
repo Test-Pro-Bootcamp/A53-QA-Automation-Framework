@@ -14,14 +14,14 @@ import org.testng.annotations.BeforeSuite;
 
 import java.time.Duration;
 import java.util.UUID;
+import static io.github.bonigarcia.wdm.WebDriverManager.edgedriver;
 
 public class BaseTest {
-    public WebDriver driver ;
+    public WebDriver driver = null;
 
 
-
-    public WebDriverWait wait;
-    public Actions actions;
+    public WebDriverWait wait = null;
+    public Actions actions = null;
 
     public String url = "https://qa.koel.app/";
 
@@ -29,22 +29,36 @@ public class BaseTest {
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-    @BeforeMethod
-    public void launchBrowser() {
-        //      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        driver = new ChromeDriver(options);
+    @Parameters({"BaseUrl"})
+    @BeforeMethod
+    public void launchBrowser() throws MalformedURLException {
+        driver = pickBrowser(System.getProperty("browser"));
+
+        //      Added ChromeOptions argument below to fix websocket error
+        // ChromeOptions options = new ChromeOptions();
+        // options.addArguments("--remote-allow-origins=*");
+
+        //  driver = new ChromeDriver(options);
         //Implicit Wait
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        actions = new Actions(driver);
 
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+
+        fluentWait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+
+        actions = new Actions(driver);
         driver.manage().window().maximize();
         navigateToPage();
 
     }
+
     @AfterMethod
     public void closeBrowser() {
         driver.quit();
@@ -56,7 +70,7 @@ public class BaseTest {
     }
 
     public void provideEmail(String email) {
-        WebElement emailField =wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
         // WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.clear();
         emailField.sendKeys(email);
@@ -71,11 +85,22 @@ public class BaseTest {
 
     void clickSubmit() {
         //WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
-        WebElement submitButton =wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submitButton.click();
     }
+
     //Helper Method
-    public void  navigateToUrl(String givenUrl){driver.get(givenUrl);}
+    public void navigateToUrl(String givenUrl) {
+        driver.get(givenUrl);
+    }
+
+    public void loginToKoelApp() {
+        navigateToUrl(url);
+        provideEmail("dmitry.lobachev@testpro.io");
+        providePassword("Chebyreki5!");
+        clickSubmit();
+    }
+
     public void isAvatarDisplayed() {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
@@ -106,4 +131,46 @@ public class BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
         avatarIcon.click();
     }
+
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+
+        String gridURL = "http://192.168.1.184:4444";
+
+        switch (browser) {
+
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--remote-allow-origins=*");
+                return driver = new FirefoxDriver(firefoxOptions);
+
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver();
+
+            case "grid-edge": // gradle clean test -Dbrowser=grid-edge
+                caps.setCapability("browserName", "MicrosoftEdge");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "grid-firefox": // gradle clean test -Dbrowser=grid-firefox
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+
+            case "grid-chrome:":
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), caps);
+            default:
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+
+                return driver = new ChromeDriver(options);
+        }
+    }
 }
+
