@@ -23,12 +23,15 @@ public class HomePage extends BasePage {
 
     public HomePage clickPlaylistToDelete() {
         playlistToDelete.click();
+        return this;
 
     }
 
     public HomePage clickDeletePlaylist() {
         deletePlaylistButton.click();
+        return this;
     }
+
 
     public String getDeletedPlaylistMsg() {
         return successMessage.getText();

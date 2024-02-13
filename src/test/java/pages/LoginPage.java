@@ -1,38 +1,43 @@
 package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 
 public class LoginPage extends BasePage {
 
-    private final By emailField = By.cssSelector("[type= 'email']");
-    private final By passwordField = By.cssSelector("[type= 'password']");
+@FindBy(css = "[type= 'email']")
+    private WebElement emailField;
 
-    private final By SubmitButtonLocator = By.cssSelector("[type= 'submit']");
+    @FindBy(css = "[type= 'password']")
+    private WebElement passwordField;
+
+    @FindBy(css = "[type= 'submit']")
+    private WebElement submitButtonLocator;
+
 
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
 
     public void provideEmail(String email) {
-        findElementUsingByLocator(emailField).sendKeys(email);
+        emailField.sendKeys(email);
+        return this;
 
 
     }
 
     public void providePassword(String password) {
-        findElementUsingByLocator(passwordField).sendKeys(password);
+        passwordField.sendKeys(password);
+        return this;
+
 
 
 }
-    public void clickSubmit() {
-        findElementUsingByLocator(SubmitButtonLocator).click();
+    public LoginPage clickSubmitBtn() {
+        submitButtonLocator.click();
 
-    }
-    public void loginValidEmailPassword() {
-            provideEmail("dmitry.lobachev@testpro.io");
-            providePassword("Chebyreki5!");
-            clickSubmit();
         }
     }
 

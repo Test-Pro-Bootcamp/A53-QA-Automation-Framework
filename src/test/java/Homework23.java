@@ -1,5 +1,5 @@
-import Pages.HomePage;
-import Pages.LoginPage;
+import pages.HomePage;
+import pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -15,7 +15,7 @@ public class Homework23 extends BaseTest {
         //Steps
         loginPage.provideEmail("dmitry.lobachev@testpro.io");
         loginPage.providePassword("Chebyreki5!");
-        loginPage.clickSubmit();
+        loginPage.clickSubmitBtn();
 
         homePage.clickPlaylistToDelete()
                 .clickDeletePlaylist();

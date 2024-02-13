@@ -12,7 +12,7 @@ public class Homework22 extends BaseTest{
 
         loginPage.provideEmail("dmitry.lobachev@testpro.io");
         loginPage.providePassword("Chebyreki5!");
-        loginPage.clickSubmit();
+        loginPage.clickSubmitBtn();
 
         searchPage.findSearchBar("Dark Days");
         searchPage.clickViewAllButton();
