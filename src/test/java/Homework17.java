@@ -10,7 +10,7 @@ public class Homework17 extends BaseTest {
     @Test
     public void addSongToPlaylist() throws InterruptedException {
         // Logging in with specified email and password
-        login("vlad.sadokha@testpro.io", "Mukmuk11");
+        login("vlad.sadokha@testpro.io", "democlass");
 
         // Performing steps to add a song to the playlist
         searchSong("Song"); // Searching for a song with keyword "Song"
@@ -53,7 +53,7 @@ public class Homework17 extends BaseTest {
 
     // Method to choose a playlist by name
     public void choosePlaylist(String playlistName) throws InterruptedException {
-        WebElement playListNameElement = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//section/ul/li[contains(text(),'"+playlistName+"')]"));
+        WebElement playListNameElement = driver.findElement(By.cssSelector("li[class='after-current']"));
         playListNameElement.click(); // Clicking on the playlist with the specified name
         Thread.sleep(2000); // Pausing execution for 2 seconds
     }
