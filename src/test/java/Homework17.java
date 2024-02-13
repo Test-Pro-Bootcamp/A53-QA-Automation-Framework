@@ -17,7 +17,7 @@ public class Homework17 extends BaseTest {
         viewAllSearchResults(); // Viewing all search results
         selectFirstSongResult(); // Selecting the first song from the search results
         clickAddToButton(); // Clicking on the "Add to" button
-        choosePlaylist("privet"); // Choosing the playlist named "privet"
+        choosePlaylist(); // Choosing the playlist named "privet"
 
         // Asserting that the notification pop-up is present
         Assert.assertTrue(isNotificationPopUpPresent());
@@ -52,8 +52,8 @@ public class Homework17 extends BaseTest {
     }
 
     // Method to choose a playlist by name
-    public void choosePlaylist(String playlistName) throws InterruptedException {
-        WebElement playListNameElement = driver.findElement(By.cssSelector("li[class='after-current']"));
+    public void choosePlaylist() throws InterruptedException {
+        WebElement playListNameElement = driver.findElement(By.xpath("//section[@id='songsResultsWrapper']//li[@class='favorites']"));
         playListNameElement.click(); // Clicking on the playlist with the specified name
         Thread.sleep(2000); // Pausing execution for 2 seconds
     }
