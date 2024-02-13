@@ -21,6 +21,9 @@ public class HomePage extends BasePage {
     @FindBy(css = "div.success.show")
     WebElement successMessage;
 
+    @FindBy(css = "img.avatar")
+    WebElement userAvatarIcon ;
+
     public HomePage clickPlaylistToDelete() {
         playlistToDelete.click();
         return this;
@@ -37,7 +40,7 @@ public class HomePage extends BasePage {
         return successMessage.getText();
     }
     //Page Locators
-    By userAvatarIcon = By.cssSelector("img.avatar");
+
 
     public WebElement getUserAvatarIcon (){
         return findElementUsingByLocator(userAvatarIcon);

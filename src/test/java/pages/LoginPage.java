@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-@FindBy(css = "[type= 'email']")
+    @FindBy(css = "[type= 'email']")
     private WebElement emailField;
 
     @FindBy(css = "[type= 'password']")
@@ -23,22 +23,23 @@ public class LoginPage extends BasePage {
 
     public void provideEmail(String email) {
         emailField.sendKeys(email);
-        return this;
+
 
 
     }
 
     public void providePassword(String password) {
         passwordField.sendKeys(password);
-        return this;
 
 
 
-}
-    public LoginPage clickSubmitBtn() {
-        submitButtonLocator.click();
-
-        }
     }
+
+    public void clickSubmitBtn() {
+        submitButtonLocator.click();
+    }
+}
+
+
 
 

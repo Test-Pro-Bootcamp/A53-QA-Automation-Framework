@@ -20,19 +20,16 @@ protected WebDriver driver;
         actions = new Actions(driver);
         PageFactory.initElements(driver,this);
     }
-protected  void click(WebElement webElement){
 
-}
-
-protected WebElement findElement(WebElement webElement){
+    protected WebElement findElementUsingByLocator(WebElement webElement){
     return wait.until(ExpectedConditions.visibilityOf(webElement));
 
 }
     protected  void contextClick(WebElement webElement){
-        actions.contextClick(findElement(webElement)).perform();
+        actions.contextClick(findElementUsingByLocator(webElement)).perform();
 
 }
     public void doubleClick(WebElement webElement){
-    actions.doubleClick(findElement(webElement)).perform();
+    actions.doubleClick(findElementUsingByLocator(webElement)).perform();
     }
 }
