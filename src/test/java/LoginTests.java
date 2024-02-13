@@ -19,6 +19,7 @@ public class LoginTests extends BaseTest {
         providePassword(password);
         clickSubmit();
         Thread.sleep(2000);
+
         Assert.assertEquals(driver.getCurrentUrl(),url);
     }
 
