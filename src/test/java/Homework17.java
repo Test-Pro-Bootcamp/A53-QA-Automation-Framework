@@ -1,80 +1,67 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.Test;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By; // Importing By class for locating elements
+import org.openqa.selenium.WebElement; // Importing WebElement interface for representing HTML elements
+import org.testng.Assert; // Importing Assert class for assertions
+import org.testng.annotations.Test; // Importing Test annotation from TestNG
 
+// Class declaration for Homework17, extending BaseTest class
 public class Homework17 extends BaseTest {
 
+    // Test method to add a song to the playlist
     @Test
     public void addSongToPlaylist() throws InterruptedException {
+        // Logging in with specified email and password
+        login("vlad.sadokha@testpro.io", "Mukmuk11");
 
-        String expectedSongAddedMessage = "Added 1 song into"/ "/Testpro playlist./";
-        thread.sleep(2000)
+        // Performing steps to add a song to the playlist
+        searchSong("Song"); // Searching for a song with keyword "Song"
+        viewAllSearchResults(); // Viewing all search results
+        selectFirstSongResult(); // Selecting the first song from the search results
+        clickAddToButton(); // Clicking on the "Add to" button
+        choosePlaylist("privet"); // Choosing the playlist named "privet"
 
-        navigateToUrl();
-        provideEmail("vlad.sadokha@testpro.io");
-        providePassword("democlass");
-        clickSubmit();
-        searchSong();
-        clickViewAllBtn();
-        selectFirstSongResult()
-        choosePLaylist();
-        //Assertion v
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        //Start with searchSong(); input[type='email']
-
-        public void choosePlayList() throws InterruptedException {
-            WebElement playList = driver.findElement(By.xpath("span[class='details']"));
-            playList.click();
-            Thread.sleep(2000);
-        }
-
-        public void selectFirstSongResult() throws InterruptedException {
-            WebElement firstSong = driver.findElement(By.cssSelector("span[class='details']"));
-            firstSong.click();
-            Thread.sleep(2000);
-        }
-
-        public void clickViewAllBtn() throws InterruptedException {
-            WebElement enterKey = driver.findElement(By.xpath("//section[@id='songResultsWrapper']"));
-            enterKey.click();
-            Thread.sleep(2000);
-        }
-
-        public void searchSong(String songName) throws InterruptedException {
-            WebElement searchField = driver.findElement(By.cssSelector("div#searchFrom input[type='search']"));
-            searchField.sendKeys("dark days");
-            searchField.click(songName);
-        }
-
-        public void clickSubmit() throws InterruptedException {
-            WebElement firstSong = driver.findElement(By.cssSelector("span[class='details']"));
-            firstSong.click();
-            Thread.sleep(2000);
-        }
-
-        public void providePassword() throws InterruptedException {
-            WebElement firstSong = driver.findElement(By.cssSelector("span[class='details']"));
-            firstSong.click();
-            Thread.sleep(2000);
-        }
-
-        public void provideEmail() throws InterruptedException {
-            WebElement firstSong = driver.findElement(By.cssSelector("span[class='details']"));
-            firstSong.click();
-            Thread.sleep(2000);
-        }
-
-        public void navigateToUrl() throws InterruptedException {
-            WebElement firstSong = driver.findElement(By.cssSelector("span[class='details']"));
-            firstSong.click();
-            Thread.sleep(2000);
-        }
-
-
+        // Asserting that the notification pop-up is present
+        Assert.assertTrue(isNotificationPopUpPresent());
     }
+
+    // Method to search for a song using a keyword
+    public void searchSong(String songTitleKeyword) throws InterruptedException {
+        WebElement searchField = driver.findElement(By.cssSelector("div#searchForm input[type='search']"));
+        searchField.sendKeys(songTitleKeyword); // Typing the song title keyword into the search field
+        Thread.sleep(2000); // Pausing execution for 2 seconds
+    }
+
+    // Method to view all search results
+    public void viewAllSearchResults() throws InterruptedException {
+        WebElement viewAllSearchResult = driver.findElement(By.cssSelector("div.results section.songs h1 button"));
+        viewAllSearchResult.click(); // Clicking on the button to view all search results
+        Thread.sleep(2000); // Pausing execution for 2 seconds
+    }
+
+    // Method to select the first song from search results
+    public void selectFirstSongResult() throws InterruptedException {
+        WebElement viewAllFirstSongResult = driver.findElement(By.cssSelector("section#songResultsWrapper tr.song-item td.title"));
+        viewAllFirstSongResult.click(); // Clicking on the title of the first song in the search results
+        Thread.sleep(2000); // Pausing execution for 2 seconds
+    }
+
+    // Method to click on the "Add to" button
+    public void clickAddToButton() throws InterruptedException {
+        WebElement addTo = driver.findElement(By.cssSelector("button.btn-add-to"));
+        addTo.click(); // Clicking on the "Add to" button
+        Thread.sleep(2000); // Pausing execution for 2 seconds
+    }
+
+    // Method to choose a playlist by name
+    public void choosePlaylist(String playlistName) throws InterruptedException {
+        WebElement playListNameElement = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//section/ul/li[contains(text(),'"+playlistName+"')]"));
+        playListNameElement.click(); // Clicking on the playlist with the specified name
+        Thread.sleep(2000); // Pausing execution for 2 seconds
+    }
+
+    // Method to check if the notification pop-up is present
+    public boolean isNotificationPopUpPresent() {
+        WebElement notificationText = driver.findElement(By.cssSelector("div.success.show"));
+        return notificationText.isDisplayed(); // Returning true if the notification pop-up is displayed
+    }
+
 }
