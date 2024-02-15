@@ -1,76 +1,60 @@
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.HomePage;
+import pages.LoginPage;
 
 public class LoginTests extends BaseTest {
-    // @Test
-    //public void navigateToKoelApp() {
-    //navigateToPage();
-
-
-    //    Assert.assertEquals(driver.getCurrentUrl(), url);
-    //    driver.quit();
-    // }
-
-
-    // @Test
-    //public void loginValidEmailPassword() {
-    //  try {
-    // provideEmail("dmitry.lobachev@testpro.io");
-    //   providePassword("Chebyreki5!");
-    //   clickSubmit();
-    //Assertion
-    //  WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-
-    //  Assert.assertTrue(avatarIcon.isDisplayed());
-    //    }catch (Exception e){
-    //   System.out.println("Something went wrong !" +e);
-// }
-
     @Test
-    public void loginWithCorrectCredentials() {
-        LoginPage loginPage = new LoginPage (getDriver());
-        HomePage homePage = new HomePage(getDriver());
-//        LoginPage loginPage = new LoginPage(driver2);
-//        HomePage homePage = new HomePage(driver2);
+    public static void loginEmptyEmailPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        loginPage.login();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        loginPage.provideEmail("")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 
     @Test
-    public void loginWithCorrectCredentials2() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+    public static void loginWrongPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        loginPage.login();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        loginPage.provideEmail("dmitry.lobachev@testpro.io")
+                .providePassword("pass123")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 
     @Test
-    public void loginWithCorrectCredentials3() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+    public static void loginEmptyPasswordTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        loginPage.login();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
     }
 
     @Test
-    public void loginWithCorrectCredentials4() {
-        LoginPage loginPage = new LoginPage(getDriver());
-        HomePage homePage = new HomePage(getDriver());
+    public static void loginWrongEmailTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
 
-        loginPage.login();
-        //Assert
-        Assert.assertTrue(homePage.getUserAvatarIcon().isDisplayed());
+        loginPage.provideEmail("demo@class.com")
+                .providePassword("te$t$tudent")
+                .clickSubmitBtn();
+
+        Assert.assertTrue(loginPage.getRegistrationLink().isDisplayed());
+    }
+
+    @Test
+    public void loginSucceedTest() {
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        HomePage homePage = new HomePage(getThreadLocal());
+
+        loginPage.provideLoginSucceed();
+
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 }
