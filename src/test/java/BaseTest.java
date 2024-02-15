@@ -21,11 +21,12 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.util.HashMap;
 import java.time.Duration;
 import java.util.UUID;
 
 public class BaseTest {
-  
+
     public WebDriver driver = null;
 
 
