@@ -32,6 +32,30 @@ public class LoginPage extends BasePage {
         providePassword("te$t$udent");
         clickSubmit();
     }
+    // Fluent Interface (optional)
+    public LoginPage typeUsername(String username) {
+        enterUsername(username);
+        return this;
+    }
+
+    private void enterUsername(String "vlad.sadokha@testpro.io") {
+    }
+
+    public LoginPage typePassword(String password) {
+        enterPassword(password);
+        return this;
+    }
+
+    private void enterPassword(String "democlass") {
+    }
+
+    public DashboardPage submitLogin() {
+        clickLoginButton();
+        return new DashboardPage(driver);
+    }
+
+    private void clickLoginButton() {
+    }
 
 
 }
