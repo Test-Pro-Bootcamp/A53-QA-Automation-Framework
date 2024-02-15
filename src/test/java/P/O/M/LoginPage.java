@@ -17,6 +17,7 @@ public class LoginPage extends BasePage {
 
     //Page Methods
 
+    //Author - Vladislav Sadokha
     public void provideEmail(String email) {
         findElementUsingByLocator(emailField).sendKeys(email);
     }
