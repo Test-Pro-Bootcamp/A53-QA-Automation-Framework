@@ -1,21 +1,32 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import pages.HomePage;
 import pages.LoginPage;
 
-public class PlaylistTests extends BaseTest {
+public class PlayListTests extends BaseTest {
 
     @Test
-    public void deletePlaylistTest() {
+    public void deletePlaylist() {
 
         LoginPage loginPage = new LoginPage(getThreadLocal());
-        HomePage homePage = new HomePage(getThreadLocal());
-
         loginPage.provideLoginSucceed();
-        homePage.chooseFirstPlaylist()
-                .deletePlaylist();
 
-        Assert.assertTrue(homePage.notificationText());
+        //Select the Playlist Titled "Delete Me"
+        WebElement playlist = getThreadLocal().findElement(By.cssSelector("#playlists ul li:nth-child(3)"));
+        playlist.click();
+
+        //Select the Delete Playlist Button
+        WebElement deleteButton = getThreadLocal().findElement(By.cssSelector("button[class='del btn-delete-playlist']"));
+        deleteButton.click();
+
+        Assert.assertEquals(getDeletedPlaylistMsg(), "Deleted playlist \"Delete Me!.\"");
+
+
+    }
+
+    public String getDeletedPlaylistMsg() {
+        WebElement deleteNotification = getThreadLocal().findElement(By.cssSelector(".success.show"));
+        return deleteNotification.getText();
     }
 }
