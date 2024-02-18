@@ -9,23 +9,18 @@ import java.time.Duration;
 public class Homework15 extends BaseTest {
 
     @Test
-    public void openBrowser() {
-        // Instantiate ChromeOptions and WebDriver
+    public void LoginInEmptyPassword() {
         ChromeOptions options = new ChromeOptions();
-        WebDriver driver = new ChromeDriver(options);
+        options.addArguments("--remote-allow-origins=*");
 
-        // Set implicit wait
+        WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        // Navigate to the specified URL
-        String url = "https://koel.app/";
+        String url = "https://testpro.io/";
         driver.get(url);
-
-        // Assert that the current URL is as expected
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
-        // Close the browser
         driver.quit();
     }
 }
+
 
