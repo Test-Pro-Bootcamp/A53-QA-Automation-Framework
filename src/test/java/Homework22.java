@@ -7,8 +7,8 @@ public class Homework22 extends BaseTest{
 
     @Test
     public void addSongToPlaylist() {
-        LoginPage loginPage = new LoginPage(driver);
-        SearchPage searchPage = new SearchPage(driver);
+        LoginPage loginPage = new LoginPage(getThreadLocal());
+        SearchPage searchPage = new SearchPage(getThreadLocal());
 
         loginPage.provideEmail("dmitry.lobachev@testpro.io");
         loginPage.providePassword("Chebyreki5!");
