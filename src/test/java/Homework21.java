@@ -16,7 +16,7 @@ public class Homework21 extends BaseTest{
         clickSubmit();
         Thread.sleep(2000);
         doubleClickPlaylist();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         enterNewPlaylistName();
         //Assertions
         Assert.assertEquals(getRenamePlaylistSuccessMsg(),updatePlaylistMsg);
