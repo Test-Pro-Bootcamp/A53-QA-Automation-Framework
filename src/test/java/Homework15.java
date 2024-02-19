@@ -28,8 +28,17 @@ public class Homework15 extends BaseTest {
         //Confirm if it does this
 
         WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
-        emailField.sendKeys("HelloWorld");
+        emailField.sendKeys("vlad.sadokha@testpro.io");
+        emailField.clear();
         emailField.click();
+
+        WebElement emailPassword = driver.findElement(By.ByCssSelector("input[type='password']"));
+        emailPassword.sendKeys("democlass");
+        emailPassword.clear();
+        emailPassword.click();
+
+        WebElement submitButton = driver.findElement(By.ByCssSelector("input[type='submit']"));
+        submitButton.click();
 
         Assert.assertEquals(driver.getCurrentUrl(), url);
         //End
