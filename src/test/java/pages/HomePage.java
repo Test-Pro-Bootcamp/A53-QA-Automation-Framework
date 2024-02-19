@@ -1,5 +1,4 @@
 package pages;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.Keys;
@@ -24,6 +23,16 @@ public class HomePage extends BasePage {
     @FindBy(css = "img.avatar")
     WebElement userAvatarIcon ;
 
+
+    @FindBy(css = ".playlist:nth-child(3)")
+    private WebElement playlistElement;
+
+    @FindBy(css = "[name='name']")
+    private WebElement playlistInputField;
+
+    @FindBy(css = "div.success.show")
+    private WebElement notificationMsg;
+
     public HomePage clickPlaylistToDelete() {
         playlistToDelete.click();
         return this;
@@ -45,21 +54,25 @@ public class HomePage extends BasePage {
     public WebElement getUserAvatarIcon (){
         return findElementUsingByLocator(userAvatarIcon);
     }
+
     public void doubleClickPlaylist(){
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        wait.until(ExpectedConditions.visibilityOf(playlistElement));
         actions.doubleClick(playlistElement).perform();
         System.out.println("double clicked on playlist.");
     }
+
     public void enterNewPlaylistName(String newPlaylistName){
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        wait.until(ExpectedConditions.visibilityOf(playlistInputField));
         System.out.println("Playlist Located.");
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistInputField.sendKeys(newPlaylistName);
         playlistInputField.sendKeys(Keys.ENTER);
     }
-    public String getRenamePlaylistSuccessMsg() {
-        WebElement notificationMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notificationMsg.getText();
 
+    public String getRenamePlaylistSuccessMsg() {
+        wait.until(ExpectedConditions.visibilityOf(notificationMsg));
+        return notificationMsg.getText();
     }
+
+
 }
