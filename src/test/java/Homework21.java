@@ -20,7 +20,7 @@ public class Homework21 extends BaseTest{
         LoginPage loginPage = new LoginPage(getThreadLocal());
         HomePage homePage = new HomePage(getThreadLocal());
 
-        LoginPage.provideEmail("dmitry.lobachev@testpro.io");
+        loginPage.provideEmail("dmitry.lobachev@testpro.io");
         loginPage.providePassword("Chebyreki5!");
         homePage.doubleClickPlaylist();
         homePage.enterNewPlaylistName(newPlaylistName);

@@ -21,8 +21,8 @@ public class Homework20 extends BaseTest{
         HomePage homePage= new HomePage(getThreadLocal());
 
 
-        LoginPage.provideEmail("dmitry.lobachev@testpro.io");
-       LoginPage. providePassword("Chebyreki5!");
+        loginPage.provideEmail("dmitry.lobachev@testpro.io");
+       loginPage. providePassword("Chebyreki5!");
        homePage. doubleClickPlaylist();
        homePage. enterNewPlaylistName(newPlaylistName);
         Assert.assertEquals(homePage.getRenamePlaylistSuccessMsg(), updatedPlaylistMsg);
