@@ -5,21 +5,23 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    public  void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
+    public void provideEmail(String email) {
+        System.out.println("login");
+        WebElement emailField = driver.findElement(By.cssSelector("input[type='email']"));
         emailField.sendKeys(email);
     }
 
     public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
+        WebElement passwordField = driver.findElement(By.cssSelector("input[type='password']"));
         passwordField.sendKeys(password);
     }
 
-    public void clickSubmit(){
-        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+    public void clickSubmit() {
+        WebElement submitButton = driver.findElement(By.cssSelector("button[type='submit']"));
         submitButton.click();
     }
-@Test
+
+    @Test
     public void loginToKoelApp() {
         provideEmail("burul.satybaeva@testpro.io");
         providePassword("Lulkerup7710%");
