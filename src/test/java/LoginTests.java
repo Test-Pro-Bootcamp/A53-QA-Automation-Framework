@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 @Test
-public class LoginTests {
+public class LoginTests extends BaseTest {
     public void LoginToKoel() {
 
         ChromeOptions options = new ChromeOptions();
@@ -39,6 +39,9 @@ public class LoginTests {
         driver.quit();
     }
 }
+
+
+
 
 
 
