@@ -7,11 +7,7 @@
 
     <test name="Example Test" preserve-order="true">
         <classes>
-            <class name="Homework_15"/>
-            <class name="Homework_16"/>
-            <class name="Homework_17"/>
-            <class name="Homework_18"/>
-            <class name="Homework_19"/>
+            <class name="Homework_20"/>
         </classes>
     </test>
 </suite>

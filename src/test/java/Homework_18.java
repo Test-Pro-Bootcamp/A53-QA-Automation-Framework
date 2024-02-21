@@ -10,19 +10,21 @@ public class Homework_18 extends BaseTest {
     public void playSong() throws Throwable {
         LoginTest user = new LoginTest();
         user.loginToKoelApp();
-        Thread.sleep(2000);
 
+        WebElement music = driver.findElement(By.xpath("//span[@class='album-thumb']"));
+        elementToBeVisible(music);
         WebElement musicControl = driver.findElement(By.xpath("//span[@title='Play or resume']"));
         Actions mouse = new Actions(driver);
         mouse.moveToElement(musicControl).build().perform();
+        elementToBeVisible(musicControl);
         musicControl.click();
-        Thread.sleep(2000);
-
         WebElement playNextSong = driver.findElement(By.xpath("//i[@title='Play next song']"));
+        elementToBeClickable(playNextSong);
         playNextSong.click();
-        Thread.sleep(2000);
+        elementToBeClickable(musicControl);
         mouse.moveToElement(musicControl).build().perform();
         WebElement pauseButton = driver.findElement(By.xpath("//span[@title='Pause']"));
+        elementToBeClickable(pauseButton);
         boolean status = pauseButton.isDisplayed();
         Assert.assertTrue(status);
         System.out.println("Homework 18 is done");

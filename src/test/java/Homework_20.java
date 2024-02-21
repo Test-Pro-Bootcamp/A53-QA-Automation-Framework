@@ -1,14 +1,18 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Homework_19 extends BaseTest {
+import java.time.Duration;
+
+public class Homework_20 extends BaseTest {
 
 
     @Test
-    public void deletePlaylist() throws Throwable {
+    public void explicitWait() throws Throwable {
         LoginTest user = new LoginTest();
         user.loginToKoelApp();
 
@@ -19,6 +23,7 @@ public class Homework_19 extends BaseTest {
             WebElement deletePlaylist = driver.findElement(By.xpath("//button[@title='Delete this playlist']"));
             deletePlaylist.click();
             WebElement deleteOk = driver.findElement(By.xpath("//button[@class='ok']"));
+            elementToBeClickable(deleteOk);
             deleteOk.click();
             verifyDeleteNotification();
         } catch (Exception e) {
@@ -40,7 +45,8 @@ public class Homework_19 extends BaseTest {
             verifyDeleteNotification();
         }
     }
-    public void verifyDeleteNotification () throws Throwable {
+
+    public void verifyDeleteNotification() throws Throwable {
         WebElement notification = driver.findElement(By.xpath("//div[@class='success show']"));
         elementToBeClickable(notification);
         String notificationText = notification.getText();
