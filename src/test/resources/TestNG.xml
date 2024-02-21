@@ -17,6 +17,7 @@
 <<<<<<< HEAD
             <class name="BaseTest"/>
             <class name="ProfileTests"/>
+<<<<<<< Updated upstream
 =======
             <!--<class name="BaseTest"/>
             <class name="HomeWork18"/>
@@ -25,6 +26,9 @@
             <class name="Homework22"/>
             <class name="ProfileTest"/>-->
 >>>>>>> upstream/main
+=======
+            <class name="Homework19"/>
+>>>>>>> Stashed changes
         </classes>
 
     </test>

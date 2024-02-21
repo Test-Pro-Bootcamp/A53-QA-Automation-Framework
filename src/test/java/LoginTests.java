@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+<<<<<<< Updated upstream
 =======
 import Pages.HomePage;
 import Pages.LoginPage;
@@ -8,6 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 >>>>>>> upstream/main
+=======
+import org.openqa.selenium.support.ui.ExpectedConditions;
+>>>>>>> Stashed changes
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -62,6 +66,7 @@ public class LoginTests extends BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
+<<<<<<< Updated upstream
 }
 =======
 public class LoginTests extends BaseTest {
@@ -171,3 +176,8 @@ public class LoginTests extends BaseTest {
 
 
 >>>>>>> upstream/main
+=======
+
+
+}
+>>>>>>> Stashed changes
