@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
+<<<<<<< HEAD
 <suite name="TestNG">
     <parameter name="BaseURL" value="https://qa.koel.app/"/>
+=======
+<suite name="TestNg">
+
+    <parameter name="BaseUrl" value="https://qa.koel.app"/>
+
+>>>>>>> upstream/main
     <test name="Example Test" preserve-order="false">
         
         <classes>
             <class name="LoginTests"/>
+<<<<<<< HEAD
             <class name="BaseTest"/>
             <class name="ProfileTests"/>
+=======
+            <!--<class name="BaseTest"/>
+            <class name="HomeWork18"/>
+            <class name="Homework19"/>
+            <class name="AllSongsTest"/>
+            <class name="Homework22"/>
+            <class name="ProfileTest"/>-->
+>>>>>>> upstream/main
         </classes>
 
     </test>
