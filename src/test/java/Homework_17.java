@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -8,8 +9,29 @@ public class Homework_17 extends BaseTest {
 
     @Test
     public  void addSongToPlaylist() throws Throwable{
-        loginToKoelApp();
+        LoginTest user = new LoginTest();
+        user.loginToKoelApp();
         verifyLogin();
+        Thread.sleep(2000);
+        try {
+            WebElement playList = driver.findElement(By.xpath("//li[@class='playlist playlist']"));
+            addSong();
+        } catch (Exception e) {
+            WebElement addButton = driver.findElement(By.xpath("//i[@title='Create a new playlist']"));
+            addButton.click();
+            Thread.sleep(2000);
+            WebElement newPlaylist = driver.findElement(By.xpath("//*[@id=\"playlists\"]//li[text()='New Playlist']"));
+            newPlaylist.click();
+            WebElement savePlaylist = driver.findElement(By.xpath("//input[@placeholder='↵ to save']"));
+            savePlaylist.sendKeys("SatyTest");
+            Thread.sleep(1000);
+            savePlaylist.sendKeys(Keys.ENTER);
+            Thread.sleep(4000);
+            addSong();
+        }
+    }
+
+    public void addSong() throws Throwable {
         searchSong();
         viewAllSearchList();
         selectFirstSongInTheResult();
@@ -57,26 +79,5 @@ public class Homework_17 extends BaseTest {
         Assert.assertEquals("Added 1 song into \"SatyTest.\"", notificationText);
         System.out.println("Song added to the playlist");
 
-    }
-
-    public  void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.sendKeys(email);
-    }
-
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.sendKeys(password);
-    }
-
-    public void clickSubmit(){
-        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submitButton.click();
-    }
-
-    public void loginToKoelApp() {
-        provideEmail("burul.satybaeva@testpro.io");
-        providePassword("Lulkerup7710%");
-        clickSubmit();
     }
 }

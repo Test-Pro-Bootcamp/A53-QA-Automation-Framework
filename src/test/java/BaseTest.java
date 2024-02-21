@@ -12,7 +12,7 @@ public class BaseTest {
     public static WebDriverWait wait;
 
     @Parameters({"BaseUrl"})
-    @BeforeSuite
+    @BeforeClass
 
     public void setUpDriver(String BaseUrl) {
         WebDriverManager.chromedriver().setup();
@@ -27,7 +27,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @AfterSuite
+    @AfterClass
     public void closeBrowser() {
         driver.quit();
     }

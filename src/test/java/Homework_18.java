@@ -8,12 +8,8 @@ import org.testng.annotations.Test;
 public class Homework_18 extends BaseTest {
     @Test
     public void playSong() throws Throwable {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.sendKeys("burul.satybaeva@testpro.io");
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.sendKeys("Lulkerup7710%");
-        WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-        submitButton.click();
+        LoginTest user = new LoginTest();
+        user.loginToKoelApp();
         Thread.sleep(2000);
 
         WebElement musicControl = driver.findElement(By.xpath("//span[@title='Play or resume']"));
@@ -29,6 +25,7 @@ public class Homework_18 extends BaseTest {
         WebElement pauseButton = driver.findElement(By.xpath("//span[@title='Pause']"));
         boolean status = pauseButton.isDisplayed();
         Assert.assertTrue(status);
+        System.out.println("Homework 18 is done");
 
 
     }
