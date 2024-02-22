@@ -9,7 +9,6 @@ public class Homework_15 extends BaseTest{
 
     @Test
     public void homework15() throws Throwable{
-        Thread.sleep(2000);
         String url = "https://testpro.io/";
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(),url);
