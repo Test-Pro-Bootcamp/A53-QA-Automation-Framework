@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Homework22 extends BaseTest{
+    // Creating a Test using POM
     @Test
     public void loginValidEmailPassword() {
 
