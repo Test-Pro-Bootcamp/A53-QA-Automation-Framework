@@ -12,17 +12,13 @@ repositories {
 dependencies {
     testImplementation 'org.testng:testng:7.6.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
 }
 
-// Define the 'suite' property with a default value
-ext {
-    suite = project.hasProperty('suite') ? project.suite : 'Regression'
-}
 
 test {
     useTestNG() {
-        suites "src/test/resources/${suite}.xml"
+        suites "src/test/resources/TestNG.xml"
         systemProperty "browser", System.getProperty("browser")
         systemProperty "suite", System.getProperty("suite")
     }
