@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -47,5 +48,16 @@ public class BaseTest {
     public void elementToDisappear(String  element) throws Throwable{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(element)));
+    }
+
+    public void clickElement(WebElement element) throws Throwable{
+        elementToBeClickable(element);
+        element.click();
+    }
+
+    public void doubleClick(WebElement element) throws Throwable {
+        Actions mouse = new Actions(driver);
+        elementToBeClickable(element);
+        mouse.doubleClick(element).build().perform();
     }
 }
