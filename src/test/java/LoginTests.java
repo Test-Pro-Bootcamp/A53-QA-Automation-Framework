@@ -1,5 +1,8 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -52,4 +55,28 @@ public class LoginTests extends BaseTest {
         WebElement avatarIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
         Assert.assertTrue(avatarIcon.isDisplayed());
     }
+
+    @Test
+    public void renamePlaylist() throws InterruptedException {
+        String updatedPLMsg = "Updated playlist \"Sample Playlist.\"";
+
+        provideEmail("demo@class.com");
+        providePassword("te$t$tudent");
+        clickSubmit();
+
+        Actions action = new Actions(driver);
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".playlist:nth-child(3)")));
+        action.doubleClick(playlistElement).perform();
+
+        WebElement playlistImput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li[class='editing']")));
+        playlistImput.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        playlistImput.sendKeys("Sample Playlist");
+        playlistImput.sendKeys(Keys.ENTER);
+
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("li[class='editing']")));
+        String getRenameMsg = notification.getText();
+
+        Assert.assertEquals(getRenameMsg, updatedPLMsg);
+
+                   }
 }
