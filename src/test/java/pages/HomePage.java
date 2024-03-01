@@ -53,6 +53,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath="//img[@class='avatar']")
     private WebElement avatarElement;
 
+    @FindBy(xpath="//*[@data-testid='btn-logout']")
+    private WebElement logoutBtn;
+
     public boolean isSuccessNotificationActive;
     public String successNotificationText;
     public boolean isDeletePlaylistNotification;
@@ -150,6 +153,11 @@ public class HomePage extends BasePage {
 
     public HomePage selectPlaylist(){
         songResultPlaylist.click();
+        return this;
+    }
+
+    public HomePage logOut(){
+        logoutBtn.click();
         return this;
     }
 

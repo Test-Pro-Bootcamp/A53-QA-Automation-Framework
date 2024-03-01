@@ -46,7 +46,7 @@ public class LoginPage extends BasePage {
     public LoginPage loginUsertoKoel(){
         loadLoginPage();
         provideEmail("william.chang@testpro.io");
-        providePassword("te$tStudent");
+        providePassword("te$tStudent1");
         clickSubmit();
         return this;
     }

@@ -60,7 +60,7 @@ public class BaseTest {
     }
     public WebDriver pickBrowser(String browser) throws MalformedURLException{
         DesiredCapabilities caps = new DesiredCapabilities();
-        String gridURL = "http://192.168.86.247:4444";
+        String gridURL = "http://192.168.86.249:4444";//"http://192.168.86.247:4444";
         switch (browser){
             case "firefox" :
                 WebDriverManager.firefoxdriver().setup();
@@ -77,6 +77,8 @@ public class BaseTest {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                WebDriverManager.chromedriver().clearResolutionCache().setup();
                return driver = new ChromeDriver(options);
         }
 
