@@ -7,7 +7,7 @@
 
     <test name="Example Test" preserve-order="true">
         <classes>
-            <class name="PageObject.Homework_22"/>
+            <class name="Homework_22"/>
         </classes>
     </test>
 </suite>
