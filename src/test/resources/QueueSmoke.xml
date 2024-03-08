@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="LoginTestNG">
+<suite name="QueueSmoke">
 
-    <test name="Koel Test" preserve-order="true">
+    <test name="Queue Tests" preserve-order="true">
         <classes>
 
-            <class name="LoginTests" />
+            <class name="QueueTests" />
 
         </classes>
     </test>

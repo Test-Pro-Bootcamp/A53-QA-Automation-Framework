@@ -36,7 +36,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement)).click();
     }
 
-    protected void doubleClick (WebElement webElement){
+    protected void doubleClick(WebElement webElement){
         actions.doubleClick(findElement(webElement)).perform();
     }
 

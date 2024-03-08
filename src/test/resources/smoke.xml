@@ -35,5 +35,26 @@
         </classes>
     </test>
 
+    <test name="Play Song" preserve-order="false">
+        <classes>
+            <class name="SongPlayerTests">
+                <methods>
+                    <include name="playSong"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+    <test name="Rename Playlist" preserve-order="false">
+        <parameter name ="BaseURL" value="https://qa.koel.app/" />
+        <classes>
+            <class name="PlaylistTests">
+                <methods>
+                    <include name="renamePlaylist"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>
