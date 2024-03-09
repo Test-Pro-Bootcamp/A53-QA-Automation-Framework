@@ -1,8 +1,8 @@
 package PageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class LoginPage extends BasePage {
@@ -11,32 +11,36 @@ public class LoginPage extends BasePage {
         super(givenDriver);
     }
 
-    //Element Locators
-    By emailField = By.cssSelector("input[type='email']");
-    By passwordField = By.cssSelector("input[type='password']");
-    By submitBtn = By.cssSelector("button[type='submit']");
+    //Element Locators using page factory
+    @FindBy(css = "input[type='email']")
+    WebElement emailField;
+    @FindBy(css = "input[type='password']")
+    WebElement passwordField;
+    @FindBy(css = "button[type='submit']")
+    WebElement submitBtn;
+    @FindBy(xpath = "//span[@class='name']")
+    WebElement yourMusic;
 
-    By yourMusic = By.xpath("//span[@class='name']");
-
-    //Page Methods
-    public void provideEmail(String email) {
-        findElementUsingByLocator(emailField).sendKeys(email);
+    // Methods using Selenium Page Factory.
+    public LoginPage provideEmail(String email){
+        emailField.sendKeys(email);
+        return this;
     }
 
-    public void providePassword(String password) {
-        findElementUsingByLocator(passwordField).sendKeys(password);
+    public LoginPage providePassword(String password){
+        passwordField.sendKeys(password);
+        return this;
     }
 
-    public void clickSubmit() {
-        findElementUsingByLocator(submitBtn).click();
+    public LoginPage clickSubmit(){
+        submitBtn.click();
+        return this;
     }
-
-    public void verifyLogin() throws Throwable {
-        WebElement music = findElementUsingByLocator(yourMusic);
-        boolean status = music.isEnabled();
+    public boolean verifyLogin() throws Throwable {
+        boolean status = yourMusic.isEnabled();
         Assert.assertTrue(status);
+        return status;
     }
-
     public void loginWithValidCredentials() {
         provideEmail("burul.satybaeva@testpro.io");
         providePassword("Lulkerup7710%");

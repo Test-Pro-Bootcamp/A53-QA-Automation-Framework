@@ -1,10 +1,8 @@
-import PageObject.BasePage;
 import PageObject.LoginPage;
 import PageObject.playSong;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-public class Homework_22 extends BaseTest {
+public class Homework_23 extends BaseTest {
     @Test
     public void playAndPauseSong() throws Throwable {
         LoginPage login = new LoginPage(driver);
