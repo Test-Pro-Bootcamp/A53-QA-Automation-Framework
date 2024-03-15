@@ -14,3 +14,5 @@ gradle*
 # gradle/wrapper/gradle-wrapper.properties
 
 /out/
+src/test/java/LoginTests.java
+src/test/resources/TestNG.xml
