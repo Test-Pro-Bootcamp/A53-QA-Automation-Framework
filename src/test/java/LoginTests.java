@@ -30,4 +30,24 @@ public class LoginTests extends BaseTest {
         Assert.assertEquals(driver.getCurrentUrl(), url);
     }
 
+    @Test(dataProvider = "InvalidLoginData", dataProviderClass=BaseTest.class)
+    public void loginWithInvalidEmailValidPassword() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("TTTT@gmail.com").providePassword("te$t$tudent").clickSubmit();
+
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
+    @Test
+    public void loginWithInvalidPasswordAndValidEmail() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("demo@class.com").providePassword("123456").clickSubmit();
+
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
 }
