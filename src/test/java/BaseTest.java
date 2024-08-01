@@ -14,23 +14,14 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
+import javax.annotation.processing.SupportedAnnotationTypes;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+@SupportedAnnotationTypes()
 public class BaseTest {
-
-    //Data Providers
-    @DataProvider(name="InvalidLoginData")
-    public static Object[][] getDataFromDataProviders(){
-        return new Object[][] {
-                {"invalid@mail.com", "invalidPassword"},
-                {"demo@class.com", ""},
-                {"", "te$t$tudent"},
-                {"",""}
-        };
-    }
 
     public WebDriver driver;
     public WebDriverWait wait;

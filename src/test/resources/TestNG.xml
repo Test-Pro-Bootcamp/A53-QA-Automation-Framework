@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="TestNg">
-
-    <parameter name="BaseUrl" value="https://qa.koel.app"/>
-
+    <parameter name="BaseUrl" value="https://testpro.io/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="LoginTests"/>
-            <!--<class name="BaseTest"/>
-            <class name="HomeWork18"/>
-            <class name="Homework19"/>
-            <class name="AllSongsTest"/>
-            <class name="Homework22"/>
-            <class name="ProfileTest"/>-->
+            <class name="Homework15"/>
         </classes>
     </test>
 </suite>
