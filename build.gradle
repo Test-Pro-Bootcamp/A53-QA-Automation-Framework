@@ -1,6 +1,9 @@
-plugins {
-    id 'java'
-}
+
+    plugins {
+        id 'java'
+        id 'jvm-test-suite'
+    }
+
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -19,7 +22,7 @@ test {
     useTestNG() {
         //suites "src/test/resources/Regression.xml"
         //suites "src/test/resources/Smoke.xml"
-        suites "src/test/resources/${suite}.xml"
+        suites "src/test/resources/TestNG.xml"
         systemProperty "browser", System.getProperty("browser")
         systemProperty "suite", System.getProperty("suite")
     }

@@ -37,7 +37,7 @@ public class BaseTest {
 
     public Wait<WebDriver> fluentWait;
 
-    public String url = "https://qa.koel.app/";
+    public String url = "https://testpro.io/";
 
     public Actions actions;
 
